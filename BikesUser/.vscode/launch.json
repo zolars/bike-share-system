@@ -1,0 +1,67 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - ImagePanel",
+            "request": "launch",
+            "mainClass": "layout.ImagePanel",
+            "projectName": "BikesUser_5dff27f"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - FuncPanelBikes",
+            "request": "launch",
+            "mainClass": "layout.FuncPanelBikes",
+            "projectName": "BikesUser_5dff27f"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - SettingFuncPanel",
+            "request": "launch",
+            "mainClass": "layout.SettingFuncPanel",
+            "projectName": "BikesUser_5dff27f"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - DefaultFuncPanel",
+            "request": "launch",
+            "mainClass": "layout.DefaultFuncPanel",
+            "projectName": "BikesUser_5dff27f"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - DefaultLabelPage",
+            "request": "launch",
+            "mainClass": "layout.DefaultLabelPage",
+            "projectName": "BikesUser_5dff27f"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Label",
+            "request": "launch",
+            "mainClass": "layout.Label",
+            "projectName": "BikesUser_5dff27f"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - DefaultLayout",
+            "request": "launch",
+            "mainClass": "layout.DefaultLayout",
+            "projectName": "BikesUser_5dff27f"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Main",
+            "request": "launch",
+            "mainClass": "application.Main",
+            "projectName": "BikesUser_5dff27f"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - MainLayout",
+            "request": "launch",
+            "mainClass": "layout.MainLayout",
+            "projectName": "BikesUser_5dff27f"
+        }
+    ]
+}
