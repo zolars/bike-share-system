@@ -2,6 +2,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - FuncPanelMyAccount",
+            "request": "launch",
+            "mainClass": "layout.FuncPanelMyAccount",
+            "projectName": "BikesUser_5dff27f"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - FuncPanelLogin",
+            "request": "launch",
+            "mainClass": "layout.FuncPanelLogin",
+            "projectName": "BikesUser_5dff27f"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - FuncPanelSetting",
+            "request": "launch",
+            "mainClass": "layout.FuncPanelSetting",
+            "projectName": "BikesUser_5dff27f"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - AccountDaoImpl",
             "request": "launch",
             "mainClass": "database.dao.impl.AccountDaoImpl",

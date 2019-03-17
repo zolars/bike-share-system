@@ -13,7 +13,7 @@ public class Record {
     private Date startDate;
     private Date endDate;
     private int duration;
-    private int bill;
+    private int balance;
 
     /**
      * @param userID the userID to set
@@ -72,17 +72,17 @@ public class Record {
     }
 
     /**
-     * @param bill the bill to set
+     * @param balance the balance to set
      */
-    public void setBill(int bill) {
-        this.bill = bill;
+    public void setBalance(int balance) {
+        this.balance = balance;
     }
 
     /**
-     * @return the bill
+     * @return the balance
      */
-    public int getBill() {
-        return bill;
+    public int getBalance() {
+        return balance;
     }
 
 }

@@ -2,7 +2,7 @@ package layout;
 
 import javax.swing.*;
 
-import application.Main;
+import application.*;
 
 /**
  * FuncPanelMsg
@@ -15,10 +15,10 @@ public class FuncPanelMsg extends JPanel {
 
     public FuncPanelMsg() {
         this.setName("Msg");
-        this.add(new JLabel("Msg Page..."));
+
     }
 
     public static void main(String[] args) {
-        Main.setup();
+        MainUser.setup();
     }
 }

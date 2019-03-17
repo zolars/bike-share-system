@@ -35,6 +35,7 @@ public class FuncPanelBikes extends JPanel {
         text.setFont(new java.awt.Font("Dialog", 1, 25));
         text.setOpaque(false);
         text.setForeground(Color.RED);
+        text.setText("Loading...");
         add(text);
 
         addComponentListener(new ComponentAdapter() {

@@ -16,4 +16,6 @@ public interface AccountDao {
     public Account findAccountByUsername(String username) throws IOException;
 
     public boolean addNewAccount(Account account) throws IOException;
+
+    public boolean modifyAccount(Account accountModified) throws IOException;
 }

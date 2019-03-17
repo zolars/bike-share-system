@@ -2,7 +2,7 @@ package layout;
 
 import javax.swing.*;
 
-import application.Main;
+import application.*;
 
 /**
  * FuncPanelMyAccount
@@ -15,10 +15,10 @@ public class FuncPanelMyAccount extends JPanel {
 
     public FuncPanelMyAccount() {
         this.setName("MyAccount");
-        this.add(new JLabel("MyAccount Page..."));
+
     }
 
     public static void main(String[] args) {
-        Main.setup();
+        MainUser.setup();
     }
 }

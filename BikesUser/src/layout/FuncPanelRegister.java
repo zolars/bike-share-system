@@ -3,7 +3,6 @@ package layout;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
-
 import javax.swing.*;
 
 import application.*;
@@ -22,7 +21,7 @@ public class FuncPanelRegister extends JPanel implements ActionListener {
     private JTextField jtUserID;
     private JTextField jtUsername;
     private JPasswordField jtPassword;
-    private JTextField jtBill;
+    private JTextField jtBalance;
     private JButton jbRegister = new JButton("Register !");
 
     public FuncPanelRegister() {
@@ -36,8 +35,6 @@ public class FuncPanelRegister extends JPanel implements ActionListener {
         JPanel panel06 = new JPanel();
         // JPanel panel07 = new JPanel();
         // JPanel panel08 = new JPanel();
-
-        add(panel01);
 
         panel02 = new JPanel();
         JLabel jlUserID = new JLabel("User ID : ");
@@ -61,17 +58,18 @@ public class FuncPanelRegister extends JPanel implements ActionListener {
         panel04.add(jtPassword);
 
         panel05 = new JPanel();
-        JLabel jlBill = new JLabel("Recharge : ");
-        jlBill.setFont(new java.awt.Font("Dialog", 1, 25));
-        panel05.add(jlBill);
-        jtBill = new JTextField(15);
-        panel05.add(jtBill);
+        JLabel jlBalance = new JLabel("Recharge : ");
+        jlBalance.setFont(new java.awt.Font("Dialog", 1, 25));
+        panel05.add(jlBalance);
+        jtBalance = new JTextField(15);
+        panel05.add(jtBalance);
 
         panel06 = new JPanel(new FlowLayout(FlowLayout.CENTER));
         // add Action Listener
         jbRegister.addActionListener(this);
         panel06.add(jbRegister);
 
+        add(panel01);
         add(panel02);
         add(panel03);
         add(panel04);
@@ -83,20 +81,20 @@ public class FuncPanelRegister extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == jbRegister) {
             if (jtUserID.getText().isEmpty() || jtUsername.getText().isEmpty() || jtPassword.getText().isEmpty()
-                    || (!jtBill.getText().matches("[0-9]+"))) {
+                    || (!jtBalance.getText().matches("[0-9]+"))) {
                 JOptionPane.showMessageDialog(this, "Invalid Input! Please try again.", "Sorry",
                         JOptionPane.WARNING_MESSAGE);
                 jtUserID.setText("");
                 jtUsername.setText("");
                 jtPassword.setText("");
-                jtBill.setText("");
+                jtBalance.setText("");
             } else {
                 AccountDao dao = new AccountDaoImpl();
                 Account account = new Account();
                 account.setUserID(jtUserID.getText());
                 account.setUsername(jtUsername.getText());
                 account.setPassword(jtPassword.getText());
-                account.setBill(Integer.parseInt(jtBill.getText()));
+                account.setBalance(Integer.parseInt(jtBalance.getText()));
                 try {
                     if (dao.addNewAccount(account)) {
                         JOptionPane.showMessageDialog(this, "Congratulations! Register Successfully!",
@@ -104,14 +102,14 @@ public class FuncPanelRegister extends JPanel implements ActionListener {
                         jtUserID.setText("");
                         jtUsername.setText("");
                         jtPassword.setText("");
-                        jtBill.setText("");
+                        jtBalance.setText("");
                     } else {
                         JOptionPane.showMessageDialog(this, "The user ID or user name has been used. Please try again.",
                                 "Sorry", JOptionPane.WARNING_MESSAGE);
                         jtUserID.setText("");
                         jtUsername.setText("");
                         jtPassword.setText("");
-                        jtBill.setText("");
+                        jtBalance.setText("");
                     }
 
                 } catch (IOException e1) {

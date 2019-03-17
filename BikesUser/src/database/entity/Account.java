@@ -10,7 +10,7 @@ public class Account {
     private String userID;
     private String username;
     private String password;
-    private int bill;
+    private int balance;
 
     /**
      * @param userID the userID to set
@@ -55,17 +55,22 @@ public class Account {
     }
 
     /**
-     * @param bill the bill to set
+     * @param balance the balance to set
      */
-    public void setBill(int bill) {
-        this.bill = bill;
+    public void setBalance(int balance) {
+        this.balance = balance;
     }
 
     /**
-     * @return the bill
+     * @return the balance
      */
-    public int getBill() {
-        return bill;
+    public int getBalance() {
+        return balance;
+    }
+
+    @Override
+    public String toString() {
+        return userID + " " + username + " " + password + " " + balance;
     }
 
 }

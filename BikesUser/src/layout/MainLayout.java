@@ -6,6 +6,7 @@ import java.util.*;
 import javax.swing.*;
 
 import application.Main;
+import application.MainUser;
 
 /**
  * MainLayout
@@ -46,10 +47,15 @@ public class MainLayout extends JFrame {
         for (int i = 0; i < this.funcSet.size(); i++) {
             addFunc(this, this.funcSet.get(i).getName(), this.funcSet.get(i));
         }
-
+        String oldStatus = MainUser.loginStatus;
         while (true)
             try {
                 Thread.sleep(1000);
+                if (!MainUser.loginStatus.equals(oldStatus)) {
+                    Thread.sleep(1000);
+                    dispose();
+                    MainUser.setup();
+                }
                 for (int i = 0; i < this.funcSet.size(); i++) {
                     this.funcSet.get(i).updateUI();
                 }
@@ -65,7 +71,6 @@ public class MainLayout extends JFrame {
         CardLayout cardLayout = mainLayout.getCardLayout();
 
         displayPanel.add(labelPageName, funcPanel);
-
         JButton btn = new JButton(labelPageName);
         btn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
