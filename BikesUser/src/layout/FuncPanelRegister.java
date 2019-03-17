@@ -80,8 +80,8 @@ public class FuncPanelRegister extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == jbRegister) {
-            if (jtUserID.getText().isEmpty() || jtUsername.getText().isEmpty() || jtPassword.getText().isEmpty()
-                    || (!jtBalance.getText().matches("[0-9]+"))) {
+            if (jtUserID.getText().isEmpty() || jtUsername.getText().isEmpty()
+                    || String.valueOf(jtPassword.getPassword()).isEmpty() || (!jtBalance.getText().matches("[0-9]+"))) {
                 JOptionPane.showMessageDialog(this, "Invalid Input! Please try again.", "Sorry",
                         JOptionPane.WARNING_MESSAGE);
                 jtUserID.setText("");
@@ -93,7 +93,7 @@ public class FuncPanelRegister extends JPanel implements ActionListener {
                 Account account = new Account();
                 account.setUserID(jtUserID.getText());
                 account.setUsername(jtUsername.getText());
-                account.setPassword(jtPassword.getText());
+                account.setPassword(String.valueOf(jtPassword.getPassword()));
                 account.setBalance(Integer.parseInt(jtBalance.getText()));
                 try {
                     if (dao.addNewAccount(account)) {

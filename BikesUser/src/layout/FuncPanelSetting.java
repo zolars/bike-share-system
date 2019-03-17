@@ -79,9 +79,16 @@ public class FuncPanelSetting extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Account account = grabData();
         if (e.getSource() == jbChangePassword) {
-            String newString = JOptionPane.showInputDialog(null, "Input new password : \n", "Change Password",
-                    JOptionPane.PLAIN_MESSAGE);
-            account.setPassword(newString);
+            while (true) {
+                String newString = JOptionPane.showInputDialog(null, "Input new password (not null) : \n",
+                        "Change Password", JOptionPane.PLAIN_MESSAGE);
+                if (newString.equals("")) {
+                    continue;
+                } else {
+                    account.setPassword(newString);
+                    break;
+                }
+            }
         }
         if (e.getSource() == jbChangeBalance) {
             Object[] obj = { 10, 50, 100 };

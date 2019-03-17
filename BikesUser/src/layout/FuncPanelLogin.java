@@ -80,7 +80,7 @@ public class FuncPanelLogin extends JPanel implements ActionListener {
                         JOptionPane.WARNING_MESSAGE);
                 jtUsername.setText("");
                 jtPassword.setText("");
-            } else if (!account.getPassword().equals(jtPassword.getText())) {
+            } else if (!account.getPassword().equals(String.valueOf(jtPassword.getPassword()))) {
                 JOptionPane.showMessageDialog(this, "The password is invalid. Please try again.", "Sorry",
                         JOptionPane.WARNING_MESSAGE);
                 jtUsername.setText("");
