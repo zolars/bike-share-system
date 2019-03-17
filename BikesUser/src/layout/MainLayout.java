@@ -2,6 +2,7 @@ package layout;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
 import javax.swing.*;
 
 import application.Main;
@@ -10,16 +11,18 @@ import application.Main;
  * MainLayout
  * 
  * @author Xin Yifei
- * @version 0.1
+ * @version 0.5
  */
 public class MainLayout extends JFrame {
 
     private static final long serialVersionUID = 1L;
+    private LinkedList<JPanel> funcSet;
     private JPanel controlPanel = new JPanel();
     private JPanel displayPanel = new JPanel();
     private CardLayout cardLayout = new CardLayout();
 
-    public MainLayout() {
+    public MainLayout(LinkedList<JPanel> funcSet) {
+        this.funcSet = funcSet;
         init();
     }
 
@@ -33,16 +36,26 @@ public class MainLayout extends JFrame {
         controlPanel.setLayout(new GridLayout());
         controlPanel.setBackground(Color.BLACK);
 
-        for (int i = 0; i < Main.funcSet.size(); i++) {
-            addFunc(this, Main.funcSet.get(i).getName(), Main.funcSet.get(i));
-        }
-
         setSize(900, 600);
         setMinimumSize(new Dimension(1000, 700));
         setTitle("Shared Bike System " + Main.version);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
+
+        for (int i = 0; i < this.funcSet.size(); i++) {
+            addFunc(this, this.funcSet.get(i).getName(), this.funcSet.get(i));
+        }
+
+        while (true)
+            try {
+                Thread.sleep(1000);
+                for (int i = 0; i < this.funcSet.size(); i++) {
+                    this.funcSet.get(i).updateUI();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
     }
 
     // A new function label page in order to increase new functions easily.

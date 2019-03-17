@@ -1,19 +1,28 @@
 package layout;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-import javax.swing.*;
+import application.*;
+import database.dao.*;
+import database.dao.impl.*;
+import database.entity.*;
 
-import application.Main;
-
+/**
+ * FuncPanelBikes
+ * 
+ * @author Xin Yifei
+ * @version 0.5
+ */
 public class FuncPanelBikes extends JPanel {
     private static final long serialVersionUID = 1L;
 
-    private Image img = new ImageIcon("./src/images/map.jpg").getImage();
+    private Image img = new ImageIcon(getClass().getResource("/images/map.jpg")).getImage();
+    private JLabel text;
 
     public FuncPanelBikes() {
-        this.setName("Bikes");
+        setName("Bikes");
         Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
         setSize(size);
         setPreferredSize(size);
@@ -21,22 +30,34 @@ public class FuncPanelBikes extends JPanel {
         setMaximumSize(size);
         setLayout(null);
 
-        JLabel numA = new JLabel(
-                "<html><body><p align=\"center\">Bikes in A : 438<br/>Bikes in B : 239<br/>Bikes in C : 23</p></body></html>",
-                JLabel.CENTER);
-        numA.setBounds(20, getBounds().height * 2 / 3, 200, getBounds().height / 3);
-        numA.setFont(new java.awt.Font("Dialog", 1, 25));
-        numA.setOpaque(false);
-        numA.setForeground(Color.RED);
-        add(numA);
+        text = new JLabel("", JLabel.CENTER);
+        text.setBounds(20, getBounds().height * 2 / 3, 200, getBounds().height / 3);
+        text.setFont(new java.awt.Font("Dialog", 1, 25));
+        text.setOpaque(false);
+        text.setForeground(Color.RED);
+        add(text);
 
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
-                numA.setBounds(20, getBounds().height * 2 / 3, 200, getBounds().height * 4 / 21);
+                text.setBounds(20, getBounds().height * 2 / 3, 200, getBounds().height * 4 / 21);
             }
         });
+    }
 
+    @Override
+    public void updateUI() {
+        super.updateUI();
+        BikesDao dao = new BikesDaoImpl();
+        try {
+            Bikes a = dao.findBikes("A").get(0);
+            Bikes b = dao.findBikes("B").get(0);
+            Bikes c = dao.findBikes("C").get(0);
+            text.setText("<html><body><p align=\"center\">Bikes in A :" + a.getNumber() + "<br/>Bikes in B :"
+                    + b.getNumber() + "<br/>Bikes in C :" + c.getNumber() + "</p></body></html>");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -46,6 +67,6 @@ public class FuncPanelBikes extends JPanel {
     }
 
     public static void main(String[] args) {
-        Main.setup();
+        MainUser.setup();
     }
 }

@@ -1,2 +1,2 @@
-Main-Class: application.Main
+Main-Class: application.MainAdmin
 Created-By: Xin Yifei & team-members
