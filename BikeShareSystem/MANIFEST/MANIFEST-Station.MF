@@ -1,2 +1,2 @@
-Main-Class: application.Main
+Main-Class: application.MainStation
 Created-By: Xin Yifei & team-members

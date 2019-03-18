@@ -16,7 +16,7 @@ public class MainUser {
     public static LinkedList<JPanel> funcSetLogin = new LinkedList<JPanel>();
     public static LinkedList<JPanel> funcSet = new LinkedList<JPanel>();
     public static Boolean restart = false;
-    public static String loginStatus = "123";
+    public static String loginStatus = null;
 
     public static void setup() {
 
