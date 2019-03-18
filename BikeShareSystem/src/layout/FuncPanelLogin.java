@@ -103,7 +103,7 @@ public class FuncPanelLogin extends JPanel implements ActionListener {
                 jtUsername.setText("");
                 jtPassword.setText("");
             } else {
-                MainUser.loginStatus = jtUsername.getText();
+                MainUser.loginStatus = dao.findAccountByUsername(jtUsername.getText()).getUserID();
                 MainUser.restart = true;
                 JOptionPane.showMessageDialog(this, "Successfully Login!", "Congratulations",
                         JOptionPane.WARNING_MESSAGE);

@@ -139,7 +139,7 @@ public class FuncPanelMyAccount extends JPanel implements ActionListener {
     public Account grabData() {
         Account account = new Account();
         try {
-            account = dao.findAccountByUsername(MainUser.loginStatus);
+            account = dao.findAccountByUserID(MainUser.loginStatus);
             if (account == null) {
                 JOptionPane.showMessageDialog(this, "There are something wrong? Maybe the database occurs mistakes.",
                         "Sorry", JOptionPane.WARNING_MESSAGE);

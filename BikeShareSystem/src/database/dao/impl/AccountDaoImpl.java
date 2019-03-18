@@ -45,8 +45,7 @@ public class AccountDaoImpl extends BaseDao implements AccountDao {
     public boolean addNewAccount(Account account) throws IOException {
         if (BaseDao.search("account.txt", account.getUserID(), 0).size() == 0
                 && BaseDao.search("account.txt", account.getUsername(), 1).size() == 0) {
-            String str = account.getUserID() + " " + account.getUsername() + " " + account.getPassword() + " "
-                    + account.getBalance();
+            String str = account.toString();
             BaseDao.addLine("account.txt", str);
             return true;
         } else {

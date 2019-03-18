@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - RecordDaoImpl",
+            "request": "launch",
+            "mainClass": "database.dao.impl.RecordDaoImpl",
+            "projectName": "BikeShareSystem_826b9af"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - FuncPanelMyAccount",
             "request": "launch",
             "mainClass": "layout.FuncPanelMyAccount",

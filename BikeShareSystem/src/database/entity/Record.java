@@ -1,5 +1,6 @@
 package database.entity;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -12,8 +13,8 @@ public class Record {
     private String userID;
     private Date startDate;
     private Date endDate;
-    private int duration;
-    private int balance;
+    private long duration;
+    private int bill;
 
     /**
      * @param userID the userID to set
@@ -60,29 +61,35 @@ public class Record {
     /**
      * @param duration the duration to set
      */
-    public void setDuration(int duration) {
+    public void setDuration(long duration) {
         this.duration = duration;
     }
 
     /**
      * @return the duration
      */
-    public int getDuration() {
+    public long getDuration() {
         return duration;
     }
 
     /**
-     * @param balance the balance to set
+     * @param bill the bill to set
      */
-    public void setBalance(int balance) {
-        this.balance = balance;
+    public void setBill(int bill) {
+        this.bill = bill;
     }
 
     /**
-     * @return the balance
+     * @return the bill
      */
-    public int getBalance() {
-        return balance;
+    public int getBill() {
+        return bill;
+    }
+
+    @Override
+    public String toString() {
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd;HH:mm:ss");
+        return userID + " " + sf.format(startDate) + " " + sf.format(endDate);
     }
 
 }

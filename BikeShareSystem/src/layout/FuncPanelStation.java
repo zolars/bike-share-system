@@ -5,9 +5,6 @@ import java.awt.*;
 import java.awt.event.*;
 
 import application.*;
-import database.dao.*;
-import database.dao.impl.*;
-import database.entity.*;
 
 /**
  * FuncPanelStation

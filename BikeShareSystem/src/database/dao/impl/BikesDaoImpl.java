@@ -14,7 +14,7 @@ import database.entity.*;
  * @version 0.6
  */
 public class BikesDaoImpl extends BaseDao implements BikesDao {
-    public List<Bikes> findBikes(String station) throws IOException {
+    public List<Bikes> findBikesByStation(String station) throws IOException {
         List<Bikes> result = new ArrayList<Bikes>();
 
         List<String[]> resultStr = search("bikes.txt", station, 0);
@@ -31,7 +31,7 @@ public class BikesDaoImpl extends BaseDao implements BikesDao {
     public static void main(String[] args) {
         BikesDao dao = new BikesDaoImpl();
         try {
-            System.out.println(dao.findBikes("B").get(0).getNumber());
+            System.out.println(dao.findBikesByStation("B").get(0).getNumber());
         } catch (IOException e) {
             e.printStackTrace();
 

@@ -1,6 +1,7 @@
 package database.dao;
 
 import java.io.*;
+import java.util.*;
 
 import database.entity.*;
 
@@ -11,9 +12,14 @@ import database.entity.*;
  * @version 0.6
  */
 public interface RecordDao {
-    public Record findRecordByUserID(String userID) throws IOException;
+    public List<Record> findRecordAll(String userID) throws IOException;
 
-    public boolean addNewRecord(Record Record) throws IOException;
+    public List<Record> findRecordNotend(String userID) throws IOException;
 
-    public boolean modifyRecord(Record RecordModified) throws IOException;
+    public List<Record> findRecordOverdue(String userID) throws IOException;
+
+    public boolean addNewRecord(Record record) throws IOException;
+
+    public boolean modifyRecord(Record recordModified) throws IOException;
+
 }

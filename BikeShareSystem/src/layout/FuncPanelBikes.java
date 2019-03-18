@@ -50,9 +50,9 @@ public class FuncPanelBikes extends JPanel {
         super.updateUI();
         BikesDao dao = new BikesDaoImpl();
         try {
-            Bikes a = dao.findBikes("A").get(0);
-            Bikes b = dao.findBikes("B").get(0);
-            Bikes c = dao.findBikes("C").get(0);
+            Bikes a = dao.findBikesByStation("A").get(0);
+            Bikes b = dao.findBikesByStation("B").get(0);
+            Bikes c = dao.findBikesByStation("C").get(0);
             text.setText("<html><body><p align=\"center\">Bikes in A :" + a.getNumber() + "<br/>Bikes in B :"
                     + b.getNumber() + "<br/>Bikes in C :" + c.getNumber() + "</p></body></html>");
         } catch (Exception e) {

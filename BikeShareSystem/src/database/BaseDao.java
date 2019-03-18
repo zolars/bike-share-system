@@ -18,6 +18,13 @@ public class BaseDao {
         return file.exists();
     }
 
+    /**
+     * Find data from fileName with the keyword in index. When keyword="", return
+     * all data.
+     * 
+     * @author Xin Yifei
+     * @version 0.6
+     */
     public static List<String[]> search(String fileName, String keyword, int index) throws IOException {
         List<String[]> dataSet = new ArrayList<String[]>();
 
