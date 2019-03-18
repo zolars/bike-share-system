@@ -1,9 +1,8 @@
 package application;
 
 /**
- * Main
+ * Main * @author Xin Yifei
  * 
- * @author Xin Yifei
  * @version 0.6
  */
 public class Main {

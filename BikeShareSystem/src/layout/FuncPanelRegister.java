@@ -18,6 +18,9 @@ import database.entity.*;
  */
 public class FuncPanelRegister extends JPanel implements ActionListener {
     private static final long serialVersionUID = 1L;
+
+    private Image img = new ImageIcon(getClass().getResource("/images/Plain.jpg")).getImage();
+
     private JTextField jtUserID;
     private JTextField jtUsername;
     private JPasswordField jtPassword;
@@ -26,6 +29,13 @@ public class FuncPanelRegister extends JPanel implements ActionListener {
 
     public FuncPanelRegister() {
         setName("Register");
+
+        Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
+        setSize(size);
+        setPreferredSize(size);
+        setMinimumSize(size);
+        setMaximumSize(size);
+
         setLayout(new GridLayout(8, 1, 0, 0));
         JPanel panel01 = new JPanel();
         JPanel panel02 = new JPanel();
@@ -33,8 +43,8 @@ public class FuncPanelRegister extends JPanel implements ActionListener {
         JPanel panel04 = new JPanel();
         JPanel panel05 = new JPanel();
         JPanel panel06 = new JPanel();
-        // JPanel panel07 = new JPanel();
-        // JPanel panel08 = new JPanel();
+        JPanel panel07 = new JPanel();
+        JPanel panel08 = new JPanel();
 
         // UserID input
         panel02 = new JPanel();
@@ -73,6 +83,14 @@ public class FuncPanelRegister extends JPanel implements ActionListener {
         jbRegister.addActionListener(this);
         panel06.add(jbRegister);
 
+        panel01.setOpaque(false);
+        panel02.setOpaque(false);
+        panel03.setOpaque(false);
+        panel04.setOpaque(false);
+        panel05.setOpaque(false);
+        panel06.setOpaque(false);
+        panel07.setOpaque(false);
+        add(panel07);
         add(panel01);
         add(panel02);
         add(panel03);
@@ -121,6 +139,12 @@ public class FuncPanelRegister extends JPanel implements ActionListener {
                 }
             }
         }
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        Dimension size = this.getParent().getSize();
+        g.drawImage(img, 0, 0, size.width, size.height, this);
     }
 
     public static void main(String[] args) {
