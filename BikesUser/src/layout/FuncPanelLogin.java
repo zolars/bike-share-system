@@ -39,10 +39,11 @@ public class FuncPanelLogin extends JPanel implements ActionListener {
             // JPanel panel08 = new JPanel();
 
             panel03 = new JPanel();
-            JLabel jlLogin = new JLabel("Please Login first");
+            JLabel jlLogin = new JLabel("Please Login :");
             jlLogin.setFont(new java.awt.Font("Dialog", 1, 25));
             panel03.add(jlLogin);
 
+            // Username input
             panel04 = new JPanel();
             JLabel jlUsername = new JLabel("Username : ");
             jlUsername.setFont(new java.awt.Font("Dialog", 1, 25));
@@ -50,6 +51,7 @@ public class FuncPanelLogin extends JPanel implements ActionListener {
             jtUsername = new JTextField(15);
             panel04.add(jtUsername);
 
+            // Password input
             panel05 = new JPanel();
             JLabel jlPassword = new JLabel("Password : ");
             jlPassword.setFont(new java.awt.Font("Dialog", 1, 25));

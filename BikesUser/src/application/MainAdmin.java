@@ -13,7 +13,6 @@ import layout.*;
  */
 public class MainAdmin {
 
-    public static final double version = 0.5;
     public static LinkedList<JPanel> funcSet = new LinkedList<JPanel>();
 
     public static void setup() {

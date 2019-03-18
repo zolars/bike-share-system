@@ -36,6 +36,7 @@ public class FuncPanelRegister extends JPanel implements ActionListener {
         // JPanel panel07 = new JPanel();
         // JPanel panel08 = new JPanel();
 
+        // UserID input
         panel02 = new JPanel();
         JLabel jlUserID = new JLabel("User ID : ");
         jlUserID.setFont(new java.awt.Font("Dialog", 1, 25));
@@ -43,6 +44,7 @@ public class FuncPanelRegister extends JPanel implements ActionListener {
         jtUserID = new JTextField(15);
         panel02.add(jtUserID);
 
+        // Username input
         panel03 = new JPanel();
         JLabel jlUsername = new JLabel("Username : ");
         jlUsername.setFont(new java.awt.Font("Dialog", 1, 25));
@@ -50,6 +52,7 @@ public class FuncPanelRegister extends JPanel implements ActionListener {
         jtUsername = new JTextField(15);
         panel03.add(jtUsername);
 
+        // Password input
         panel04 = new JPanel();
         JLabel jlPassword = new JLabel("Password : ");
         jlPassword.setFont(new java.awt.Font("Dialog", 1, 25));
@@ -57,6 +60,7 @@ public class FuncPanelRegister extends JPanel implements ActionListener {
         jtPassword = new JPasswordField(15);
         panel04.add(jtPassword);
 
+        // Balance input
         panel05 = new JPanel();
         JLabel jlBalance = new JLabel("Recharge : ");
         jlBalance.setFont(new java.awt.Font("Dialog", 1, 25));

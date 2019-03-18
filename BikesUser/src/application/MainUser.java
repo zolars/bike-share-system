@@ -13,12 +13,15 @@ import layout.*;
  */
 public class MainUser {
 
-    public static final double version = 0.5;
     public static LinkedList<JPanel> funcSetLogin = new LinkedList<JPanel>();
     public static LinkedList<JPanel> funcSet = new LinkedList<JPanel>();
-    public static String loginStatus = "xin";
+    public static String loginStatus = null;
 
     public static void setup() {
+
+        funcSetLogin = new LinkedList<JPanel>();
+        funcSet = new LinkedList<JPanel>();
+
         if (loginStatus == null) {
             funcSetLogin.add(new FuncPanelBikes());
             funcSetLogin.add(new FuncPanelLogin());
@@ -26,8 +29,8 @@ public class MainUser {
         } else {
             funcSet.add(new FuncPanelBikes());
             funcSet.add(new FuncPanelMsg());
+            funcSet.add(new FuncPanelHistory());
             funcSet.add(new FuncPanelMyAccount());
-            funcSet.add(new FuncPanelSetting());
             new MainLayout(funcSet);
         }
 

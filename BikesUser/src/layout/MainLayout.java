@@ -5,8 +5,7 @@ import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
 
-import application.Main;
-import application.MainUser;
+import application.*;
 
 /**
  * MainLayout
@@ -51,13 +50,14 @@ public class MainLayout extends JFrame {
         while (true)
             try {
                 Thread.sleep(1000);
-                if (!MainUser.loginStatus.equals(oldStatus)) {
-                    Thread.sleep(1000);
-                    dispose();
-                    MainUser.setup();
-                }
                 for (int i = 0; i < this.funcSet.size(); i++) {
                     this.funcSet.get(i).updateUI();
+                }
+                if ((oldStatus == null && MainUser.loginStatus != null)
+                        || (oldStatus != null && MainUser.loginStatus == null)) {
+                    // Thread.sleep(1000);
+                    dispose();
+                    MainUser.setup();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -129,6 +129,6 @@ public class MainLayout extends JFrame {
     }
 
     public static void main(String[] args) {
-        Main.setup();
+        MainUser.setup();
     }
 }

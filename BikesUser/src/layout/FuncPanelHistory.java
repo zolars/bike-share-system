@@ -5,20 +5,20 @@ import javax.swing.*;
 import application.*;
 
 /**
- * FuncPanelInfo
+ * FuncPanelHistory
  * 
  * @author Xin Yifei
  * @version 0.5
  */
-public class FuncPanelInfo extends JPanel {
+public class FuncPanelHistory extends JPanel {
     private static final long serialVersionUID = 1L;
 
-    public FuncPanelInfo() {
-        this.setName("Info");
-        this.add(new JLabel("Info Page..."));
+    public FuncPanelHistory() {
+        this.setName("History");
+
     }
 
     public static void main(String[] args) {
-        MainAdmin.setup();
+        MainUser.setup();
     }
 }

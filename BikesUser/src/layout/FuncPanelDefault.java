@@ -2,7 +2,7 @@ package layout;
 
 import javax.swing.*;
 
-import application.Main;
+import application.*;
 
 /**
  * FuncPanelDefault
@@ -19,6 +19,6 @@ public class FuncPanelDefault extends JPanel {
     }
 
     public static void main(String[] args) {
-        Main.setup();
+        MainUser.setup();
     }
 }
