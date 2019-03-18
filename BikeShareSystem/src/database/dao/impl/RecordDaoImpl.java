@@ -25,14 +25,15 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
         for (String[] data : resultStr) {
             Record record = new Record();
 
-            record.setUserID(data[0]);
+            record.setRecordID(Integer.parseInt(data[0]));
+            record.setUserID(data[1]);
 
             try {
-                record.setStartDate(sf.parse(data[1]));
-                if (data[2].equals("null")) {
-                    record.setEndDate(sf.parse(data[1]));
-                } else {
+                record.setStartDate(sf.parse(data[2]));
+                if (data[3].equals("null")) {
                     record.setEndDate(sf.parse(data[2]));
+                } else {
+                    record.setEndDate(sf.parse(data[3]));
                 }
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -58,12 +59,12 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
     }
 
     public List<Record> findRecordAll(String userID) throws IOException {
-        return generatRecords(BaseDao.search("record.txt", userID, 0));
+        return generatRecords(BaseDao.search("record.txt", userID, 1));
     }
 
     public List<Record> findRecordNotend(String userID) throws IOException {
         List<Record> result = new ArrayList<Record>();
-        for (Record record : generatRecords(BaseDao.search("record.txt", userID, 0))) {
+        for (Record record : generatRecords(BaseDao.search("record.txt", userID, 1))) {
             if (record.getStartDate().equals(record.getEndDate()))
                 result.add(record);
         }
@@ -72,7 +73,7 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
 
     public List<Record> findRecordOverdue(String userID) throws IOException {
         List<Record> result = new ArrayList<Record>();
-        for (Record record : generatRecords(BaseDao.search("record.txt", userID, 0))) {
+        for (Record record : generatRecords(BaseDao.search("record.txt", userID, 1))) {
             if (record.getStartDate().equals(record.getEndDate())
                     && ((new Date()).getTime() - record.getStartDate().getTime()) / (1000 * 60) > 120) {
                 result.add(record);
@@ -81,31 +82,31 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
         return result;
     }
 
-    public boolean addNewRecord(Record record) throws IOException {
-        if (BaseDao.search("Record.txt", record.getUserID(), 0).size() == 0
-                && BaseDao.search("Record.txt", record.getUserID(), 1).size() == 0) {
-            String str = record.toString();
-            BaseDao.addLine("Record.txt", str);
-            return true;
-        } else {
-            return false;
-        }
+    public void addNewBorrow(String userID, Date startDate) throws IOException {
+        int recordID = BaseDao.dataAmount("record.txt", "", 0) + 1;
+        String str = recordID + " " + userID + " " + sf.format(startDate) + " null";
+        BaseDao.addLine("record.txt", str);
     }
 
-    public boolean modifyRecord(Record recordModified) throws IOException {
-        if (BaseDao.search("Record.txt", recordModified.getUserID(), 0).size() == 1) {
-            BaseDao.replace("Record.txt", recordModified.getUserID(), 0, recordModified.toString());
-            return true;
-        } else {
+    public boolean addNewReturn(String userID) throws IOException {
+        List<Record> result = findRecordNotend(userID);
+        if (result.size() > 1 || result.size() == 0) {
+            System.out.println("There are something wrong? Please contact the Administer.");
             return false;
+        } else {
+            result.get(0).setEndDate(new Date());
+            BaseDao.replace("record.txt", result.get(0).getRecordID() + "", 0, result.get(0).toString());
+            return true;
         }
     }
 
     public static void main(String[] args) {
         RecordDao dao = new RecordDaoImpl();
         try {
-            for (int i = 0; i < dao.findRecordNotend("123").size(); i++)
-                System.out.println(dao.findRecordNotend("123").get(i).getBill());
+            for (int i = 0; i < dao.findRecordNotend("").size(); i++)
+                System.out.println(dao.findRecordNotend("").get(i).getBill());
+            dao.addNewBorrow("123", new Date());
+
         } catch (IOException e) {
             e.printStackTrace();
 

@@ -101,6 +101,26 @@ public class BaseDao {
         }
     }
 
+    public static int dataAmount(String fileName, String keyword, int index) throws IOException {
+        int count = -1;
+        if (getConnection(fileName)) {
+            count++;
+            File file = new File(filePath + fileName);
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            String lineString = new String();
+            while ((lineString = reader.readLine()) != null) {
+                String data[] = lineString.split(" ");
+                if (data[index].equals(keyword) || keyword.equals("")) {
+                    count++;
+                }
+            }
+            reader.close();
+        } else {
+            System.out.println("The file \"" + fileName + "\" doesn't exist.");
+        }
+        return count;
+    }
+
     public static void main(String[] args) {
         try {
             BaseDao.replace("test.txt", "3", 0, "8 sdasd");

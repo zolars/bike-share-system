@@ -18,8 +18,8 @@ public interface RecordDao {
 
     public List<Record> findRecordOverdue(String userID) throws IOException;
 
-    public boolean addNewRecord(Record record) throws IOException;
+    public void addNewBorrow(String userID, Date startDate) throws IOException;
 
-    public boolean modifyRecord(Record recordModified) throws IOException;
+    public boolean addNewReturn(String userID) throws IOException;
 
 }

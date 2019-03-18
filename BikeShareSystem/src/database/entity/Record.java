@@ -10,11 +10,26 @@ import java.util.*;
  * @version 0.6
  */
 public class Record {
+    private int recordID;
     private String userID;
     private Date startDate;
     private Date endDate;
     private long duration;
     private int bill;
+
+    /**
+     * @param recordID the recordID to set
+     */
+    public void setRecordID(int recordID) {
+        this.recordID = recordID;
+    }
+
+    /**
+     * @return the recordID
+     */
+    public int getRecordID() {
+        return recordID;
+    }
 
     /**
      * @param userID the userID to set
@@ -86,10 +101,20 @@ public class Record {
         return bill;
     }
 
+    public Boolean compareTo(Record record) {
+        if (userID.equals(record.getUserID()) && startDate.equals(record.getStartDate())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     @Override
     public String toString() {
         SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd;HH:mm:ss");
-        return userID + " " + sf.format(startDate) + " " + sf.format(endDate);
+        if (startDate.equals(endDate))
+            return recordID + " " + userID + " " + sf.format(startDate) + " null";
+        else
+            return recordID + " " + userID + " " + sf.format(startDate) + " " + sf.format(endDate);
     }
-
 }

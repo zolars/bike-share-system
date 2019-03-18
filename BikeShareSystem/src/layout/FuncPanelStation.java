@@ -3,8 +3,12 @@ package layout;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+import java.util.*;
 
 import application.*;
+import database.dao.*;
+import database.dao.impl.*;
 
 /**
  * FuncPanelStation
@@ -16,6 +20,10 @@ public class FuncPanelStation extends JPanel implements ActionListener {
     private static final long serialVersionUID = 1L;
 
     private Image img = new ImageIcon(getClass().getResource("/images/Plain.jpg")).getImage();
+
+    private RecordDao recordDao = new RecordDaoImpl();
+    private AccountDao accountDao = new AccountDaoImpl();
+
     private JLabel text1;
     private JLabel text2;
     private JButton btn;
@@ -65,23 +73,36 @@ public class FuncPanelStation extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btn) {
-            while (true) {
-                String newString = JOptionPane.showInputDialog(null, "Input your ID number (not null) : \n", "Check ID",
-                        JOptionPane.PLAIN_MESSAGE);
-                if (newString.equals("")) {
-                    continue;
-                } else {
-                    break;
+            try {
+                while (true) {
+                    String userID = JOptionPane.showInputDialog(null, "Input your ID number (not null) : \n",
+                            "Check ID", JOptionPane.PLAIN_MESSAGE);
+                    if (userID.equals("")) {
+                        continue;
+                    } else if (accountDao.findAccountByUserID(userID) == null) {
+                        JOptionPane.showMessageDialog(this, "Invalid ID card. Please contact the administer.", "Sorry",
+                                JOptionPane.WARNING_MESSAGE);
+                        break;
+                    } else if (recordDao.findRecordNotend(userID).size() >= 1) {
+                        recordDao.addNewReturn(userID);
+                        text1.setText("Your bike is returned : )");
+                        text2.setText("If your bike needs to repair, please tell us!");
+                        MainStation.restart = true;
+                        break;
+                    } else {
+                        recordDao.addNewBorrow(userID, new Date());
+                        MainStation.restart = true;
+                        text1.setText("Your bike is unlocked : )");
+                        text2.setText("Remember giving the bike back at one of parking areas!");
+                        btn.setEnabled(false);
+                        break;
+                    }
                 }
+            } catch (IOException e1) {
+                e1.printStackTrace();
             }
-
-            MainStation.restart = true;
-
-            text1.setText("Your bike is unlocked : )");
-            text2.setText("Remember giving the bike back at one of parking areas!");
-            btn.setEnabled(false);
-
         }
+
     }
 
     @Override
