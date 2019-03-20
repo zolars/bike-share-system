@@ -8,13 +8,14 @@ import application.*;
  * FuncPanelHistory
  * 
  * @author Xin Yifei
- * @version 0.6
+ * @version 0.8
  */
 public class FuncPanelHistory extends JPanel {
     private static final long serialVersionUID = 1L;
 
     public FuncPanelHistory() {
         this.setName("History");
+        this.add(new JLabel("History Page..."));
 
     }
 

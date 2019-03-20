@@ -8,7 +8,7 @@ import application.*;
  * FuncPanelMsg
  * 
  * @author Xin Yifei
- * @version 0.6
+ * @version 0.8
  */
 public class FuncPanelMsg extends JPanel {
     private static final long serialVersionUID = 1L;

@@ -1,20 +1,24 @@
 package layout;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
-import java.util.*;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Date;
 
 import application.*;
 import database.dao.*;
 import database.dao.impl.*;
+import database.entity.*;
 
 /**
  * FuncPanelStation
  * 
  * @author Xin Yifei
- * @version 0.6
+ * @version 0.8
  */
 public class FuncPanelStation extends JPanel implements ActionListener {
     private static final long serialVersionUID = 1L;
@@ -103,6 +107,24 @@ public class FuncPanelStation extends JPanel implements ActionListener {
             }
         }
 
+    }
+
+    @Override
+    public void updateUI() {
+        super.updateUI();
+
+        RecordDao recordDao = new RecordDaoImpl();
+
+        try {
+            List<Record> recordOverdue = new ArrayList<Record>();
+            recordOverdue = recordDao.findRecordOverdue("");
+            if (recordOverdue != null) {
+                for (Record record : recordOverdue)
+                    System.out.println(record.toString());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

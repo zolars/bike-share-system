@@ -1,21 +1,52 @@
 package layout;
 
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.*;
 
 import application.*;
+import database.dao.RecordDao;
+import database.dao.impl.RecordDaoImpl;
+import database.entity.Record;
 
 /**
  * FuncPanelDefault
  * 
  * @author Xin Yifei
- * @version 0.6
+ * @version 0.8
  */
 public class FuncPanelDefault extends JPanel {
     private static final long serialVersionUID = 1L;
 
+    private Image img = new ImageIcon(getClass().getResource("/images/Plain.jpg")).getImage();
+
     public FuncPanelDefault() {
         this.setName("Default");
+
+        Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
+        setSize(size);
+        setPreferredSize(size);
+        setMinimumSize(size);
+        setMaximumSize(size);
+
         this.add(new JLabel("Default Page..."));
+    }
+
+    @Override
+    public void updateUI() {
+        super.updateUI();
+        // Data update
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        Dimension size = this.getParent().getSize();
+        g.drawImage(img, 0, 0, size.width, size.height, this);
     }
 
     public static void main(String[] args) {

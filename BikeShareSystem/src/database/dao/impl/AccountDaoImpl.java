@@ -10,7 +10,7 @@ import database.entity.*;
  * Impl
  * 
  * @author Xin Yifei
- * @version 0.6
+ * @version 0.8
  */
 public class AccountDaoImpl extends BaseDao implements AccountDao {
     public Account findAccountByUserID(String userID) throws IOException {

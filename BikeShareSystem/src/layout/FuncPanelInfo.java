@@ -8,7 +8,7 @@ import application.*;
  * FuncPanelInfo
  * 
  * @author Xin Yifei
- * @version 0.6
+ * @version 0.8
  */
 public class FuncPanelInfo extends JPanel {
     private static final long serialVersionUID = 1L;

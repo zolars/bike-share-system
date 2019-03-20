@@ -14,7 +14,7 @@ import database.entity.*;
  * FuncPanelRegister
  * 
  * @author Xin Yifei
- * @version 0.6
+ * @version 0.8
  */
 public class FuncPanelRegister extends JPanel implements ActionListener {
     private static final long serialVersionUID = 1L;
@@ -44,7 +44,7 @@ public class FuncPanelRegister extends JPanel implements ActionListener {
         JPanel panel05 = new JPanel();
         JPanel panel06 = new JPanel();
         JPanel panel07 = new JPanel();
-        JPanel panel08 = new JPanel();
+        // JPanel panel08 = new JPanel();
 
         // UserID input
         panel02 = new JPanel();

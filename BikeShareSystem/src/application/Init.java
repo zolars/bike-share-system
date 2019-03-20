@@ -6,13 +6,13 @@ import java.io.*;
  * Init
  * 
  * @author Xin Yifei
- * @version 0.6
+ * @version 0.8
  */
 public class Init {
 
     public static void main(String[] args) {
         String filePath = System.getProperty("user.home") + "\\Documents\\BikeShareSystemFile\\";
-        String[] fileNames = { "bikes.txt", "account.txt", "record.txt" };
+        String[] fileNames = Main.fileNames;
         for (String fileName : fileNames) {
             File fp = new File(filePath);
             File f = new File(filePath + fileName);

@@ -13,7 +13,7 @@ import database.entity.*;
  * FuncPanelBikes
  * 
  * @author Xin Yifei
- * @version 0.6
+ * @version 0.8
  */
 public class FuncPanelBikes extends JPanel {
     private static final long serialVersionUID = 1L;

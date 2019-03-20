@@ -7,7 +7,7 @@ import java.util.*;
  * Record
  * 
  * @author Xin Yifei
- * @version 0.6
+ * @version 0.8
  */
 public class Record {
     private int recordID;
@@ -99,14 +99,6 @@ public class Record {
      */
     public int getBill() {
         return bill;
-    }
-
-    public Boolean compareTo(Record record) {
-        if (userID.equals(record.getUserID()) && startDate.equals(record.getStartDate())) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
     @Override

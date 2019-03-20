@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import application.*;
 import database.*;
 import database.dao.*;
 import database.entity.*;
@@ -13,7 +14,7 @@ import database.entity.*;
  * Impl
  * 
  * @author Xin Yifei
- * @version 0.6
+ * @version 0.8
  */
 public class RecordDaoImpl extends BaseDao implements RecordDao {
 
@@ -48,7 +49,7 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
             }
             long duration = (endDate.getTime() - startDate.getTime()) / (1000 * 60);
             record.setDuration(duration);
-            if (duration <= 120)
+            if (duration <= Main.overdueTime)
                 record.setBill(0);
             else
                 record.setBill((int) (Math.ceil(duration / 60) - 2) * 1);
@@ -75,7 +76,7 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
         List<Record> result = new ArrayList<Record>();
         for (Record record : generatRecords(BaseDao.search("record.txt", userID, 1))) {
             if (record.getStartDate().equals(record.getEndDate())
-                    && ((new Date()).getTime() - record.getStartDate().getTime()) / (1000 * 60) > 120) {
+                    && ((new Date()).getTime() - record.getStartDate().getTime()) / (1000 * 60) > Main.overdueTime) {
                 result.add(record);
             }
         }
@@ -103,8 +104,8 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
     public static void main(String[] args) {
         RecordDao dao = new RecordDaoImpl();
         try {
-            for (int i = 0; i < dao.findRecordNotend("").size(); i++)
-                System.out.println(dao.findRecordNotend("").get(i).getBill());
+            for (int i = 0; i < dao.findRecordOverdue("").size(); i++)
+                System.out.println(dao.findRecordOverdue("").get(i).getBill());
             dao.addNewBorrow("123", new Date());
 
         } catch (IOException e) {

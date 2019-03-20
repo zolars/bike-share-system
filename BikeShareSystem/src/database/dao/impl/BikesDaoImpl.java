@@ -11,7 +11,7 @@ import database.entity.*;
  * BikesDaoImpl
  * 
  * @author Xin Yifei
- * @version 0.6
+ * @version 0.8
  */
 public class BikesDaoImpl extends BaseDao implements BikesDao {
     public List<Bikes> findBikesByStation(String station) throws IOException {

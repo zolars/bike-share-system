@@ -4,7 +4,7 @@ package database.entity;
  * Bikes
  * 
  * @author Xin Yifei
- * @version 0.6
+ * @version 0.8
  */
 public class Bikes {
     private String station = new String();

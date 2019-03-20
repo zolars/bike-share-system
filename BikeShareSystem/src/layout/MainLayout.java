@@ -11,7 +11,7 @@ import application.*;
  * MainLayout
  * 
  * @author Xin Yifei
- * @version 0.6
+ * @version 0.8
  */
 public class MainLayout extends JFrame {
 
@@ -46,16 +46,33 @@ public class MainLayout extends JFrame {
         for (int i = 0; i < this.funcSet.size(); i++) {
             addFunc(this, this.funcSet.get(i).getName(), this.funcSet.get(i));
         }
+
+        sync();
+    }
+
+    /**
+     * Refresh and Sync job
+     */
+    private void sync() {
         while (true)
             try {
+                // Update UI. Especially the data on JLabel
                 for (int i = 0; i < this.funcSet.size(); i++) {
                     this.funcSet.get(i).updateUI();
                 }
+
+                // Refresh all Layout
                 if (MainUser.restart) {
                     Thread.sleep(1000);
                     MainUser.restart = false;
                     dispose();
                     MainUser.setup();
+                }
+                if (MainAdmin.restart) {
+                    Thread.sleep(1000);
+                    MainAdmin.restart = false;
+                    dispose();
+                    MainAdmin.setup();
                 }
                 if (MainStation.restart) {
                     Thread.sleep(1000);
@@ -63,7 +80,10 @@ public class MainLayout extends JFrame {
                     dispose();
                     MainStation.setup();
                 }
+
+                // Set time interval
                 Thread.sleep(1000);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
