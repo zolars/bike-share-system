@@ -9,7 +9,7 @@ import database.entity.*;
  * MsgDao
  * 
  * @author Xin Yifei
- * @version 0.8
+ * @version 0.9
  */
 public interface MsgDao {
     public List<Msg> findMsgAll(String userID) throws IOException;

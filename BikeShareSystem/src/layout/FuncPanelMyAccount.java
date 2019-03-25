@@ -15,7 +15,7 @@ import database.entity.*;
  * FuncPanelMyAccount
  * 
  * @author Xin Yifei
- * @version 0.8
+ * @version 0.9
  */
 public class FuncPanelMyAccount extends JPanel implements ActionListener {
     private static final long serialVersionUID = 1L;

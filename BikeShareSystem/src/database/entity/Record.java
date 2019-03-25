@@ -7,7 +7,7 @@ import java.util.*;
  * Record
  * 
  * @author Xin Yifei
- * @version 0.8
+ * @version 0.9
  */
 public class Record {
     private int recordID;

@@ -9,7 +9,7 @@ import database.entity.*;
  * RecordDao
  * 
  * @author Xin Yifei
- * @version 0.8
+ * @version 0.9
  */
 public interface RecordDao {
     public List<Record> findRecordAll(String userID) throws IOException;

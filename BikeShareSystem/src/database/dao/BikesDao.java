@@ -9,7 +9,7 @@ import database.entity.*;
  * BikesDao
  * 
  * @author Xin Yifei
- * @version 0.8
+ * @version 0.9
  */
 public interface BikesDao {
     public List<Bikes> findAllBikes() throws IOException;

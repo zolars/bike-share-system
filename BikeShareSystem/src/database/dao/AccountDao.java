@@ -8,7 +8,7 @@ import database.entity.*;
  * AccountDao
  * 
  * @author Xin Yifei
- * @version 0.8
+ * @version 0.9
  */
 public interface AccountDao {
     public Account findAccountByUserID(String userID) throws IOException;

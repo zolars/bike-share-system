@@ -11,7 +11,7 @@ import application.*;
  * FuncPanelDefault
  * 
  * @author Xin Yifei
- * @version 0.8
+ * @version 0.9
  */
 public class FuncPanelDefault extends JPanel {
     private static final long serialVersionUID = 1L;

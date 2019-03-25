@@ -20,7 +20,7 @@ import database.entity.*;
  * FuncPanelMsg
  * 
  * @author Xin Yifei
- * @version 0.8
+ * @version 0.9
  */
 public class FuncPanelMsg extends JPanel implements ActionListener {
     private static final long serialVersionUID = 1L;
