@@ -20,8 +20,8 @@ public class MainAdmin {
 
         funcSet.add(new FuncPanelInfo());
         funcSet.add(new FuncPanelRegister());
-        // funcSet.add(new FuncPanelMsg());
-        funcSet.add(new FuncPanelDefault());
+        funcSet.add(new FuncPanelMsgSend());
+        // funcSet.add(new FuncPanelTest());
         new MainLayout(funcSet);
     }
 

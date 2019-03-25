@@ -69,9 +69,14 @@ public class MsgDaoImpl extends BaseDao implements MsgDao {
         }
     }
 
-    public void addOtherMsg(String userID, String text) throws IOException {
-        Msg msg = new Msg(BaseDao.dataAmount("msg.txt", "", 0) + 1, userID, new Date(), text);
-        BaseDao.addLine("msg.txt", msg.toString());
+    public boolean addOtherMsg(String userID, String text) throws IOException {
+        if (BaseDao.search("account.txt", userID, 0).size() > 0) {
+            Msg msg = new Msg(BaseDao.dataAmount("msg.txt", "", 0) + 1, userID, new Date(), text);
+            BaseDao.addLine("msg.txt", msg.toString());
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void deleteMsg(String msgID) throws IOException {

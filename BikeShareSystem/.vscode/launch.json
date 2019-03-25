@@ -2,6 +2,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - FuncPanelInfo",
+            "request": "launch",
+            "mainClass": "layout.FuncPanelInfo",
+            "projectName": "BikeShareSystem_826b9af"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - FuncPanelMsgSend",
+            "request": "launch",
+            "mainClass": "layout.FuncPanelMsgSend",
+            "projectName": "BikeShareSystem_826b9af"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - BaseDao",
             "request": "launch",
             "mainClass": "database.BaseDao",

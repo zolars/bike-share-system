@@ -19,7 +19,7 @@ public class FuncPanelHistory extends JPanel {
     private Image img = new ImageIcon(getClass().getResource("/images/Plain.jpg")).getImage();
 
     public FuncPanelHistory() {
-        this.setName("History");
+        setName("History");
 
         Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
         setSize(size);

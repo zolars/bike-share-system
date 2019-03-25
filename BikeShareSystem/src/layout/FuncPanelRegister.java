@@ -47,7 +47,6 @@ public class FuncPanelRegister extends JPanel implements ActionListener {
         // JPanel panel08 = new JPanel();
 
         // UserID input
-        panel02 = new JPanel();
         JLabel jlUserID = new JLabel("User ID : ");
         jlUserID.setFont(new java.awt.Font("Dialog", 1, 25));
         panel02.add(jlUserID);
@@ -55,7 +54,6 @@ public class FuncPanelRegister extends JPanel implements ActionListener {
         panel02.add(jtUserID);
 
         // Username input
-        panel03 = new JPanel();
         JLabel jlUsername = new JLabel("Username : ");
         jlUsername.setFont(new java.awt.Font("Dialog", 1, 25));
         panel03.add(jlUsername);
@@ -63,7 +61,6 @@ public class FuncPanelRegister extends JPanel implements ActionListener {
         panel03.add(jtUsername);
 
         // Password input
-        panel04 = new JPanel();
         JLabel jlPassword = new JLabel("Password : ");
         jlPassword.setFont(new java.awt.Font("Dialog", 1, 25));
         panel04.add(jlPassword);
@@ -71,7 +68,6 @@ public class FuncPanelRegister extends JPanel implements ActionListener {
         panel04.add(jtPassword);
 
         // Balance input
-        panel05 = new JPanel();
         JLabel jlBalance = new JLabel("Recharge : ");
         jlBalance.setFont(new java.awt.Font("Dialog", 1, 25));
         panel05.add(jlBalance);
@@ -106,10 +102,6 @@ public class FuncPanelRegister extends JPanel implements ActionListener {
                     || String.valueOf(jtPassword.getPassword()).isEmpty() || (!jtBalance.getText().matches("[0-9]+"))) {
                 JOptionPane.showMessageDialog(this, "Invalid Input! Please try again.", "Sorry",
                         JOptionPane.WARNING_MESSAGE);
-                jtUserID.setText("");
-                jtUsername.setText("");
-                jtPassword.setText("");
-                jtBalance.setText("");
             } else {
                 AccountDao dao = new AccountDaoImpl();
                 Account account = new Account();
@@ -121,23 +113,20 @@ public class FuncPanelRegister extends JPanel implements ActionListener {
                     if (dao.addNewAccount(account)) {
                         JOptionPane.showMessageDialog(this, "Congratulations! Register Successfully!",
                                 "Congratulations!", JOptionPane.WARNING_MESSAGE);
-                        jtUserID.setText("");
-                        jtUsername.setText("");
-                        jtPassword.setText("");
-                        jtBalance.setText("");
                     } else {
                         JOptionPane.showMessageDialog(this, "The user ID or user name has been used. Please try again.",
                                 "Sorry", JOptionPane.WARNING_MESSAGE);
-                        jtUserID.setText("");
-                        jtUsername.setText("");
-                        jtPassword.setText("");
-                        jtBalance.setText("");
                     }
 
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
             }
+
+            jtUserID.setText("");
+            jtUsername.setText("");
+            jtPassword.setText("");
+            jtBalance.setText("");
         }
     }
 

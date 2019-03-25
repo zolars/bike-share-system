@@ -47,13 +47,11 @@ public class FuncPanelLogin extends JPanel implements ActionListener {
             // JPanel panel07 = new JPanel();
             // JPanel panel08 = new JPanel();
 
-            panel03 = new JPanel();
             JLabel jlLogin = new JLabel("Please Login :");
             jlLogin.setFont(new java.awt.Font("Dialog", 1, 25));
             panel03.add(jlLogin);
 
             // Username input
-            panel04 = new JPanel();
             JLabel jlUsername = new JLabel("Username : ");
             jlUsername.setFont(new java.awt.Font("Dialog", 1, 25));
             panel04.add(jlUsername);
@@ -61,7 +59,6 @@ public class FuncPanelLogin extends JPanel implements ActionListener {
             panel04.add(jtUsername);
 
             // Password input
-            panel05 = new JPanel();
             JLabel jlPassword = new JLabel("Password : ");
             jlPassword.setFont(new java.awt.Font("Dialog", 1, 25));
             panel05.add(jlPassword);
@@ -89,28 +86,27 @@ public class FuncPanelLogin extends JPanel implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        AccountDao dao = new AccountDaoImpl();
-        try {
-            Account account = dao.findAccountByUsername(jtUsername.getText());
-            if (account == null) {
-                JOptionPane.showMessageDialog(this, "This account doesn't exist. Please try again.", "Sorry",
-                        JOptionPane.WARNING_MESSAGE);
+        if (e.getSource() == jbLogin) {
+            AccountDao dao = new AccountDaoImpl();
+            try {
+                Account account = dao.findAccountByUsername(jtUsername.getText());
+                if (account == null) {
+                    JOptionPane.showMessageDialog(this, "This account doesn't exist. Please try again.", "Sorry",
+                            JOptionPane.WARNING_MESSAGE);
+                } else if (!account.getPassword().equals(String.valueOf(jtPassword.getPassword()))) {
+                    JOptionPane.showMessageDialog(this, "The password is invalid. Please try again.", "Sorry",
+                            JOptionPane.WARNING_MESSAGE);
+                } else {
+                    MainUser.loginStatus = dao.findAccountByUsername(jtUsername.getText()).getUserID();
+                    MainUser.restart = true;
+                    JOptionPane.showMessageDialog(this, "Successfully Login!", "Congratulations",
+                            JOptionPane.WARNING_MESSAGE);
+                }
                 jtUsername.setText("");
                 jtPassword.setText("");
-            } else if (!account.getPassword().equals(String.valueOf(jtPassword.getPassword()))) {
-                JOptionPane.showMessageDialog(this, "The password is invalid. Please try again.", "Sorry",
-                        JOptionPane.WARNING_MESSAGE);
-                jtUsername.setText("");
-                jtPassword.setText("");
-            } else {
-                MainUser.loginStatus = dao.findAccountByUsername(jtUsername.getText()).getUserID();
-                MainUser.restart = true;
-                JOptionPane.showMessageDialog(this, "Successfully Login!", "Congratulations",
-                        JOptionPane.WARNING_MESSAGE);
+            } catch (IOException e1) {
+                e1.printStackTrace();
             }
-
-        } catch (IOException e1) {
-            e1.printStackTrace();
         }
     }
 

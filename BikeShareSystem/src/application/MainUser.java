@@ -29,7 +29,7 @@ public class MainUser {
             new MainLayout(funcSetLogin);
         } else {
             funcSet.add(new FuncPanelBikes());
-            funcSet.add(new FuncPanelMsg());
+            funcSet.add(new FuncPanelMsgRec());
             funcSet.add(new FuncPanelHistory());
             funcSet.add(new FuncPanelMyAccount());
             // funcSet.add(new FuncPanelTest());

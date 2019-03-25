@@ -20,7 +20,7 @@ public interface MsgDao {
 
     public void addOverdueMsg(Record overdueRecord) throws IOException;
 
-    public void addOtherMsg(String userID, String text) throws IOException;
+    public boolean addOtherMsg(String userID, String text) throws IOException;
 
     public void deleteMsg(String msgID) throws IOException;
 }

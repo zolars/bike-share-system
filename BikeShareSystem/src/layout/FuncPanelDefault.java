@@ -19,7 +19,7 @@ public class FuncPanelDefault extends JPanel {
     private Image img = new ImageIcon(getClass().getResource("/images/Plain.jpg")).getImage();
 
     public FuncPanelDefault() {
-        this.setName("Default");
+        setName("Default");
 
         Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
         setSize(size);
