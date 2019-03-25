@@ -40,7 +40,7 @@ public class FuncPanelBikes extends JPanel {
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
-                text.setBounds(20, getBounds().height * 2 / 3, 200, getBounds().height * 4 / 21);
+                text.setBounds(20, getBounds().height * 2 / 3 - 70, 200, getBounds().height * 4 / 21 + 70);
             }
         });
     }
@@ -50,11 +50,12 @@ public class FuncPanelBikes extends JPanel {
         super.updateUI();
         BikesDao dao = new BikesDaoImpl();
         try {
-            Bikes a = dao.findBikesByStation("A").get(0);
-            Bikes b = dao.findBikesByStation("B").get(0);
-            Bikes c = dao.findBikesByStation("C").get(0);
-            text.setText("<html><body><p align=\"center\">Bikes in A :" + a.getNumber() + "<br/>Bikes in B :"
-                    + b.getNumber() + "<br/>Bikes in C :" + c.getNumber() + "</p></body></html>");
+            String newText = "<html><body><p align=\"center\">";
+            for (Bikes bikes : Main.bikeStationList) {
+                int number = dao.findBikesNumberByStation(bikes.getStation());
+                newText += "Station " + bikes.getStation() + ": " + number + "<br>";
+            }
+            text.setText(newText + "</p></body></html>");
         } catch (Exception e) {
             e.printStackTrace();
         }

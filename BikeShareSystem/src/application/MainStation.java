@@ -15,6 +15,7 @@ public class MainStation {
 
     public static LinkedList<JPanel> funcSet = new LinkedList<JPanel>();
     public static Boolean restart = false;
+    public static String station = null;
 
     public static void setup() {
         funcSet = new LinkedList<JPanel>();

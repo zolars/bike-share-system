@@ -25,9 +25,6 @@ public class FuncPanelStation extends JPanel implements ActionListener {
 
     private Image img = new ImageIcon(getClass().getResource("/images/Plain.jpg")).getImage();
 
-    private RecordDao recordDao = new RecordDaoImpl();
-    private AccountDao accountDao = new AccountDaoImpl();
-
     private JLabel text1;
     private JLabel text2;
     private JButton btn;
@@ -43,6 +40,19 @@ public class FuncPanelStation extends JPanel implements ActionListener {
         setMaximumSize(size);
 
         setLayout(null);
+
+        if (MainStation.station == null) {
+            Object[] obj = Main.bikeStationList;
+            while (true) {
+                Bikes bike = (Bikes) JOptionPane.showInputDialog(null, "Please choose the station name of this PC:\n",
+                        "Recharge", JOptionPane.PLAIN_MESSAGE, new ImageIcon(), obj, "");
+                MainStation.station = bike.getStation();
+                if (MainStation.station == null)
+                    continue;
+                else
+                    break;
+            }
+        }
 
         text1 = new JLabel("", JLabel.CENTER);
         text1.setFont(new java.awt.Font("Dialog", 1, 50));
@@ -69,13 +79,18 @@ public class FuncPanelStation extends JPanel implements ActionListener {
                 text1.setBounds(getBounds().width / 2 - text1.getText().length() * 35 / 2,
                         getBounds().height / 3 - 60 / 3, text1.getText().length() * 35, 60);
                 text2.setBounds(getBounds().width / 2 - text2.getText().length() * 21 / 4,
-                        getBounds().height / 3 - 30 / 3 + 130, text1.getText().length() * 28, 30);
+                        getBounds().height / 3 - 30 / 3 + 130, text2.getText().length() * 11, 30);
                 btn.setBounds(getBounds().width / 2 - 30, getBounds().height * 3 / 4 - 30 * 3 / 4, 60, 30);
             }
         });
     }
 
     public void actionPerformed(ActionEvent e) {
+
+        RecordDao recordDao = new RecordDaoImpl();
+        AccountDao accountDao = new AccountDaoImpl();
+        BikesDao bikesDao = new BikesDaoImpl();
+
         if (e.getSource() == btn) {
             try {
                 while (true) {
@@ -88,17 +103,23 @@ public class FuncPanelStation extends JPanel implements ActionListener {
                                 JOptionPane.WARNING_MESSAGE);
                         break;
                     } else if (recordDao.findRecordNotend(userID).size() >= 1) {
+                        bikesDao.changeBikesByStation(new Bikes(MainStation.station,
+                                bikesDao.findBikesNumberByStation(MainStation.station) + 1));
                         recordDao.addNewReturn(userID);
                         text1.setText("Your bike is returned : )");
                         text2.setText("If your bike needs to repair, please tell us!");
+                        btn.setEnabled(false);
                         MainStation.restart = true;
                         break;
                     } else {
+                        bikesDao.changeBikesByStation(new Bikes(MainStation.station,
+                                bikesDao.findBikesNumberByStation(MainStation.station) - 1));
                         recordDao.addNewBorrow(userID, new Date());
-                        MainStation.restart = true;
                         text1.setText("Your bike is unlocked : )");
                         text2.setText("Remember giving the bike back at one of parking areas!");
                         btn.setEnabled(false);
+
+                        MainStation.restart = true;
                         break;
                     }
                 }
@@ -113,18 +134,23 @@ public class FuncPanelStation extends JPanel implements ActionListener {
     public void updateUI() {
         super.updateUI();
 
+        BikesDao bikesDao = new BikesDaoImpl();
         RecordDao recordDao = new RecordDaoImpl();
+        MsgDao msgDao = new MsgDaoImpl();
 
         try {
-            List<Record> recordOverdue = new ArrayList<Record>();
-            recordOverdue = recordDao.findRecordOverdue("");
-            if (recordOverdue != null) {
-                for (Record record : recordOverdue)
-                    System.out.println(record.toString());
+            text1.setText("Station " + MainStation.station + " - "
+                    + bikesDao.findBikesNumberByStation(MainStation.station) + " Bikes Left");
+            List<Record> overdueRecords = new ArrayList<Record>();
+            overdueRecords = recordDao.findRecordOverdue("");
+            if (overdueRecords != null) {
+                for (Record overdueRecord : overdueRecords)
+                    msgDao.addOverdueMsg(overdueRecord);
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
     @Override

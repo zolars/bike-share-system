@@ -2,6 +2,8 @@ package application;
 
 import java.io.*;
 
+import database.entity.Bikes;
+
 /**
  * Init
  * 
@@ -24,7 +26,9 @@ public class Init {
                     f.createNewFile();
                     if (fileName.equals("bikes.txt")) {
                         BufferedWriter writter = new BufferedWriter(new FileWriter(filePath + fileName));
-                        String str = "A 500\nB 500\nC 500";
+                        String str = new String();
+                        for (Bikes bikes : Main.bikeStationList)
+                            str += bikes.toString() + "\n";
                         writter.write(str.toString());
                         writter.close();
                     }

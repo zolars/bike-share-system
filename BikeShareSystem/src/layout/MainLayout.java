@@ -56,33 +56,33 @@ public class MainLayout extends JFrame {
     private void sync() {
         while (true)
             try {
-                // Update UI. Especially the data on JLabel
-                for (int i = 0; i < this.funcSet.size(); i++) {
-                    this.funcSet.get(i).updateUI();
-                }
 
                 // Refresh all Layout
                 if (MainUser.restart) {
-                    Thread.sleep(1000);
+                    Thread.sleep(Main.freshInterval);
                     MainUser.restart = false;
                     dispose();
                     MainUser.setup();
                 }
                 if (MainAdmin.restart) {
-                    Thread.sleep(1000);
+                    Thread.sleep(Main.freshInterval);
                     MainAdmin.restart = false;
                     dispose();
                     MainAdmin.setup();
                 }
                 if (MainStation.restart) {
-                    Thread.sleep(1000);
+                    Thread.sleep(Main.freshInterval);
                     MainStation.restart = false;
                     dispose();
                     MainStation.setup();
                 }
 
+                // Update UI. Especially the data on JLabel
+                for (int i = 0; i < this.funcSet.size(); i++) {
+                    this.funcSet.get(i).updateUI();
+                }
                 // Set time interval
-                Thread.sleep(1000);
+                Thread.sleep(Main.freshInterval);
 
             } catch (Exception e) {
                 e.printStackTrace();

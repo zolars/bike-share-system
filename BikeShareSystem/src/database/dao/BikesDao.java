@@ -12,5 +12,9 @@ import database.entity.*;
  * @version 0.8
  */
 public interface BikesDao {
-    public List<Bikes> findBikesByStation(String station) throws IOException;
+    public List<Bikes> findAllBikes() throws IOException;
+
+    public int findBikesNumberByStation(String station) throws IOException;
+
+    public void changeBikesByStation(Bikes bikes) throws IOException;
 }

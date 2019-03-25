@@ -12,13 +12,13 @@ import database.entity.*;
  * @author Xin Yifei
  * @version 0.8
  */
-public class AccountDaoImpl extends BaseDao implements AccountDao {
+public class AccountDaoImpl implements AccountDao {
     public Account findAccountByUserID(String userID) throws IOException {
         Account result = new Account();
-        if (search("account.txt", userID, 0).size() == 0) {
+        if (BaseDao.search("account.txt", userID, 0).size() == 0) {
             return null;
         } else {
-            String[] resultStr = search("account.txt", userID, 0).get(0);
+            String[] resultStr = BaseDao.search("account.txt", userID, 0).get(0);
             result.setUserID(resultStr[0]);
             result.setUsername(resultStr[1]);
             result.setPassword(resultStr[2]);
@@ -29,10 +29,10 @@ public class AccountDaoImpl extends BaseDao implements AccountDao {
 
     public Account findAccountByUsername(String username) throws IOException {
         Account result = new Account();
-        if (search("account.txt", username, 1).size() == 0) {
+        if (BaseDao.search("account.txt", username, 1).size() == 0) {
             return null;
         } else {
-            String[] resultStr = search("account.txt", username, 1).get(0);
+            String[] resultStr = BaseDao.search("account.txt", username, 1).get(0);
             result.setUserID(resultStr[0]);
             result.setUsername(resultStr[1]);
             result.setPassword(resultStr[2]);

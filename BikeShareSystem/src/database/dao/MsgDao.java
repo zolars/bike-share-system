@@ -18,9 +18,9 @@ public interface MsgDao {
 
     public List<Msg> findMsgOther(String userID) throws IOException;
 
-    public void addOverdueMsg(String userID, Date startDate) throws IOException;
+    public void addOverdueMsg(Record overdueRecord) throws IOException;
 
-    public void addOtherMsg(String userID, Date startDate) throws IOException;
+    public void addOtherMsg(String userID, String text) throws IOException;
 
     public boolean deleteMsg(String userID) throws IOException;
 }

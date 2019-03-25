@@ -3,23 +3,29 @@ package layout;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+
 import javax.swing.*;
+import javax.swing.AbstractAction;
+import javax.swing.table.*;
 
 import application.*;
 
 /**
- * FuncPanelDefault
+ * FuncPanelTest
  * 
  * @author Xin Yifei
  * @version 0.8
  */
-public class FuncPanelDefault extends JPanel {
+public class FuncPanelTest extends JPanel {
     private static final long serialVersionUID = 1L;
 
     private Image img = new ImageIcon(getClass().getResource("/images/Plain.jpg")).getImage();
 
-    public FuncPanelDefault() {
-        this.setName("Default");
+    JScrollPane sPane = new JScrollPane();
+
+    public FuncPanelTest() {
+        this.setName("Test");
 
         Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
         setSize(size);
@@ -27,13 +33,24 @@ public class FuncPanelDefault extends JPanel {
         setMinimumSize(size);
         setMaximumSize(size);
 
-        this.add(new JLabel("Default Page..."));
+        sPane.setPreferredSize(new Dimension(getBounds().width, getBounds().height));
+        sPane.setBounds(0, 30, 30, 30);
+        DefaultTableModel model = new DefaultTableModel(new Integer[][] { { 1, 2 }, { 3, 4 } },
+                new String[] { "A", "B" });
+        JTable table = new JTable(model);
+        sPane.getViewport().add(table);
+
+        add(sPane);
     }
 
     @Override
     public void updateUI() {
         super.updateUI();
-        // Data update
+        try {
+            sPane.setPreferredSize(new Dimension(getBounds().width * 8 / 10, getBounds().height * 8 / 10));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

@@ -13,7 +13,7 @@ public class BaseDao {
 
     private static final String filePath = System.getProperty("user.home") + "\\Documents\\BikeShareSystemFile\\";
 
-    public static boolean getConnection(String fileName) {
+    private static synchronized boolean getConnection(String fileName) {
         File file = new File(filePath + fileName);
         return file.exists();
     }
@@ -123,8 +123,7 @@ public class BaseDao {
 
     public static void main(String[] args) {
         try {
-            BaseDao.replace("test.txt", "3", 0, "8 sdasd");
-            BaseDao.addLine("account.txt", "7 gch 123456 123");
+            System.out.println(BaseDao.getConnection("fileName"));
         } catch (Exception e) {
             e.printStackTrace();
         }

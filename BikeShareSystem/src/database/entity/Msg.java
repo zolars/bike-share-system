@@ -15,6 +15,16 @@ public class Msg {
     private Date date;
     private String text;
 
+    public Msg() {
+    }
+
+    public Msg(int msgID, String userID, Date date, String text) {
+        this.msgID = msgID;
+        this.userID = userID;
+        this.date = date;
+        this.text = text;
+    }
+
     /**
      * @param msgID the msgID to set
      */

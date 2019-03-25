@@ -10,6 +10,14 @@ public class Bikes {
     private String station = new String();
     private int number;
 
+    public Bikes() {
+    }
+
+    public Bikes(String station, int number) {
+        this.station = station;
+        this.number = number;
+    }
+
     /**
      * @param station the station to set
      */
@@ -36,5 +44,9 @@ public class Bikes {
      */
     public int getNumber() {
         return number;
+    }
+
+    public String toString() {
+        return station + " " + number;
     }
 }

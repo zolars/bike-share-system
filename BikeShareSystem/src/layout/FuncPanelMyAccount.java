@@ -22,6 +22,7 @@ public class FuncPanelMyAccount extends JPanel implements ActionListener {
     private Image img = new ImageIcon(getClass().getResource("/images/Plain.jpg")).getImage();
 
     private AccountDao dao = new AccountDaoImpl();
+    private Account account;
 
     private JLabel jlUsername;
     private JLabel jlPassword;
@@ -38,7 +39,7 @@ public class FuncPanelMyAccount extends JPanel implements ActionListener {
         setMinimumSize(size);
         setMaximumSize(size);
 
-        Account account = grabData();
+        grabData();
 
         setLayout(new GridLayout(8, 1, 0, 0));
         JPanel panel01 = new JPanel();
@@ -100,7 +101,7 @@ public class FuncPanelMyAccount extends JPanel implements ActionListener {
             MainUser.restart = true;
             JOptionPane.showMessageDialog(this, "You have logged out", "", JOptionPane.WARNING_MESSAGE);
         } else { // Modify operation
-            Account account = grabData();
+            grabData();
 
             if (e.getSource() == jbChangePassword) {
                 while (true) {
@@ -115,7 +116,7 @@ public class FuncPanelMyAccount extends JPanel implements ActionListener {
                 }
             }
             if (e.getSource() == jbChangeBalance) {
-                Object[] obj = { 10, 50, 100 };
+                Object[] obj = { 10, 20, 50 };
                 int addBalance = (Integer) JOptionPane.showInputDialog(null, "Please choose the money to recharge :\n",
                         "Recharge", JOptionPane.PLAIN_MESSAGE, new ImageIcon(), obj, "");
                 account.setBalance(account.getBalance() + addBalance);
@@ -136,8 +137,7 @@ public class FuncPanelMyAccount extends JPanel implements ActionListener {
         }
     }
 
-    public Account grabData() {
-        Account account = new Account();
+    public void grabData() {
         try {
             account = dao.findAccountByUserID(MainUser.loginStatus);
             if (account == null) {
@@ -149,14 +149,13 @@ public class FuncPanelMyAccount extends JPanel implements ActionListener {
         } catch (IOException e1) {
             e1.printStackTrace();
         }
-        return account;
     }
 
     @Override
     public void updateUI() {
         super.updateUI();
         try {
-            Account account = grabData();
+            grabData();
             jlPassword.setText("Password : " + account.getPassword());
             jlBalance.setText("Balance : " + account.getBalance());
         } catch (Exception e) {

@@ -13,28 +13,24 @@ import database.entity.*;
  * @author Xin Yifei
  * @version 0.8
  */
-public class BikesDaoImpl extends BaseDao implements BikesDao {
-    public List<Bikes> findBikesByStation(String station) throws IOException {
+public class BikesDaoImpl implements BikesDao {
+    public List<Bikes> findAllBikes() throws IOException {
         List<Bikes> result = new ArrayList<Bikes>();
-
-        List<String[]> resultStr = search("bikes.txt", station, 0);
-        for (String[] data : resultStr) {
-            Bikes bikes = new Bikes();
-            bikes.setStation(data[0]);
-            bikes.setNumber(Integer.parseInt(data[1]));
-            result.add(bikes);
+        for (String[] resultStr : BaseDao.search("bikes.txt", "", 0)) {
+            result.add(new Bikes(resultStr[0], Integer.parseInt(resultStr[1])));
         }
-
         return result;
     }
 
-    public static void main(String[] args) {
-        BikesDao dao = new BikesDaoImpl();
-        try {
-            System.out.println(dao.findBikesByStation("B").get(0).getNumber());
-        } catch (IOException e) {
-            e.printStackTrace();
+    public int findBikesNumberByStation(String station) throws IOException {
+        String[] result = BaseDao.search("bikes.txt", station, 0).get(0);
+        return Integer.parseInt(result[1]);
+    }
 
-        }
+    public void changeBikesByStation(Bikes bikes) throws IOException {
+        BaseDao.replace("bikes.txt", bikes.getStation(), 0, bikes.toString());
+    }
+
+    public static void main(String[] args) {
     }
 }
