@@ -3,6 +3,7 @@ package layout;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -20,9 +21,8 @@ import database.entity.*;
  * 
  * @author Xin Yifei
  * @version 0.8
- * @param <MsgDao>
  */
-public class FuncPanelMsg extends JPanel {
+public class FuncPanelMsg extends JPanel implements ActionListener {
     private static final long serialVersionUID = 1L;
 
     private Image img = new ImageIcon(getClass().getResource("/images/Plain.jpg")).getImage();
@@ -30,11 +30,15 @@ public class FuncPanelMsg extends JPanel {
     private MsgDao dao = new MsgDaoImpl();
     private Msg overdueMsg = new Msg();
     private List<Msg> otherMsg = new ArrayList<Msg>();
+    private String[][] datas = new String[100][2];
 
+    private JPanel overduePanel = new JPanel();
     private JLabel jlOverdueMsgLeft;
     private JLabel jlOverdueMsg;
     private JLabel jlOverdueMsgRight;
-    private List<JTable> tables = new ArrayList<JTable>();
+
+    private JScrollPane sPane = new JScrollPane();
+    private JTable table;
 
     public FuncPanelMsg() {
         this.setName("Msg");
@@ -47,95 +51,89 @@ public class FuncPanelMsg extends JPanel {
 
         grabData();
 
-        int line = 14;
-        setLayout(new GridLayout(line, 1, 0, 0));
+        setLayout(null);
 
-        List<JPanel> panelList = new ArrayList<JPanel>();
+        jlOverdueMsgLeft = new JLabel();
+        jlOverdueMsgLeft.setFont(new Font("Dialog", 1, 25));
+        jlOverdueMsgLeft.setForeground(Color.RED);
+        overduePanel.add(jlOverdueMsgLeft);
 
-        for (int i = 0; i < line; i++) {
-            JPanel newPanel = new JPanel();
-            newPanel.setOpaque(false);
-            panelList.add(newPanel);
-            add(newPanel);
-        }
+        jlOverdueMsg = new JLabel();
+        jlOverdueMsg.setFont(new Font("Dialog", 1, 25));
+        jlOverdueMsg.setForeground(Color.RED);
+        overduePanel.add(jlOverdueMsg);
 
-        // Overdue Msg : line 6
-        jlOverdueMsgLeft = new JLabel("");
-        jlOverdueMsgLeft.setFont(new java.awt.Font("Dialog", 1, 25));
+        jlOverdueMsgRight = new JLabel();
+        jlOverdueMsgRight.setFont(new Font("Dialog", 1, 25));
+        jlOverdueMsgRight.setForeground(Color.RED);
+        overduePanel.add(jlOverdueMsgRight);
 
-        jlOverdueMsg = new JLabel("");
-        jlOverdueMsg.setFont(new java.awt.Font("Dialog", 1, 25));
+        overduePanel.setOpaque(false);
+        add(overduePanel);
 
-        jlOverdueMsgRight = new JLabel("");
-        jlOverdueMsgRight.setFont(new java.awt.Font("Dialog", 1, 25));
+        table = new JTable(datas, new String[] { "Date", "Message" });
 
-        panelList.get(3).add(jlOverdueMsgLeft);
-        panelList.get(3).add(jlOverdueMsg);
-        panelList.get(3).add(jlOverdueMsgRight);
+        JTableHeader head = table.getTableHeader();
+        head.setPreferredSize(new Dimension(head.getWidth(), 50));
+        head.setFont(new Font("Dialog", 1, 25));
+        table.getColumnModel().getColumn(0).setPreferredWidth(10);
+        table.getColumnModel().getColumn(1).setPreferredWidth(500);
+        table.setRowHeight(50);
+        table.setFont(new Font("Dialog", Font.PLAIN, 15));
 
-        // Other Msg Headers
-        List<JScrollPane> tablePanels = new ArrayList<JScrollPane>();
-        for (int i = 0; i < 7; i++) {
-            DefaultTableModel model = new DefaultTableModel(new Integer[][] {}, new String[] { "Date", "Message" });
+        DefaultTableCellRenderer r = new DefaultTableCellRenderer();
+        r.setHorizontalAlignment(JLabel.CENTER);
+        table.setDefaultRenderer(Object.class, r);
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-            tables.add(new JTable(model));
-            tables.get(i).getTableHeader().setReorderingAllowed(false);
-            tables.get(i).setRowHeight(28);
+        table.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                String date = table.getValueAt(table.getSelectedRow(), 0).toString();
+                String text = table.getValueAt(table.getSelectedRow(), 1).toString();
+                Object[] choices = { "OK", "Delete", "Cancel" };
+                int choiceNum = (int) JOptionPane.showOptionDialog(null, "Date : " + date + "\nMessage : " + text,
+                        "Details", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, choices,
+                        choices[0]);
 
-            JTableHeader head = tables.get(i).getTableHeader();
-            head.setFont(new Font("Dialog", 1, 25));
-
-            tablePanels.add(new JScrollPane());
-            tablePanels.get(i).getViewport().add(tables.get(i));
-            panelList.get(i + 5).add(tablePanels.get(i));
-
-            panelList.get(i + 5).addMouseListener(new MouseListener() {
-
-                @Override
-                public void mouseReleased(MouseEvent e) {
-
+                switch (choiceNum) {
+                case 0: // OK
+                    break;
+                case 1: // Delete
+                    try {
+                        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+                        for (Msg selectedMsg : otherMsg) {
+                            if (text.equals(selectedMsg.getText()) && date.equals(sf.format(selectedMsg.getDate()))) {
+                                dao.deleteMsg(String.valueOf(selectedMsg.getMsgID()));
+                                updateUI();
+                            }
+                        }
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                    break;
+                case 2: // Cancel
+                    break;
+                default:
+                    break;
                 }
+            }
+        });
 
-                @Override
-                public void mousePressed(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mouseExited(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mouseEntered(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    JOptionPane.showMessageDialog("Congratulations! Register Successfully!", "Congratulations!",
-                            JOptionPane.WARNING_MESSAGE);
-                }
-            });
-        }
+        sPane = new JScrollPane(table, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
+                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        add(sPane);
 
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
-                for (int i = 0; i < 7; i++) {
-                    tablePanels.get(i).setPreferredSize(
-                            new Dimension(getBounds().width * 79 / 100, getBounds().height * 79 / 100));
-                    TableColumnModel cm = tables.get(i).getColumnModel();
-                    TableColumn column0 = cm.getColumn(0);
-                    column0.setPreferredWidth(getBounds().width * 79 / 100 / 3);
-                    column0.setMaxWidth(getBounds().width * 79 / 100 / 3);
-                    TableColumn column1 = cm.getColumn(1);
-                    column1.setPreferredWidth(getBounds().width * 79 / 100 / 3 * 2);
-                    column1.setMaxWidth(getBounds().width * 79 / 100 / 3 * 2);
-
-                }
+                overduePanel.setBounds(0, getBounds().height / 60, getBounds().width, 60);
+                sPane.setBounds(getBounds().width / 18, getBounds().height / 46 * 10, getBounds().width * 8 / 9,
+                        getBounds().height * 205 / 300);
             }
         });
+    }
+
+    public void actionPerformed(ActionEvent e) {
 
     }
 
@@ -147,6 +145,16 @@ public class FuncPanelMsg extends JPanel {
                 overdueMsg = dao.findMsgOverdue(MainUser.loginStatus).get(0);
             }
             otherMsg = dao.findMsgOther(MainUser.loginStatus);
+
+            for (int i = 0; i < datas.length; i++) {
+                datas[i] = new String[2];
+            }
+
+            int i = 0;
+            for (Msg data : otherMsg) {
+                datas[i] = data.toStringList();
+                i++;
+            }
         } catch (IOException e1) {
             e1.printStackTrace();
         }
@@ -158,13 +166,12 @@ public class FuncPanelMsg extends JPanel {
 
         try {
             grabData();
+
+            // refresh overduePanel
             Calendar cal = Calendar.getInstance();
             if (overdueMsg != null) {
-                jlOverdueMsg.setForeground(Color.RED);
-                jlOverdueMsgLeft.setForeground(Color.RED);
-                jlOverdueMsgRight.setForeground(Color.RED);
 
-                jlOverdueMsg.setText(" There is a bike overdue... Please return as soon as possible! ");
+                jlOverdueMsg.setText(" A bike overdue! Please return as soon as possible. ");
                 if (cal.get(Calendar.SECOND) % 2 == 0) {
                     jlOverdueMsgLeft.setText("!!");
                     jlOverdueMsgRight.setText("!!");
@@ -173,14 +180,14 @@ public class FuncPanelMsg extends JPanel {
                     jlOverdueMsgRight.setText("");
                 }
             } else {
-                jlOverdueMsg.setForeground(Color.BLACK);
-                jlOverdueMsgLeft.setForeground(Color.BLACK);
-                jlOverdueMsgRight.setForeground(Color.BLACK);
 
-                jlOverdueMsg.setText(" Welcome to check your message box. Please click to see more! ");
+                jlOverdueMsg.setText("");
                 jlOverdueMsgLeft.setText("");
                 jlOverdueMsgRight.setText("");
             }
+
+            // refresh otherPanel
+            table.repaint();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -197,4 +204,5 @@ public class FuncPanelMsg extends JPanel {
     public static void main(String[] args) {
         MainUser.setup();
     }
+
 }

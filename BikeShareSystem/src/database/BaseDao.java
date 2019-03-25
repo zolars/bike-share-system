@@ -81,12 +81,15 @@ public class BaseDao {
             String lineString = new String();
             while ((lineString = reader.readLine()) != null) {
                 String data[] = lineString.split(" ");
-                if (data[index].equals(keyword)) {
+                if (data[index].equals(keyword) && (!newString.equals(""))) {
                     buf.append(newString);
+                    buf.append(System.getProperty("line.separator"));
+                } else if (data[index].equals(keyword) && newString.equals("")) {
+
                 } else {
                     buf.append(lineString);
+                    buf.append(System.getProperty("line.separator"));
                 }
-                buf.append(System.getProperty("line.separator"));
             }
             reader.close();
 
@@ -123,7 +126,7 @@ public class BaseDao {
 
     public static void main(String[] args) {
         try {
-            System.out.println(BaseDao.getConnection("fileName"));
+            replace("msg.txt", "3", 0, "");
         } catch (Exception e) {
             e.printStackTrace();
         }

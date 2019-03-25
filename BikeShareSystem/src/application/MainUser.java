@@ -32,7 +32,7 @@ public class MainUser {
             funcSet.add(new FuncPanelMsg());
             funcSet.add(new FuncPanelHistory());
             funcSet.add(new FuncPanelMyAccount());
-            funcSet.add(new FuncPanelTest());
+            // funcSet.add(new FuncPanelTest());
             new MainLayout(funcSet);
         }
 

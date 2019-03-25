@@ -22,5 +22,5 @@ public interface MsgDao {
 
     public void addOtherMsg(String userID, String text) throws IOException;
 
-    public boolean deleteMsg(String userID) throws IOException;
+    public void deleteMsg(String msgID) throws IOException;
 }

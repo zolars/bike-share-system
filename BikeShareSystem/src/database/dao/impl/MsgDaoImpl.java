@@ -74,8 +74,8 @@ public class MsgDaoImpl extends BaseDao implements MsgDao {
         BaseDao.addLine("msg.txt", msg.toString());
     }
 
-    public boolean deleteMsg(String userID) throws IOException {
-        return false;
+    public void deleteMsg(String msgID) throws IOException {
+        BaseDao.replace("msg.txt", msgID, 0, "");
     }
 
     public static void main(String[] args) {

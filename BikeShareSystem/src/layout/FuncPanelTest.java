@@ -1,12 +1,9 @@
 package layout;
 
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
+import java.awt.*;
+import java.awt.event.*;
 
 import javax.swing.*;
-import javax.swing.AbstractAction;
 import javax.swing.table.*;
 
 import application.*;
@@ -17,7 +14,7 @@ import application.*;
  * @author Xin Yifei
  * @version 0.8
  */
-public class FuncPanelTest extends JPanel {
+public class FuncPanelTest extends JPanel implements ActionListener {
     private static final long serialVersionUID = 1L;
 
     private Image img = new ImageIcon(getClass().getResource("/images/Plain.jpg")).getImage();
@@ -25,7 +22,8 @@ public class FuncPanelTest extends JPanel {
     JScrollPane sPane = new JScrollPane();
 
     public FuncPanelTest() {
-        this.setName("Test");
+        setName("Test");
+        setLayout(null);
 
         Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
         setSize(size);
@@ -34,13 +32,25 @@ public class FuncPanelTest extends JPanel {
         setMaximumSize(size);
 
         sPane.setPreferredSize(new Dimension(getBounds().width, getBounds().height));
-        sPane.setBounds(0, 30, 30, 30);
+
         DefaultTableModel model = new DefaultTableModel(new Integer[][] { { 1, 2 }, { 3, 4 } },
                 new String[] { "A", "B" });
         JTable table = new JTable(model);
         sPane.getViewport().add(table);
 
         add(sPane);
+
+        addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                sPane.setBounds(getBounds().width / 18, getBounds().height / 46 * 10, getBounds().width * 8 / 9,
+                        getBounds().height * 205 / 300);
+            }
+        });
+    }
+
+    public void actionPerformed(ActionEvent e) {
+
     }
 
     @Override

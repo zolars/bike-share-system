@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - BaseDao",
+            "request": "launch",
+            "mainClass": "database.BaseDao",
+            "projectName": "BikeShareSystem_826b9af"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - FuncPanelTest",
             "request": "launch",
             "mainClass": "layout.FuncPanelTest",

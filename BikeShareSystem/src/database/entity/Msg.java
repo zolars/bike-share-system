@@ -86,4 +86,9 @@ public class Msg {
         SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd;HH:mm:ss");
         return msgID + " " + userID + " " + sf.format(date) + " " + text;
     }
+
+    public String[] toStringList() {
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+        return new String[] { sf.format(date), text };
+    }
 }
