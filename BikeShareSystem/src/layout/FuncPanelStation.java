@@ -109,6 +109,32 @@ public class FuncPanelStation extends JPanel implements ActionListener {
                         text1.setText("Your bike is returned : )");
                         text2.setText("If your bike needs to repair, please tell us!");
                         btn.setEnabled(false);
+
+                        boolean mark = false;
+                        while (true) {
+                            String notice;
+                            if (mark) {
+                                notice = "Thank you for your feedback.\nIs there any other malfunction on this bicycle?";
+                            } else {
+                                notice = "Is there any malfunction on this bicycle?";
+                            }
+                            Object[] choices = { "No, thanks", "Yes" };
+                            int choiceNum = (int) JOptionPane.showOptionDialog(null, notice, "Feedback",
+                                    JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, choices,
+                                    choices[0]);
+
+                            if (choiceNum == 0) {
+                                break;
+                            } else {
+                                Object[] obj = { "1  Lock", "2  Brake", "3  Foot lice", "4  Chain", "5  Handlebar",
+                                        "6  Wheels", "7  Other feedback" };
+                                String choiceStr = (String) JOptionPane.showInputDialog(null,
+                                        "Please choose the place of malfunction :\n", "Feedback",
+                                        JOptionPane.QUESTION_MESSAGE, new ImageIcon(), obj, "");
+                                mark = true;
+                            }
+                        }
+
                         MainStation.restart = true;
                         break;
                     } else {
@@ -139,8 +165,11 @@ public class FuncPanelStation extends JPanel implements ActionListener {
         MsgDao msgDao = new MsgDaoImpl();
 
         try {
-            text1.setText("Station " + MainStation.station + " - "
-                    + bikesDao.findBikesNumberByStation(MainStation.station) + " Bikes Left");
+
+            if (text1.getText().charAt(0) == 'S')
+                text1.setText("Station " + MainStation.station + " - "
+                        + bikesDao.findBikesNumberByStation(MainStation.station) + " Bikes Left");
+
             List<Record> overdueRecords = new ArrayList<Record>();
             overdueRecords = recordDao.findRecordOverdue("");
             if (overdueRecords != null) {
