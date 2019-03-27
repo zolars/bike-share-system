@@ -12,8 +12,9 @@ import database.entity.*;
  */
 public class Init {
 
+    private static final String filePath = Main.filePath;
+
     public static void main(String[] args) {
-        String filePath = System.getProperty("user.home") + "\\Documents\\BikeShareSystemFile\\";
         String[] fileNames = Main.fileNames;
         for (String fileName : fileNames) {
             File fp = new File(filePath);

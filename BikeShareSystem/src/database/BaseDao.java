@@ -3,6 +3,8 @@ package database;
 import java.io.*;
 import java.util.*;
 
+import application.Main;
+
 /**
  * BaseDAO
  * 
@@ -11,7 +13,7 @@ import java.util.*;
  */
 public class BaseDao {
 
-    private static final String filePath = System.getProperty("user.home") + "\\Documents\\BikeShareSystemFile\\";
+    private static final String filePath = Main.filePath;
 
     private static synchronized boolean getConnection(String fileName) {
         File file = new File(filePath + fileName);
