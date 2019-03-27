@@ -2,7 +2,7 @@ package application;
 
 import java.io.*;
 
-import database.entity.Bikes;
+import database.entity.*;
 
 /**
  * Init
@@ -32,12 +32,16 @@ public class Init {
                         writter.write(str.toString());
                         writter.close();
                     }
+                    if (fileName.equals("account.txt")) {
+                        BufferedWriter writter = new BufferedWriter(new FileWriter(filePath + fileName));
+                        String str = "admin admin admin 0";
+                        writter.write(str.toString());
+                        writter.close();
+                    }
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
     }
-
 }

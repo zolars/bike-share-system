@@ -17,12 +17,12 @@ import database.dao.impl.*;
 import database.entity.*;
 
 /**
- * FuncPanelMsgRec
+ * FuncPanelFeedback
  * 
  * @author Xin Yifei
  * @version 0.9
  */
-public class FuncPanelMsgRec extends JPanel implements ActionListener {
+public class FuncPanelFeedback extends JPanel implements ActionListener {
     private static final long serialVersionUID = 1L;
 
     private Image img = new ImageIcon(getClass().getResource("/images/Plain.jpg")).getImage();
@@ -40,8 +40,8 @@ public class FuncPanelMsgRec extends JPanel implements ActionListener {
     private JScrollPane sPane = new JScrollPane();
     private JTable table;
 
-    public FuncPanelMsgRec() {
-        setName("Message");
+    public FuncPanelFeedback() {
+        setName("Feedback");
 
         Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
         setSize(size);
@@ -71,7 +71,7 @@ public class FuncPanelMsgRec extends JPanel implements ActionListener {
         overduePanel.setOpaque(false);
         add(overduePanel);
 
-        table = new JTable(datas, new String[] { "Date", "Message" });
+        table = new JTable(datas, new String[] { "Date", "Feedback" });
 
         JTableHeader head = table.getTableHeader();
         head.setPreferredSize(new Dimension(head.getWidth(), 50));
@@ -139,12 +139,12 @@ public class FuncPanelMsgRec extends JPanel implements ActionListener {
 
     public void grabData() {
         try {
-            if (dao.findMsgOverdue(MainUser.loginStatus).size() == 0) {
+            if (dao.findMsgOverdue("admin").size() == 0) {
                 overdueMsg = null;
             } else {
-                overdueMsg = dao.findMsgOverdue(MainUser.loginStatus).get(0);
+                overdueMsg = dao.findMsgOverdue("admin").get(0);
             }
-            otherMsg = dao.findMsgOther(MainUser.loginStatus);
+            otherMsg = dao.findMsgOther("admin");
 
             for (int i = 0; i < datas.length; i++) {
                 datas[i] = new String[2];
@@ -202,7 +202,7 @@ public class FuncPanelMsgRec extends JPanel implements ActionListener {
     }
 
     public static void main(String[] args) {
-        MainUser.setup();
+        MainAdmin.setup();
     }
 
 }

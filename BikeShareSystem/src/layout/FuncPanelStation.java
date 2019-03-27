@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
@@ -103,41 +104,10 @@ public class FuncPanelStation extends JPanel implements ActionListener {
                                 JOptionPane.WARNING_MESSAGE);
                         break;
                     } else if (recordDao.findRecordNotend(userID).size() >= 1) {
-                        bikesDao.changeBikesByStation(new Bikes(MainStation.station,
-                                bikesDao.findBikesNumberByStation(MainStation.station) + 1));
-                        recordDao.addNewReturn(userID);
-                        text1.setText("Your bike is returned : )");
-                        text2.setText("If your bike needs to repair, please tell us!");
-                        btn.setEnabled(false);
-
-                        boolean mark = false;
-                        while (true) {
-                            String notice;
-                            if (mark) {
-                                notice = "Thank you for your feedback.\nIs there any other malfunction on this bicycle?";
-                            } else {
-                                notice = "Is there any malfunction on this bicycle?";
-                            }
-                            Object[] choices = { "No, thanks", "Yes" };
-                            int choiceNum = (int) JOptionPane.showOptionDialog(null, notice, "Feedback",
-                                    JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, choices,
-                                    choices[0]);
-
-                            if (choiceNum == 0) {
-                                break;
-                            } else {
-                                Object[] obj = { "1  Lock", "2  Brake", "3  Foot lice", "4  Chain", "5  Handlebar",
-                                        "6  Wheels", "7  Other feedback" };
-                                String choiceStr = (String) JOptionPane.showInputDialog(null,
-                                        "Please choose the place of malfunction :\n", "Feedback",
-                                        JOptionPane.QUESTION_MESSAGE, new ImageIcon(), obj, "");
-                                mark = true;
-                            }
-                        }
-
-                        MainStation.restart = true;
+                        returnBikes(userID);
                         break;
                     } else {
+                        // borrow bikes
                         bikesDao.changeBikesByStation(new Bikes(MainStation.station,
                                 bikesDao.findBikesNumberByStation(MainStation.station) - 1));
                         recordDao.addNewBorrow(userID, new Date());
@@ -156,6 +126,89 @@ public class FuncPanelStation extends JPanel implements ActionListener {
 
     }
 
+    private void returnBikes(String userID) {
+        BikesDao bikesDao = new BikesDaoImpl();
+        MsgDao msgDao = new MsgDaoImpl();
+        RecordDao recordDao = new RecordDaoImpl();
+
+        try {
+            // change viewer
+            text1.setText("Your bike is returned : )");
+            text2.setText("If your bike needs to repair, please tell us!");
+            btn.setEnabled(false);
+
+            Msg overdueMsg = null;
+            try {
+                overdueMsg = msgDao.findMsgOverdue(userID).get(0);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            // delete overdue msg & check the bill
+            if (overdueMsg != null) {
+                SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+                Record record = recordDao.findRecordOverdue(userID).get(0);
+                int bill = record.getBill();
+                String startDateStr = sf.format(record.getStartDate());
+                String endDateStr = sf.format(new Date());
+
+                msgDao.deleteMsg(String.valueOf(msgDao.findMsgOverdue(userID).get(0).getMsgID()));
+                msgDao.addOtherMsg(userID, "Your ride from " + startDateStr + " to " + endDateStr + " costs " + bill
+                        + " dollars. * The rides whose time lower than 2 hours are free.");
+            }
+
+            // change bikes num
+            bikesDao.changeBikesByStation(
+                    new Bikes(MainStation.station, bikesDao.findBikesNumberByStation(MainStation.station) + 1));
+            recordDao.addNewReturn(userID);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        feedback(userID);
+
+        MainStation.restart = true;
+    }
+
+    private void feedback(String userID) {
+        MsgDao msgDao = new MsgDaoImpl();
+
+        boolean mark = false;
+        while (true) {
+            String notice;
+            if (mark) {
+                notice = "Thank you for your feedback.\nIs there any other malfunction on this bicycle?";
+            } else {
+                notice = "Is there any malfunction on this bicycle?";
+            }
+            Object[] choices = { "No, thanks", "Yes" };
+            int choiceNum = (int) JOptionPane.showOptionDialog(null, notice, "Feedback",
+                    JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, choices, choices[0]);
+
+            if (choiceNum == 0) {
+                break;
+            } else {
+                Object[] obj = { "1  Lock", "2  Brake", "3  Footlice", "4  Chain", "5  Handlebar", "6  Wheels" };
+                String choiceStr = (String) JOptionPane.showInputDialog(null,
+                        "Please choose the place of malfunction :\n", "Feedback", JOptionPane.QUESTION_MESSAGE,
+                        new ImageIcon(), obj, "");
+
+                try {
+                    msgDao.addOtherMsg("admin",
+                            "Malfunction : " + choiceStr.split("  ")[1] + " from station " + MainStation.station);
+                    msgDao.addOtherMsg(userID,
+                            "Dear user, your feedback about \"" + choiceStr.split("  ")[1] + "\" has been received."
+                                    + " If you have any other questions, welcome to connect the administer.");
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                mark = true;
+            }
+        }
+    }
+
     @Override
     public void updateUI() {
         super.updateUI();
@@ -165,11 +218,12 @@ public class FuncPanelStation extends JPanel implements ActionListener {
         MsgDao msgDao = new MsgDaoImpl();
 
         try {
-
+            // refresh the bikes' num
             if (text1.getText().charAt(0) == 'S')
                 text1.setText("Station " + MainStation.station + " - "
                         + bikesDao.findBikesNumberByStation(MainStation.station) + " Bikes Left");
 
+            // update overdue status
             List<Record> overdueRecords = new ArrayList<Record>();
             overdueRecords = recordDao.findRecordOverdue("");
             if (overdueRecords != null) {

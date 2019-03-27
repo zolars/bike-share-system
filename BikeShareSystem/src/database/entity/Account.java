@@ -12,6 +12,14 @@ public class Account {
     private String password;
     private int balance;
 
+    public Account() {
+
+    }
+
+    public Account(String userID) {
+        this.userID = userID;
+    }
+
     /**
      * @param userID the userID to set
      */

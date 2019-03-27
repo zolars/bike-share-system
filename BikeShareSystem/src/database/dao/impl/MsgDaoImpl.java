@@ -44,7 +44,14 @@ public class MsgDaoImpl extends BaseDao implements MsgDao {
         for (String[] data : resultStr) {
             if (!data[3].equals("overdue"))
                 try {
-                    result.add(new Msg(Integer.parseInt(data[0]), data[1], sf.parse(data[2]), data[3]));
+                    String msgText = new String();
+                    for (int i = 3; i < data.length; i++) {
+                        msgText += data[i] + " ";
+                        if (data[i].charAt(data[i].length() - 1) == '.') {
+                            msgText += "\n";
+                        }
+                    }
+                    result.add(new Msg(Integer.parseInt(data[0]), data[1], sf.parse(data[2]), msgText));
                 } catch (NumberFormatException | ParseException e) {
                     e.printStackTrace();
                 }
