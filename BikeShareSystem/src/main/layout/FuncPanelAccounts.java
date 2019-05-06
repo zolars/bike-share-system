@@ -130,6 +130,7 @@ public class FuncPanelAccounts extends FuncPanelDefault implements ActionListene
             int i = 0;
             for (Account data : accounts) {
                 datas[i] = data.toString().split(" ");
+                datas[i][1] = datas[i][1].replaceAll(";", " ");
                 i++;
             }
         } catch (IOException e1) {

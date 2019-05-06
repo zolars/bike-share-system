@@ -83,7 +83,7 @@ public class Account {
 
     @Override
     public String toString() {
+        username = username.replaceAll(" ", ";");
         return userID + " " + username + " " + email + " " + fine;
     }
-
 }

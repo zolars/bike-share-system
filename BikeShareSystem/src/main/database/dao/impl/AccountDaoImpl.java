@@ -31,6 +31,7 @@ public class AccountDaoImpl implements AccountDao {
         } else {
             String[] resultStr = BaseDao.search("account.txt", userID, 0).get(0);
             result.setUserID(resultStr[0]);
+            resultStr[1] = resultStr[1].replaceAll(";", " ");
             result.setUsername(resultStr[1]);
             result.setEmail(resultStr[2]);
             result.setFine(Boolean.parseBoolean(resultStr[3]));
@@ -45,6 +46,7 @@ public class AccountDaoImpl implements AccountDao {
         } else {
             String[] resultStr = BaseDao.search("account.txt", username, 1).get(0);
             result.setUserID(resultStr[0]);
+            resultStr[1] = resultStr[1].replaceAll(";", " ");
             result.setUsername(resultStr[1]);
             result.setEmail(resultStr[2]);
             result.setFine(Boolean.parseBoolean(resultStr[3]));
@@ -76,5 +78,14 @@ public class AccountDaoImpl implements AccountDao {
 
     public void deleteAccount(Account account) throws IOException {
         BaseDao.replace("account.txt", account.getUserID(), 0, "");
+    }
+
+    public static void main(String[] args) {
+        AccountDao dao = new AccountDaoImpl();
+        try {
+            System.out.println(dao.findAccountByUserID("12345"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
