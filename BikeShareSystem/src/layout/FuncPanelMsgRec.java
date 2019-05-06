@@ -26,7 +26,6 @@ public class FuncPanelMsgRec extends JPanel implements ActionListener {
     private static final long serialVersionUID = 1L;
 
     private Image img = new ImageIcon(getClass().getResource("/images/Plain.jpg")).getImage();
-    private String userID = userID;
 
     private MsgDao dao = new MsgDaoImpl();
     private Msg overdueMsg = new Msg();
@@ -140,12 +139,12 @@ public class FuncPanelMsgRec extends JPanel implements ActionListener {
 
     public void grabData() {
         try {
-            if (dao.findMsgOverdue(userID).size() == 0) {
+            if (dao.findMsgOverdue(MainUser.loginStatus).size() == 0) {
                 overdueMsg = null;
             } else {
-                overdueMsg = dao.findMsgOverdue(userID).get(0);
+                overdueMsg = dao.findMsgOverdue(MainUser.loginStatus).get(0);
             }
-            otherMsg = dao.findMsgOther(userID);
+            otherMsg = dao.findMsgOther(MainUser.loginStatus);
 
             for (int i = 0; i < datas.length; i++) {
                 datas[i] = new String[2];

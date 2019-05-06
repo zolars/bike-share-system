@@ -6,6 +6,7 @@ import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.swing.*;
 import javax.swing.table.*;
@@ -27,8 +28,14 @@ public class FuncPanelFeedback extends JPanel implements ActionListener {
     private Image img = new ImageIcon(getClass().getResource("/images/Plain.jpg")).getImage();
 
     private MsgDao dao = new MsgDaoImpl();
+    private Msg overdueMsg = new Msg();
     private List<Msg> otherMsg = new ArrayList<Msg>();
     private String[][] datas = new String[100][2];
+
+    private JPanel overduePanel = new JPanel();
+    private JLabel jlOverdueMsgLeft;
+    private JLabel jlOverdueMsg;
+    private JLabel jlOverdueMsgRight;
 
     private JScrollPane sPane = new JScrollPane();
     private JTable table;
@@ -45,6 +52,24 @@ public class FuncPanelFeedback extends JPanel implements ActionListener {
         grabData();
 
         setLayout(null);
+
+        jlOverdueMsgLeft = new JLabel();
+        jlOverdueMsgLeft.setFont(new Font("Dialog", 1, 25));
+        jlOverdueMsgLeft.setForeground(Color.RED);
+        overduePanel.add(jlOverdueMsgLeft);
+
+        jlOverdueMsg = new JLabel();
+        jlOverdueMsg.setFont(new Font("Dialog", 1, 25));
+        jlOverdueMsg.setForeground(Color.RED);
+        overduePanel.add(jlOverdueMsg);
+
+        jlOverdueMsgRight = new JLabel();
+        jlOverdueMsgRight.setFont(new Font("Dialog", 1, 25));
+        jlOverdueMsgRight.setForeground(Color.RED);
+        overduePanel.add(jlOverdueMsgRight);
+
+        overduePanel.setOpaque(false);
+        add(overduePanel);
 
         table = new JTable(datas, new String[] { "Date", "Feedback" });
 
@@ -101,6 +126,7 @@ public class FuncPanelFeedback extends JPanel implements ActionListener {
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
+                overduePanel.setBounds(0, getBounds().height / 60, getBounds().width, 60);
                 sPane.setBounds(getBounds().width / 18, getBounds().height / 46 * 10, getBounds().width * 8 / 9,
                         getBounds().height * 205 / 300);
             }
@@ -113,7 +139,11 @@ public class FuncPanelFeedback extends JPanel implements ActionListener {
 
     public void grabData() {
         try {
-
+            if (dao.findMsgOverdue("admin").size() == 0) {
+                overdueMsg = null;
+            } else {
+                overdueMsg = dao.findMsgOverdue("admin").get(0);
+            }
             otherMsg = dao.findMsgOther("admin");
 
             for (int i = 0; i < datas.length; i++) {
@@ -125,8 +155,8 @@ public class FuncPanelFeedback extends JPanel implements ActionListener {
                 datas[i] = data.toStringList();
                 i++;
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException e1) {
+            e1.printStackTrace();
         }
     }
 
@@ -136,6 +166,26 @@ public class FuncPanelFeedback extends JPanel implements ActionListener {
 
         try {
             grabData();
+
+            // refresh overduePanel
+            Calendar cal = Calendar.getInstance();
+            if (overdueMsg != null) {
+
+                jlOverdueMsg.setText(" A bike overdue! Please return as soon as possible. ");
+                if (cal.get(Calendar.SECOND) % 2 == 0) {
+                    jlOverdueMsgLeft.setText("!!");
+                    jlOverdueMsgRight.setText("!!");
+                } else {
+                    jlOverdueMsgLeft.setText("");
+                    jlOverdueMsgRight.setText("");
+                }
+            } else {
+
+                jlOverdueMsg.setText("");
+                jlOverdueMsgLeft.setText("");
+                jlOverdueMsgRight.setText("");
+            }
+
             // refresh otherPanel
             table.repaint();
 

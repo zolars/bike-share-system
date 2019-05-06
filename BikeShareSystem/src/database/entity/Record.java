@@ -1,7 +1,6 @@
 package database.entity;
 
 import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.util.*;
 
 /**
@@ -105,25 +104,9 @@ public class Record {
     @Override
     public String toString() {
         SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd;HH:mm:ss");
-        String endDateStr;
         if (startDate.equals(endDate))
-            endDateStr = " null";
+            return recordID + " " + userID + " " + sf.format(startDate) + " null";
         else
-            endDateStr = sf.format(endDate);
-        return recordID + " " + userID + " " + sf.format(startDate) + endDateStr;
-    }
-
-    public String[] toStringList() {
-        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        String endDateStr;
-        if (startDate.equals(endDate)) {
-            endDateStr = "Not end";
-            duration = ((new Date()).getTime() - startDate.getTime()) / (1000 * 60);
-        } else {
-            endDateStr = sf.format(endDate);
-            duration = (endDate.getTime() - startDate.getTime()) / (1000 * 60);
-        }
-        return new String[] { sf.format(startDate), endDateStr, String.valueOf(duration) + "min",
-                String.valueOf(bill) + " dollars" };
+            return recordID + " " + userID + " " + sf.format(startDate) + " " + sf.format(endDate);
     }
 }
