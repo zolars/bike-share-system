@@ -10,7 +10,7 @@ import database.entity.*;
 public class Main {
 
     public static final double version = 0.9;
-    public static final String filePath = System.getProperty("user.home") + "\\Documents\\BikeShareSystemFile\\";
+    public static final String filePath = "E:\\Local\\Documents\\BikeShareSystemFile\\";
     public static final String[] fileNames = { "bikes.txt", "account.txt", "record.txt", "msg.txt" };
     public static final int overdueTime = 120; // in minutes
     public static final Bikes[] bikeStationList = { new Bikes("A", 5), new Bikes("B", 5), new Bikes("C", 5) };
