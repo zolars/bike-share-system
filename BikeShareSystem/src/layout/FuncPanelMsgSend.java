@@ -77,16 +77,16 @@ public class FuncPanelMsgSend extends FuncPanelDefault implements ActionListener
         if (e.getSource() == jbSend) {
             if (jtUserID.getText().isEmpty() || jtMsgText.getText().isEmpty()
                     || jtMsgText.getText().equals("Please input your message here...")) {
-                JOptionPane.showMessageDialog(this, "Invalid Input! Please try again.", "Sorry",
+                JOptionPane.showMessageDialog(null, "Invalid Input! Please try again.", "Sorry",
                         JOptionPane.WARNING_MESSAGE);
             } else {
                 try {
                     MsgDao dao = new MsgDaoImpl();
                     if (dao.addOtherMsg(jtUserID.getText(), jtMsgText.getText())) {
-                        JOptionPane.showMessageDialog(this, "Congratulations! Send Successfully!", "Congratulations!",
+                        JOptionPane.showMessageDialog(null, "Congratulations! Send Successfully!", "Congratulations!",
                                 JOptionPane.WARNING_MESSAGE);
                     } else {
-                        JOptionPane.showMessageDialog(this, "This account doesn't exist. Please try again.", "Sorry",
+                        JOptionPane.showMessageDialog(null, "This account doesn't exist. Please try again.", "Sorry",
                                 JOptionPane.WARNING_MESSAGE);
                     }
                 } catch (IOException e1) {

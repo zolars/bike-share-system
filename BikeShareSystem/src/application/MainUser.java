@@ -30,7 +30,7 @@ public class MainUser {
             funcSet.add(new FuncPanelBikes());
             funcSet.add(new FuncPanelMsgRec());
             funcSet.add(new FuncPanelHistory());
-            funcSet.add(new FuncPanelMyAccount());
+            funcSet.add(new FuncPanelAccounts());
             // funcSet.add(new FuncPanelTest());
             new MainLayout(funcSet);
         }

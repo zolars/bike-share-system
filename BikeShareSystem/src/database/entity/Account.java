@@ -13,11 +13,16 @@ public class Account {
     private boolean fine;
 
     public Account() {
-
     }
 
     public Account(String userID) {
         this.userID = userID;
+    }
+
+    public Account(String userID, String username, String email) {
+        this.userID = userID;
+        this.username = username;
+        this.email = email;
     }
 
     /**

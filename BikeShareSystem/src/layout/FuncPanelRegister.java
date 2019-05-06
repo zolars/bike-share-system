@@ -82,7 +82,7 @@ public class FuncPanelRegister extends FuncPanelDefault implements ActionListene
         if (e.getSource() == jbRegister) {
             if (jtUserID.getText().isEmpty() || jtUsername.getText().isEmpty()
                     || isNotEmail(String.valueOf(jtEmail.getText()))) {
-                JOptionPane.showMessageDialog(this, "Invalid Input! Please try again.", "Sorry",
+                JOptionPane.showMessageDialog(null, "Invalid Input! Please try again.", "Sorry",
                         JOptionPane.WARNING_MESSAGE);
             } else {
                 AccountDao dao = new AccountDaoImpl();
@@ -94,10 +94,10 @@ public class FuncPanelRegister extends FuncPanelDefault implements ActionListene
 
                 try {
                     if (dao.addNewAccount(account)) {
-                        JOptionPane.showMessageDialog(this, "Congratulations! Register Successfully!",
+                        JOptionPane.showMessageDialog(null, "Congratulations! Register Successfully!",
                                 "Congratulations!", JOptionPane.WARNING_MESSAGE);
                     } else {
-                        JOptionPane.showMessageDialog(this, "The user ID or user name has been used. Please try again.",
+                        JOptionPane.showMessageDialog(null, "The user ID or user name has been used. Please try again.",
                                 "Sorry", JOptionPane.WARNING_MESSAGE);
                     }
 

@@ -91,7 +91,7 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
                     if (userID.equals("")) {
                         continue;
                     } else if (accountDao.findAccountByUserID(userID) == null) {
-                        JOptionPane.showMessageDialog(this, "Invalid ID card. Please contact the administer.", "Sorry",
+                        JOptionPane.showMessageDialog(null, "Invalid ID card. Please contact the administer.", "Sorry",
                                 JOptionPane.WARNING_MESSAGE);
                         break;
                     } else if (recordDao.findRecordNotend(userID).size() >= 1) {
