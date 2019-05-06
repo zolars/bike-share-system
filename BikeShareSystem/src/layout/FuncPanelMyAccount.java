@@ -20,6 +20,7 @@ import database.entity.*;
 public class FuncPanelMyAccount extends JPanel implements ActionListener {
     private static final long serialVersionUID = 1L;
     private Image img = new ImageIcon(getClass().getResource("/images/Plain.jpg")).getImage();
+    private String userID = MainUser.loginStatus;
 
     private AccountDao dao = new AccountDaoImpl();
     private Account account;

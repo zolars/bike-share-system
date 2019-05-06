@@ -90,7 +90,6 @@ public class FuncPanelStation extends JPanel implements ActionListener {
 
         RecordDao recordDao = new RecordDaoImpl();
         AccountDao accountDao = new AccountDaoImpl();
-        BikesDao bikesDao = new BikesDaoImpl();
 
         if (e.getSource() == btn) {
             try {
@@ -105,16 +104,10 @@ public class FuncPanelStation extends JPanel implements ActionListener {
                         break;
                     } else if (recordDao.findRecordNotend(userID).size() >= 1) {
                         returnBikes(userID);
+                        MainStation.restart = true;
                         break;
                     } else {
-                        // borrow bikes
-                        bikesDao.changeBikesByStation(new Bikes(MainStation.station,
-                                bikesDao.findBikesNumberByStation(MainStation.station) - 1));
-                        recordDao.addNewBorrow(userID, new Date());
-                        text1.setText("Your bike is unlocked : )");
-                        text2.setText("Remember giving the bike back at one of parking areas!");
-                        btn.setEnabled(false);
-
+                        borrowBikes(userID);
                         MainStation.restart = true;
                         break;
                     }
@@ -126,7 +119,31 @@ public class FuncPanelStation extends JPanel implements ActionListener {
 
     }
 
+    private void borrowBikes(String userID) {
+        RecordDao recordDao = new RecordDaoImpl();
+        BikesDao bikesDao = new BikesDaoImpl();
+        AccountDao accountDao = new AccountDaoImpl();
+
+        try {
+            if (accountDao.findAccountByUserID(userID).getBalance() > 0) {
+                bikesDao.changeBikesByStation(
+                        new Bikes(MainStation.station, bikesDao.findBikesNumberByStation(MainStation.station) - 1));
+                recordDao.addNewBorrow(userID, new Date());
+                text1.setText("Your bike is unlocked : )");
+                text2.setText("Remember giving the bike back at one of parking areas!");
+                btn.setEnabled(false);
+            } else {
+                text1.setText("Your balance is not enough : (");
+                text2.setText("Charging your balance before you borrow a bike!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
     private void returnBikes(String userID) {
+        AccountDao accountDao = new AccountDaoImpl();
         BikesDao bikesDao = new BikesDaoImpl();
         MsgDao msgDao = new MsgDaoImpl();
         RecordDao recordDao = new RecordDaoImpl();
@@ -153,6 +170,12 @@ public class FuncPanelStation extends JPanel implements ActionListener {
                 String startDateStr = sf.format(record.getStartDate());
                 String endDateStr = sf.format(new Date());
 
+                // cost
+                Account account = accountDao.findAccountByUserID(userID);
+                account.setBalance(account.getBalance() - bill);
+                accountDao.modifyAccount(account);
+
+                // msg
                 msgDao.deleteMsg(String.valueOf(msgDao.findMsgOverdue(userID).get(0).getMsgID()));
                 msgDao.addOtherMsg(userID, "Your ride from " + startDateStr + " to " + endDateStr + " costs " + bill
                         + " dollars. * The rides whose time lower than 2 hours are free.");
@@ -168,7 +191,6 @@ public class FuncPanelStation extends JPanel implements ActionListener {
 
         feedback(userID);
 
-        MainStation.restart = true;
     }
 
     private void feedback(String userID) {
