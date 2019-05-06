@@ -223,7 +223,7 @@ public class FuncPanelStation extends JPanel implements ActionListener {
                             "Dear user, your feedback about \"" + choiceStr.split("  ")[1] + "\" has been received."
                                     + " If you have any other questions, welcome to connect the administer.");
 
-                } catch (Exception e) {
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
                 mark = true;
