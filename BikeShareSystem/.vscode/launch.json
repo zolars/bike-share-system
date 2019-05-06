@@ -2,6 +2,34 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - FuncPanelRegister",
+            "request": "launch",
+            "mainClass": "layout.FuncPanelRegister",
+            "projectName": "BikeShareSystem_826b9af"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - FuncPanelMsgRec",
+            "request": "launch",
+            "mainClass": "layout.FuncPanelMsgRec",
+            "projectName": "BikeShareSystem_826b9af"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - MainStation",
+            "request": "launch",
+            "mainClass": "application.MainStation",
+            "projectName": "BikeShareSystem_826b9af"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - FuncPanelAccounts",
+            "request": "launch",
+            "mainClass": "layout.FuncPanelAccounts",
+            "projectName": "BikeShareSystem_826b9af"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - MainAdmin",
             "request": "launch",
             "mainClass": "application.MainAdmin",

@@ -80,8 +80,7 @@ public class FuncPanelRegister extends FuncPanelDefault implements ActionListene
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == jbRegister) {
-            if (jtUserID.getText().isEmpty() || jtUsername.getText().isEmpty()
-                    || isNotEmail(String.valueOf(jtEmail.getText()))) {
+            if (isNotID(jtUserID.getText()) || isNotName(jtUsername.getText()) || isNotEmail(jtEmail.getText())) {
                 JOptionPane.showMessageDialog(null, "Invalid Input! Please try again.", "Sorry",
                         JOptionPane.WARNING_MESSAGE);
             } else {
@@ -110,6 +109,34 @@ public class FuncPanelRegister extends FuncPanelDefault implements ActionListene
             jtUsername.setText("");
             jtEmail.setText("");
         }
+    }
+
+    public static boolean isNotID(String string) {
+        if (string == null)
+            return false;
+        String regEx1 = "[0-9]+";
+        Pattern p;
+        Matcher m;
+        p = Pattern.compile(regEx1);
+        m = p.matcher(string);
+        if (m.matches())
+            return false;
+        else
+            return true;
+    }
+
+    public static boolean isNotName(String string) {
+        if (string == null)
+            return false;
+        String regEx1 = "[A-Za-z]+ [A-Za-z]+";
+        Pattern p;
+        Matcher m;
+        p = Pattern.compile(regEx1);
+        m = p.matcher(string);
+        if (m.matches())
+            return false;
+        else
+            return true;
     }
 
     public static boolean isNotEmail(String string) {

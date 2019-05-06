@@ -12,11 +12,6 @@ class BaseDaoTest {
 
     @Test
     void addLine() {
-        try {
-            BaseDao.replace("msg.txt", "3", 0, "");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @Test

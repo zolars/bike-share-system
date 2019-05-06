@@ -88,7 +88,7 @@ public class FuncPanelAccounts extends FuncPanelDefault implements ActionListene
                     break;
                 case 1: // Delete
                     try {
-
+                        dao.deleteAccount(dao.findAccountByUserID(id));
                     } catch (Exception e1) {
                         e1.printStackTrace();
                     }
@@ -112,7 +112,6 @@ public class FuncPanelAccounts extends FuncPanelDefault implements ActionListene
                         getBounds().height * 205 / 300);
             }
         });
-
     }
 
     public void actionPerformed(ActionEvent e) {

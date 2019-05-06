@@ -20,7 +20,6 @@ public class MainStation {
     public static void setup() {
         funcSet = new LinkedList<JPanel>();
         funcSet.add(new FuncPanelStation());
-        // funcSet.add(new FuncPanelTest());
         new MainLayout(funcSet);
     }
 

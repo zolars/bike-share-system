@@ -21,4 +21,6 @@ public interface AccountDao {
     public boolean addNewAccount(Account account) throws IOException;
 
     public boolean modifyAccount(Account accountModified) throws IOException;
+
+    public void deleteAccount(Account account) throws IOException;
 }

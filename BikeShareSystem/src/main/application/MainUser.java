@@ -31,7 +31,6 @@ public class MainUser {
             funcSet.add(new FuncPanelMsgRec());
             funcSet.add(new FuncPanelHistory());
             funcSet.add(new FuncPanelAccounts());
-            // funcSet.add(new FuncPanelTest());
             new MainLayout(funcSet);
         }
 

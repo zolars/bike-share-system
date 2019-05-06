@@ -74,15 +74,7 @@ public class AccountDaoImpl implements AccountDao {
         }
     }
 
-    public static void main(String[] args) {
-        AccountDao dao = new AccountDaoImpl();
-        try {
-            System.out.println(dao.findAccountByUsername("xin").isFine());
-            System.out.println(dao.findAccountAll());
-        } catch (IOException e) {
-            e.printStackTrace();
-
-        }
+    public void deleteAccount(Account account) throws IOException {
+        BaseDao.replace("account.txt", account.getUserID(), 0, "");
     }
-
 }
