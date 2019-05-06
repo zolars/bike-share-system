@@ -21,8 +21,8 @@ public class AccountDaoImpl implements AccountDao {
             String[] resultStr = BaseDao.search("account.txt", userID, 0).get(0);
             result.setUserID(resultStr[0]);
             result.setUsername(resultStr[1]);
-            result.setPassword(resultStr[2]);
-            result.setBalance(Integer.parseInt(resultStr[3]));
+            result.setEmail(resultStr[2]);
+            result.setFine(Boolean.parseBoolean(resultStr[3]));
             return result;
         }
     }
@@ -35,8 +35,8 @@ public class AccountDaoImpl implements AccountDao {
             String[] resultStr = BaseDao.search("account.txt", username, 1).get(0);
             result.setUserID(resultStr[0]);
             result.setUsername(resultStr[1]);
-            result.setPassword(resultStr[2]);
-            result.setBalance(Integer.parseInt(resultStr[3]));
+            result.setEmail(resultStr[2]);
+            result.setFine(Boolean.parseBoolean(resultStr[3]));
 
             return result;
         }
@@ -66,7 +66,7 @@ public class AccountDaoImpl implements AccountDao {
     public static void main(String[] args) {
         AccountDao dao = new AccountDaoImpl();
         try {
-            System.out.println(dao.findAccountByUsername("xin").getBalance());
+            System.out.println(dao.findAccountByUsername("xin").isFine());
         } catch (IOException e) {
             e.printStackTrace();
 

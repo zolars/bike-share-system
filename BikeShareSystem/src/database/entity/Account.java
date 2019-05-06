@@ -9,8 +9,8 @@ package database.entity;
 public class Account {
     private String userID;
     private String username;
-    private String password;
-    private int balance;
+    private String email;
+    private boolean fine;
 
     public Account() {
 
@@ -49,36 +49,36 @@ public class Account {
     }
 
     /**
-     * @param password the password to set
+     * @param email the email to set
      */
-    public void setPassword(String password) {
-        this.password = password;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     /**
-     * @return the password
+     * @return the email
      */
-    public String getPassword() {
-        return password;
+    public String getEmail() {
+        return email;
     }
 
     /**
-     * @param balance the balance to set
+     * @param fine the fine to set
      */
-    public void setBalance(int balance) {
-        this.balance = balance;
+    public void setFine(boolean fine) {
+        this.fine = fine;
     }
 
     /**
-     * @return the balance
+     * @return the fine
      */
-    public int getBalance() {
-        return balance;
+    public boolean isFine() {
+        return fine;
     }
 
     @Override
     public String toString() {
-        return userID + " " + username + " " + password + " " + balance;
+        return userID + " " + username + " " + email + " " + fine;
     }
 
 }

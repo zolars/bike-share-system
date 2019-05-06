@@ -3,6 +3,7 @@ package layout;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.util.regex.*;
 
 import javax.swing.*;
 
@@ -24,10 +25,10 @@ public class FuncPanelMyAccount extends FuncPanelDefault implements ActionListen
     private Account account;
 
     private JLabel jlUsername;
-    private JLabel jlPassword;
-    private JLabel jlBalance;
-    private JButton jbChangePassword = new JButton("Modify");
-    private JButton jbChangeBalance = new JButton("Recharge");
+    private JLabel jlEmail;
+    private JLabel jlFine;
+    private JButton jbChangeEmail = new JButton("Modify");
+    private JButton jbChangeFine = new JButton("Pay");
     private JButton jbLogout = new JButton("Log out");
 
     public FuncPanelMyAccount() {
@@ -51,24 +52,24 @@ public class FuncPanelMyAccount extends FuncPanelDefault implements ActionListen
         panel03.add(jlUsername);
 
         panel04 = new JPanel();
-        jlPassword = new JLabel("Password : " + account.getPassword());
-        jlPassword.setFont(new java.awt.Font("Dialog", 1, 25));
-        panel04.add(jlPassword);
-        jbChangePassword.addActionListener(this);
+        jlEmail = new JLabel("Email : " + account.getEmail());
+        jlEmail.setFont(new java.awt.Font("Dialog", 1, 25));
+        panel04.add(jlEmail);
+        jbChangeEmail.addActionListener(this);
         panel04.add(new JLabel(""));
         panel04.add(new JLabel(""));
         panel04.add(new JLabel(""));
-        panel04.add(jbChangePassword);
+        panel04.add(jbChangeEmail);
 
         panel05 = new JPanel();
-        jlBalance = new JLabel("Balance : " + account.getBalance());
-        jlBalance.setFont(new java.awt.Font("Dialog", 1, 25));
-        panel05.add(jlBalance);
-        jbChangeBalance.addActionListener(this);
+        jlFine = new JLabel("fine : " + account.isFine());
+        jlFine.setFont(new java.awt.Font("Dialog", 1, 25));
+        panel05.add(jlFine);
+        jbChangeFine.addActionListener(this);
         panel05.add(new JLabel(""));
         panel05.add(new JLabel(""));
         panel05.add(new JLabel(""));
-        panel05.add(jbChangeBalance);
+        panel05.add(jbChangeFine);
 
         panel06 = new JPanel(new FlowLayout(FlowLayout.CENTER));
         // add Action Listener
@@ -97,23 +98,21 @@ public class FuncPanelMyAccount extends FuncPanelDefault implements ActionListen
         } else { // Modify operation
             grabData();
 
-            if (e.getSource() == jbChangePassword) {
+            if (e.getSource() == jbChangeEmail) {
                 while (true) {
-                    String newString = JOptionPane.showInputDialog(null, "Input new password (not null) : \n",
-                            "Change Password", JOptionPane.PLAIN_MESSAGE);
-                    if (newString.equals("")) {
-                        continue;
-                    } else {
-                        account.setPassword(newString);
+                    String newString = JOptionPane.showInputDialog(null, "Input new email : \n", "Change Email",
+                            JOptionPane.PLAIN_MESSAGE);
+                    if (isEmail(newString)) {
+                        account.setEmail(newString);
                         break;
+                    } else {
+                        JOptionPane.showMessageDialog(this, "The format is wrong. Try again!", "",
+                                JOptionPane.WARNING_MESSAGE);
                     }
                 }
             }
-            if (e.getSource() == jbChangeBalance) {
-                Object[] obj = { 10, 20, 50 };
-                int addBalance = (Integer) JOptionPane.showInputDialog(null, "Please choose the money to recharge :\n",
-                        "Recharge", JOptionPane.PLAIN_MESSAGE, new ImageIcon(), obj, "");
-                account.setBalance(account.getBalance() + addBalance);
+            if (e.getSource() == jbChangeFine) {
+                account.setFine(false);
             }
 
             try {
@@ -150,11 +149,31 @@ public class FuncPanelMyAccount extends FuncPanelDefault implements ActionListen
         super.updateUI();
         try {
             grabData();
-            jlPassword.setText("Password : " + account.getPassword());
-            jlBalance.setText("Balance : " + account.getBalance());
+            jlEmail.setText("Email : " + account.getEmail());
+            if (account.isFine()) {
+                jlFine.setText("You are still have 100GBP to pay.");
+                jbChangeFine.setVisible(true);
+            } else {
+                jlFine.setText("");
+                jbChangeFine.setVisible(false);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static boolean isEmail(String string) {
+        if (string == null)
+            return false;
+        String regEx1 = "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
+        Pattern p;
+        Matcher m;
+        p = Pattern.compile(regEx1);
+        m = p.matcher(string);
+        if (m.matches())
+            return true;
+        else
+            return false;
     }
 
     public static void main(String[] args) {

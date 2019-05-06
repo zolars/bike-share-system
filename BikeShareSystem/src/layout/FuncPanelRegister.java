@@ -3,6 +3,8 @@ package layout;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
+import java.util.regex.*;
+
 import javax.swing.*;
 
 import application.*;
@@ -20,9 +22,7 @@ public class FuncPanelRegister extends FuncPanelDefault implements ActionListene
     private static final long serialVersionUID = 1L;
 
     private JTextField jtUserID;
-    private JTextField jtUsername;
-    private JPasswordField jtPassword;
-    private JTextField jtBalance;
+    private JTextField jtUsername, jtEmail;
     private JButton jbRegister = new JButton("Register !");
 
     public FuncPanelRegister() {
@@ -34,9 +34,7 @@ public class FuncPanelRegister extends FuncPanelDefault implements ActionListene
         JPanel panel03 = new JPanel();
         JPanel panel04 = new JPanel();
         JPanel panel05 = new JPanel();
-        JPanel panel06 = new JPanel();
         JPanel panel07 = new JPanel();
-        // JPanel panel08 = new JPanel();
 
         // UserID input
         JLabel jlUserID = new JLabel("User ID : ");
@@ -52,31 +50,24 @@ public class FuncPanelRegister extends FuncPanelDefault implements ActionListene
         jtUsername = new JTextField(15);
         panel03.add(jtUsername);
 
-        // Password input
-        JLabel jlPassword = new JLabel("Password : ");
-        jlPassword.setFont(new java.awt.Font("Dialog", 1, 25));
-        panel04.add(jlPassword);
-        jtPassword = new JPasswordField(15);
-        panel04.add(jtPassword);
+        // Email input
+        JLabel jlEmail = new JLabel("Email : ");
+        jlEmail.setFont(new java.awt.Font("Dialog", 1, 25));
+        panel04.add(jlEmail);
+        jtEmail = new JTextField(15);
+        panel04.add(jtEmail);
 
-        // Balance input
-        JLabel jlBalance = new JLabel("Recharge : ");
-        jlBalance.setFont(new java.awt.Font("Dialog", 1, 25));
-        panel05.add(jlBalance);
-        jtBalance = new JTextField(15);
-        panel05.add(jtBalance);
-
-        panel06 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        panel05 = new JPanel(new FlowLayout(FlowLayout.CENTER));
         // add Action Listener
         jbRegister.addActionListener(this);
-        panel06.add(jbRegister);
+        panel05.add(jbRegister);
 
         panel01.setOpaque(false);
         panel02.setOpaque(false);
         panel03.setOpaque(false);
         panel04.setOpaque(false);
         panel05.setOpaque(false);
-        panel06.setOpaque(false);
+
         panel07.setOpaque(false);
         add(panel07);
         add(panel01);
@@ -84,14 +75,13 @@ public class FuncPanelRegister extends FuncPanelDefault implements ActionListene
         add(panel03);
         add(panel04);
         add(panel05);
-        add(panel06);
 
     }
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == jbRegister) {
             if (jtUserID.getText().isEmpty() || jtUsername.getText().isEmpty()
-                    || String.valueOf(jtPassword.getPassword()).isEmpty() || (!jtBalance.getText().matches("[0-9]+"))) {
+                    || isNotEmail(String.valueOf(jtEmail.getText()))) {
                 JOptionPane.showMessageDialog(this, "Invalid Input! Please try again.", "Sorry",
                         JOptionPane.WARNING_MESSAGE);
             } else {
@@ -99,8 +89,9 @@ public class FuncPanelRegister extends FuncPanelDefault implements ActionListene
                 Account account = new Account();
                 account.setUserID(jtUserID.getText());
                 account.setUsername(jtUsername.getText());
-                account.setPassword(String.valueOf(jtPassword.getPassword()));
-                account.setBalance(Integer.parseInt(jtBalance.getText()));
+                account.setEmail(jtEmail.getText());
+                account.setFine(false);
+
                 try {
                     if (dao.addNewAccount(account)) {
                         JOptionPane.showMessageDialog(this, "Congratulations! Register Successfully!",
@@ -117,9 +108,22 @@ public class FuncPanelRegister extends FuncPanelDefault implements ActionListene
 
             jtUserID.setText("");
             jtUsername.setText("");
-            jtPassword.setText("");
-            jtBalance.setText("");
+            jtEmail.setText("");
         }
+    }
+
+    public static boolean isNotEmail(String string) {
+        if (string == null)
+            return false;
+        String regEx1 = "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
+        Pattern p;
+        Matcher m;
+        p = Pattern.compile(regEx1);
+        m = p.matcher(string);
+        if (m.matches())
+            return false;
+        else
+            return true;
     }
 
     public static void main(String[] args) {

@@ -37,7 +37,7 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
             Object[] obj = Main.bikeStationList;
             while (true) {
                 Bikes bike = (Bikes) JOptionPane.showInputDialog(null, "Please choose the station name of this PC:\n",
-                        "Recharge", JOptionPane.PLAIN_MESSAGE, new ImageIcon(), obj, "");
+                        "Pay", JOptionPane.PLAIN_MESSAGE, new ImageIcon(), obj, "");
                 MainStation.station = bike.getStation();
                 if (MainStation.station == null)
                     continue;
