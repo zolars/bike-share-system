@@ -19,15 +19,12 @@ public class FuncPanelDefault extends JPanel {
     private Image img = new ImageIcon(getClass().getResource("/images/Plain.jpg")).getImage();
 
     public FuncPanelDefault() {
-        setName("Default");
-
         Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
         setSize(size);
         setPreferredSize(size);
         setMinimumSize(size);
         setMaximumSize(size);
 
-        this.add(new JLabel("Default Page..."));
     }
 
     @Override

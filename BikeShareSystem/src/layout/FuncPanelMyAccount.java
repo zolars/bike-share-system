@@ -17,9 +17,8 @@ import database.entity.*;
  * @author Xin Yifei
  * @version 0.9
  */
-public class FuncPanelMyAccount extends JPanel implements ActionListener {
+public class FuncPanelMyAccount extends FuncPanelDefault implements ActionListener {
     private static final long serialVersionUID = 1L;
-    private Image img = new ImageIcon(getClass().getResource("/images/Plain.jpg")).getImage();
 
     private AccountDao dao = new AccountDaoImpl();
     private Account account;
@@ -32,13 +31,8 @@ public class FuncPanelMyAccount extends JPanel implements ActionListener {
     private JButton jbLogout = new JButton("Log out");
 
     public FuncPanelMyAccount() {
+        super();
         setName("MyAccount");
-        Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
-        setSize(size);
-        setPreferredSize(size);
-        setMinimumSize(size);
-        setMaximumSize(size);
-
         grabData();
 
         setLayout(new GridLayout(8, 1, 0, 0));
@@ -161,12 +155,6 @@ public class FuncPanelMyAccount extends JPanel implements ActionListener {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        Dimension size = this.getParent().getSize();
-        g.drawImage(img, 0, 0, size.width, size.height, this);
     }
 
     public static void main(String[] args) {

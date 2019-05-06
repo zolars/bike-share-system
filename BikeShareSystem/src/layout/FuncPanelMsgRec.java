@@ -22,10 +22,8 @@ import database.entity.*;
  * @author Xin Yifei
  * @version 0.9
  */
-public class FuncPanelMsgRec extends JPanel implements ActionListener {
+public class FuncPanelMsgRec extends FuncPanelDefault implements ActionListener {
     private static final long serialVersionUID = 1L;
-
-    private Image img = new ImageIcon(getClass().getResource("/images/Plain.jpg")).getImage();
 
     private MsgDao dao = new MsgDaoImpl();
     private Msg overdueMsg = new Msg();
@@ -41,16 +39,9 @@ public class FuncPanelMsgRec extends JPanel implements ActionListener {
     private JTable table;
 
     public FuncPanelMsgRec() {
+        super();
         setName("Message");
-
-        Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
-        setSize(size);
-        setPreferredSize(size);
-        setMinimumSize(size);
-        setMaximumSize(size);
-
         grabData();
-
         setLayout(null);
 
         jlOverdueMsgLeft = new JLabel();
@@ -193,12 +184,6 @@ public class FuncPanelMsgRec extends JPanel implements ActionListener {
             e.printStackTrace();
         }
 
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        Dimension size = this.getParent().getSize();
-        g.drawImage(img, 0, 0, size.width, size.height, this);
     }
 
     public static void main(String[] args) {

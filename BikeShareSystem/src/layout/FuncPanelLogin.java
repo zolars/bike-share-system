@@ -17,24 +17,18 @@ import database.entity.*;
  * @author Xin Yifei
  * @version 0.9
  */
-public class FuncPanelLogin extends JPanel implements ActionListener {
+public class FuncPanelLogin extends FuncPanelDefault implements ActionListener {
     private static final long serialVersionUID = 1L;
-    private Image img = new ImageIcon(getClass().getResource("/images/Plain.jpg")).getImage();
 
     private JTextField jtUsername;
     private JPasswordField jtPassword;
     private JButton jbLogin = new JButton("Login !");
 
     public FuncPanelLogin() {
+        super();
         if (MainUser.loginStatus != null) {
         } else {
             setName("Login");
-
-            Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
-            setSize(size);
-            setPreferredSize(size);
-            setMinimumSize(size);
-            setMaximumSize(size);
 
             setLayout(new GridLayout(8, 1, 0, 0));
 
@@ -108,12 +102,6 @@ public class FuncPanelLogin extends JPanel implements ActionListener {
                 e1.printStackTrace();
             }
         }
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        Dimension size = this.getParent().getSize();
-        g.drawImage(img, 0, 0, size.width, size.height, this);
     }
 
     public static void main(String[] args) {

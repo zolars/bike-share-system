@@ -14,22 +14,15 @@ import application.*;
  * @author Xin Yifei
  * @version 0.9
  */
-public class FuncPanelTest extends JPanel implements ActionListener {
+public class FuncPanelTest extends FuncPanelDefault implements ActionListener {
     private static final long serialVersionUID = 1L;
-
-    private Image img = new ImageIcon(getClass().getResource("/images/Plain.jpg")).getImage();
 
     JScrollPane sPane = new JScrollPane();
 
     public FuncPanelTest() {
+        super();
         setName("Test");
         setLayout(null);
-
-        Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
-        setSize(size);
-        setPreferredSize(size);
-        setMinimumSize(size);
-        setMaximumSize(size);
 
         sPane.setPreferredSize(new Dimension(getBounds().width, getBounds().height));
 
@@ -61,12 +54,6 @@ public class FuncPanelTest extends JPanel implements ActionListener {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        Dimension size = this.getParent().getSize();
-        g.drawImage(img, 0, 0, size.width, size.height, this);
     }
 
     public static void main(String[] args) {

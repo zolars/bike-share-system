@@ -13,20 +13,12 @@ import application.*;
  * @author Xin Yifei
  * @version 0.9
  */
-public class FuncPanelHistory extends JPanel {
+public class FuncPanelHistory extends FuncPanelDefault {
     private static final long serialVersionUID = 1L;
 
-    private Image img = new ImageIcon(getClass().getResource("/images/Plain.jpg")).getImage();
-
     public FuncPanelHistory() {
+        super();
         setName("History");
-
-        Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
-        setSize(size);
-        setPreferredSize(size);
-        setMinimumSize(size);
-        setMaximumSize(size);
-
         this.add(new JLabel("History Page..."));
     }
 
@@ -34,12 +26,6 @@ public class FuncPanelHistory extends JPanel {
     public void updateUI() {
         super.updateUI();
         // Data update
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        Dimension size = this.getParent().getSize();
-        g.drawImage(img, 0, 0, size.width, size.height, this);
     }
 
     public static void main(String[] args) {
