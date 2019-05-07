@@ -56,7 +56,7 @@ public class FuncPanelAccounts extends FuncPanelDefault implements ActionListene
                 String id = table.getValueAt(table.getSelectedRow(), 0).toString();
                 String name = table.getValueAt(table.getSelectedRow(), 1).toString();
                 String email = table.getValueAt(table.getSelectedRow(), 2).toString();
-                Object[] choices = { "Modify Email", "Delete", "Cancel" };
+                Object[] choices = { "Modify Email", "Send Message", "Delete", "Cancel" };
                 int choiceNum = (int) JOptionPane.showOptionDialog(null,
                         "ID : " + id + "\nName : " + name + "\nEmail : " + email, id, JOptionPane.YES_NO_CANCEL_OPTION,
                         JOptionPane.INFORMATION_MESSAGE, null, choices, choices[0]);
@@ -81,19 +81,40 @@ public class FuncPanelAccounts extends FuncPanelDefault implements ActionListene
                                     "Congratulations", JOptionPane.INFORMATION_MESSAGE);
                             break;
                         } else {
-                            JOptionPane.showMessageDialog(null, "The format is wrong. Try again!", "",
+                            JOptionPane.showMessageDialog(null, "The format is wrong. Try again!", "Sorry",
                                     JOptionPane.WARNING_MESSAGE);
                         }
                     }
                     break;
-                case 1: // Delete
+                case 1: // Send message
+                    String msg = JOptionPane.showInputDialog(null, "Please input your message here...", "Send message",
+                            JOptionPane.PLAIN_MESSAGE);
+                    if (msg.equals("") || msg == null) {
+                        JOptionPane.showMessageDialog(null, "The input is empty.", "Sorry",
+                                JOptionPane.WARNING_MESSAGE);
+                    } else {
+                        try {
+                            MsgDao dao = new MsgDaoImpl();
+                            if (dao.addOtherMsg(id, msg)) {
+                                JOptionPane.showMessageDialog(null, "Congratulations! Send Successfully!",
+                                        "Congratulations!", JOptionPane.WARNING_MESSAGE);
+                            } else {
+                                JOptionPane.showMessageDialog(null, "This account doesn't exist. Please try again.",
+                                        "Sorry", JOptionPane.WARNING_MESSAGE);
+                            }
+                        } catch (IOException e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+                    break;
+                case 2: // Delete
                     try {
                         dao.deleteAccount(dao.findAccountByUserID(id));
                     } catch (Exception e1) {
                         e1.printStackTrace();
                     }
                     break;
-                case 2: // Cancel
+                case 3: // Cancel
                     break;
                 default:
                     break;
@@ -127,11 +148,9 @@ public class FuncPanelAccounts extends FuncPanelDefault implements ActionListene
                 datas[i] = new String[3];
             }
 
-            int i = 0;
-            for (Account data : accounts) {
-                datas[i] = data.toString().split(" ");
+            for (int i = 0; i < accounts.size() - 1; i++) {
+                datas[i] = accounts.get(i + 1).toString().split(" ");
                 datas[i][1] = datas[i][1].replaceAll(";", " ");
-                i++;
             }
         } catch (IOException e1) {
             e1.printStackTrace();
