@@ -16,6 +16,8 @@ public interface RecordDao {
 
     public List<Record> findRecordNotend(String userID) throws IOException;
 
+    public List<Record> findRecordOverdue() throws IOException;
+
     public List<Record> findRecordOverdue(String userID) throws IOException;
 
     public void addNewBorrow(String userID, Date startDate) throws IOException;

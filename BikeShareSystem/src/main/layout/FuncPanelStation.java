@@ -99,6 +99,7 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
                     String userID = JOptionPane.showInputDialog(null, "Input your ID number (not null) : \n",
                             "Check ID", JOptionPane.PLAIN_MESSAGE);
                     Date date = recordDao.isUserForbidden(userID);
+                    Account account = accountDao.findAccountByUserID(userID);
 
                     if (userID.equals("")) {
                         continue;
@@ -115,6 +116,33 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
                         btn.setEnabled(false);
                         MainStation.restart = true;
                         break;
+                    } else if (account.isFine()) {
+                        Object[] choices = { "Pay", "Cancel" };
+                        int choiceNum = (int) JOptionPane.showOptionDialog(null,
+                                "Until you can use the bikes, you still have 100BCD as fine to pay.", "Payment",
+                                JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, choices,
+                                choices[0]);
+                        if (choiceNum == 0) {
+                            // Pay for the fine
+                            account.setFine(false);
+                            accountDao.modifyAccount(account);
+
+                            // borrow bikes
+                            bikesDao.changeBikesByStation(new Bikes(MainStation.station,
+                                    bikesDao.findBikesNumberByStation(MainStation.station) - 1));
+                            recordDao.addNewBorrow(userID, new Date());
+                            text1.setText("Your bike is unlocked : )");
+                            text2.setText("Remember giving the bike back at one of parking areas!");
+                            btn.setEnabled(false);
+                            MainStation.restart = true;
+                            break;
+                        } else {
+                            text1.setText("Please pay for the fine first : (");
+                            text2.setText("You can use the bikes until you have paid for the fine");
+                            btn.setEnabled(false);
+                            MainStation.restart = true;
+                            break;
+                        }
                     } else {
                         // borrow bikes
                         bikesDao.changeBikesByStation(new Bikes(MainStation.station,
@@ -123,7 +151,6 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
                         text1.setText("Your bike is unlocked : )");
                         text2.setText("Remember giving the bike back at one of parking areas!");
                         btn.setEnabled(false);
-
                         MainStation.restart = true;
                         break;
                     }
@@ -132,6 +159,7 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
                 e1.printStackTrace();
             }
         }
+
     }
 
     private void returnBikes(String userID) {
@@ -234,7 +262,7 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
 
             // update overdue status
             List<Record> overdueRecords = new ArrayList<Record>();
-            overdueRecords = recordDao.findRecordOverdue("");
+            overdueRecords = recordDao.findRecordOverdue();
             if (overdueRecords != null) {
                 for (Record overdueRecord : overdueRecords)
                     msgDao.addOverdueMsg(overdueRecord);

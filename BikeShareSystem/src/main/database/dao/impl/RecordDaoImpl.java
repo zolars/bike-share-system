@@ -69,7 +69,7 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
                     }
                 }
             }
-            if (result.get(i).isFine()) {
+            if (result.get(i).isFine() && result.get(i).getStartDate().equals(result.get(i).getEndDate())) {
                 AccountDao accountDao = new AccountDaoImpl();
                 Account account = accountDao.findAccountByUserID(result.get(i).getUserID());
                 account.setFine(true);
@@ -93,6 +93,24 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
         for (Record record : allResult) {
             if (record.getStartDate().equals(record.getEndDate()))
                 result.add(record);
+        }
+        return result;
+    }
+
+    public List<Record> findRecordOverdue() throws IOException {
+        List<Record> result = new ArrayList<Record>();
+        AccountDao accountDao = new AccountDaoImpl();
+
+        for (Account account : accountDao.findAccountAll()) {
+            List<Record> allResult = new ArrayList<Record>();
+
+            RecordDao dao = new RecordDaoImpl();
+            allResult = dao.findRecordNotend(account.getUserID());
+
+            for (Record record : allResult) {
+                if (record.isFine())
+                    result.add(record);
+            }
         }
         return result;
     }
@@ -149,11 +167,11 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
     public static void main(String[] args) {
         RecordDao dao = new RecordDaoImpl();
         try {
-            for (Record record : dao.findRecordOverdue("123")) {
+            for (Record record : dao.findRecordOverdue("1234")) {
                 System.out.println(record);
                 System.out.println(record.isFine());
             }
-            System.out.println(dao.isUserForbidden("123"));
+            System.out.println(dao.isUserForbidden("1234"));
         } catch (IOException e) {
             e.printStackTrace();
         }
