@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import application.*;
@@ -26,9 +27,15 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
 
     private SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
+    private String userID;
+
     private JLabel text1;
     private JLabel text2;
     private JButton btn;
+
+    private JFrame frameLight;
+    private List<JButton> lights = new ArrayList<JButton>();
+    private Date lightTime;
 
     public FuncPanelStation() {
         super();
@@ -73,6 +80,11 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
         btn.addActionListener(this);
         add(btn);
 
+        for (int i = 0; i < 8; i++) {
+            lights.add(new JButton());
+        }
+        addFrameLight();
+
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
@@ -90,10 +102,10 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
         RecordDao recordDao = new RecordDaoImpl();
         AccountDao accountDao = new AccountDaoImpl();
         BikesDao bikesDao = new BikesDaoImpl();
+        MsgDao msgDao = new MsgDaoImpl();
 
         if (e.getSource() == btn) {
             try {
-                String userID;
                 while (true) {
                     userID = JOptionPane.showInputDialog(null, "Input your ID number (not null) : \n", "Check ID",
                             JOptionPane.PLAIN_MESSAGE);
@@ -114,7 +126,7 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
                         returnBikes(userID);
                         break;
                     } else if (date.getTime() != 0) {
-                        text1.setText("You overrun using time in 24h : (");
+                        text1.setText("Time overrun in 24h : (");
                         text2.setText("You can use the bikes until " + sf.format(date));
                         btn.setEnabled(false);
                         MainStation.restart = true;
@@ -130,15 +142,10 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
                             account.setFine(false);
                             accountDao.modifyAccount(account);
 
-                            // borrow bikes
-                            bikesDao.changeBikesByStation(new Bikes(MainStation.station,
-                                    bikesDao.findBikesNumberByStation(MainStation.station) - 1));
-                            recordDao.addNewBorrow(userID, new Date());
-                            text1.setText("Your bike is unlocked : )");
+                            text1.setText("Your slot is unlocked : )");
                             text2.setText("Remember giving the bike back at one of parking areas!");
                             btn.setEnabled(false);
-                            btn.setText("lightbling");
-                            MainStation.restart = true;
+                            adjustFrameLight(bikesDao.findBikesNumberByStation(MainStation.station) - 1);
                             break;
                         } else {
                             text1.setText("Please pay for the fine first : (");
@@ -148,15 +155,10 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
                             break;
                         }
                     } else {
-                        // borrow bikes
-                        bikesDao.changeBikesByStation(new Bikes(MainStation.station,
-                                bikesDao.findBikesNumberByStation(MainStation.station) - 1));
-                        recordDao.addNewBorrow(userID, new Date());
-                        text1.setText("Your bike is unlocked : )");
+                        text1.setText("Your slot is unlocked : )");
                         text2.setText("Remember giving the bike back at one of parking areas!");
                         btn.setEnabled(false);
-                        btn.setText("lightbling");
-                        MainStation.restart = true;
+                        adjustFrameLight(bikesDao.findBikesNumberByStation(MainStation.station) - 1);
                         break;
                     }
                 }
@@ -164,55 +166,71 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
+        } else {
+            try {
+                if (recordDao.findRecordNotend(userID).size() >= 1) {
+
+                    Msg overdueMsg = null;
+                    try {
+                        overdueMsg = msgDao.findMsgOverdue(userID).get(0);
+                    } catch (Exception e2) {
+                        e2.printStackTrace();
+                    }
+
+                    // delete overdue msg & check the bill
+                    if (overdueMsg != null) {
+                        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+                        Record record = recordDao.findRecordOverdue(userID).get(0);
+
+                        String startDateStr = sf.format(record.getStartDate());
+                        String endDateStr = sf.format(new Date());
+
+                        msgDao.deleteMsg(String.valueOf(msgDao.findMsgOverdue(userID).get(0).getMsgID()));
+                        msgDao.addOtherMsg(userID, "Your ride from " + startDateStr + " to " + endDateStr
+                                + " costs 100BCD. * Attention : The scooter must be returned within 30 minutes"
+                                + " and the total usage must not exceed 2 hours a day, otherwise a fine should be issued.");
+                    }
+
+                    // return bikes
+                    text1.setText("Thank you for returning : )");
+                    bikesDao.changeBikesByStation(
+                            new Bikes(MainStation.station, bikesDao.findBikesNumberByStation(MainStation.station) + 1));
+                    recordDao.addNewReturn(userID);
+                } else {
+                    // borrow bikes
+                    text1.setText("Thank you for borrowing : )");
+                    bikesDao.changeBikesByStation(
+                            new Bikes(MainStation.station, bikesDao.findBikesNumberByStation(MainStation.station) - 1));
+                    recordDao.addNewBorrow(userID, new Date());
+                }
+
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            lightTime.setTime(0);
+            frameLight.dispose();
+            text2.setText("If you meet any questions, please connect with the administer.");
+            MainStation.restart = true;
         }
 
     }
 
     private void returnBikes(String userID) {
         BikesDao bikesDao = new BikesDaoImpl();
-        MsgDao msgDao = new MsgDaoImpl();
-        RecordDao recordDao = new RecordDaoImpl();
 
         try {
             // change viewer
-            text1.setText("Your bike is returned : )");
+            text1.setText("We need your feedback : )");
             text2.setText("If your bike needs to repair, please tell us!");
             btn.setEnabled(false);
-            btn.setText("lightbling");
 
-            Msg overdueMsg = null;
-            try {
-                overdueMsg = msgDao.findMsgOverdue(userID).get(0);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            feedback(userID);
 
-            // delete overdue msg & check the bill
-            if (overdueMsg != null) {
-                SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-                Record record = recordDao.findRecordOverdue(userID).get(0);
-
-                String startDateStr = sf.format(record.getStartDate());
-                String endDateStr = sf.format(new Date());
-
-                msgDao.deleteMsg(String.valueOf(msgDao.findMsgOverdue(userID).get(0).getMsgID()));
-                msgDao.addOtherMsg(userID, "Your ride from " + startDateStr + " to " + endDateStr
-                        + " costs 100BCD. * Attention : The scooter must be returned within 30 minutes"
-                        + " and the total usage must not exceed 2 hours a day, otherwise a fine should be issued.");
-            }
-
-            // change bikes num
-            bikesDao.changeBikesByStation(
-                    new Bikes(MainStation.station, bikesDao.findBikesNumberByStation(MainStation.station) + 1));
-            recordDao.addNewReturn(userID);
+            adjustFrameLight(bikesDao.findBikesNumberByStation(MainStation.station));
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        feedback(userID);
-
-        MainStation.restart = true;
     }
 
     private void feedback(String userID) {
@@ -253,6 +271,47 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
         }
     }
 
+    private void addFrameLight() {
+        frameLight = new JFrame();
+        frameLight.setLayout(new GridLayout(2, 4, 10, 10));
+        frameLight.setBounds(500, 200, 300, 300);
+        frameLight.setMinimumSize(new Dimension(500, 350));
+        frameLight.setTitle("Light Panel");
+        frameLight.setLocationRelativeTo(null);
+        frameLight.setVisible(false);
+        frameLight.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                // TODO Efficiency management
+                frameLight.dispose();
+                MainStation.restart = true;
+            }
+        });
+        for (int i = 0; i < 8; i++) {
+            frameLight.add(lights.get(i));
+        }
+    }
+
+    private void adjustFrameLight(int bikeNum) {
+        lightTime = new Date();
+        frameLight.setVisible(true);
+
+        for (int i = 0; i < bikeNum; i++) {
+            lights.get(i).setText("existed");
+            lights.get(i).setBackground(Color.RED);
+        }
+
+        lights.get(bikeNum).setText("unlocked");
+        lights.get(bikeNum).addActionListener(this);
+
+        for (int i = bikeNum + 1; i < 8; i++) {
+            lights.get(i).setText("empty");
+            lights.get(i).setBackground(Color.GREEN);
+        }
+
+        frameLight.validate();
+    }
+
     @Override
     public void updateUI() {
         super.updateUI();
@@ -265,9 +324,6 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
             if (bikeNum == 0) {
                 text1.setText("This station has no bike left : (");
                 text2.setText("You can go to another station in order to use the bikes."); // TODO
-            } else {
-                text1.setText("Station ");
-                text2.setText("Please use your ID card to unlock the shared bikes");
             }
 
             // refresh the bikes' num
@@ -281,6 +337,27 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
                 for (Record overdueRecord : overdueRecords)
                     msgDao.addOverdueMsg(overdueRecord);
             }
+
+            if (lightTime.getTime() != 0 && ((new Date()).getTime() - lightTime.getTime()) / 1000 > 5) {
+                lightTime.setTime(0);
+                frameLight.dispose();
+                text1.setText("Your operation is overdue : (");
+                text2.setText("Please be hurry! The lock will close after one minute.");
+                MainStation.restart = true;
+            }
+
+            // Make the light blingbling
+            Calendar cal = Calendar.getInstance();
+            for (int i = 0; i < 8; i++) {
+                if (lights.get(i).getText().equals("unlocked")) {
+                    if (cal.get(Calendar.SECOND) % 2 == 0) {
+                        lights.get(i).setBackground(Color.RED);
+                    } else {
+                        lights.get(i).setBackground(Color.GREEN);
+                    }
+                }
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

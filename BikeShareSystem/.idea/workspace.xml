@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa61ba63-cdfc-4af7-8e33-4c0d4fb47a50" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/application/MainAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/application/MainAdmin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/application/MainStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/application/MainStation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/application/MainUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/application/MainUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/database/dao/RecordDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/database/dao/RecordDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/database/dao/impl/MsgDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/database/dao/impl/MsgDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/database/dao/impl/RecordDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/database/dao/impl/RecordDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/database/entity/Record.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/database/entity/Record.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/layout/FuncPanelStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/layout/FuncPanelStation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/database/BaseDaoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/database/BaseDaoTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/database/dao/impl/AccountDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/database/dao/impl/AccountDaoImplTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,20 +33,128 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/database/dao/impl/AccountDaoImplTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="14" column="46" lean-forward="true" selection-start-line="14" selection-start-column="46" selection-end-line="14" selection-end-column="46" />
+            <state relative-caret-position="28">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/database/dao/impl/AccountDaoImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+      <file pinned="false" current-in-tab="true">
+        <entry file="uml://JAVA/layout">
+          <provider selected="true" editor-type-id="UmlEditorProvider">
+            <state>
+              <ID>JAVA</ID>
+              <OriginalElement>layout</OriginalElement>
+              <nodes>
+                <node x="175.0" y="1279.0">application.MainAdmin</node>
+                <node x="0.0" y="1108.0">database.dao.impl.BikesDaoImpl</node>
+                <node x="322.0" y="224.0">database.dao.impl.AccountDaoImpl</node>
+                <node x="817.0" y="956.0">database.entity.Msg</node>
+                <node x="0.0" y="1279.0">application.MainUser</node>
+                <node x="1636.0" y="956.0">application.MainStation</node>
+                <node x="350.0" y="1279.0">application.Init</node>
+                <node x="1216.0" y="956.0">database.entity.Bikes</node>
+                <node x="623.5" y="0.0">database.dao.MsgDao</node>
+                <node x="13.0" y="0.0">database.dao.RecordDao</node>
+                <node x="821.0" y="539.0">layout.FuncPanelDefault</node>
+                <node x="1048.0" y="956.0">database.entity.Record</node>
+                <node x="235.0" y="736.0">layout.FuncPanelStation</node>
+                <node x="940.0" y="772.0">layout.FuncPanelHistory</node>
+                <node x="0.0" y="736.0">layout.FuncPanelAccounts</node>
+                <node x="1384.0" y="748.0">layout.FuncPanelMsgRec</node>
+                <node x="705.0" y="736.0">layout.FuncPanelRegister</node>
+                <node x="573.0" y="956.0">database.entity.Account</node>
+                <node x="1619.0" y="772.0">layout.FuncPanelInfo</node>
+                <node x="621.0" y="224.0">database.dao.impl.MsgDaoImpl</node>
+                <node x="530.0" y="1279.0">application.Main</node>
+                <node x="278.0" y="956.0">layout.MainLayout</node>
+                <node x="0.0" y="248.0">database.dao.impl.RecordDaoImpl</node>
+                <node x="2.5" y="956.0">database.dao.BikesDao</node>
+                <node x="469.99999999999994" y="748.0">layout.FuncPanelFeedback</node>
+                <node x="1149.0" y="760.0">layout.FuncPanelMsgSend</node>
+                <node x="324.5" y="0.0">database.dao.AccountDao</node>
+                <node x="1391.0" y="956.0">layout.FuncPanelBikes</node>
+              </nodes>
+              <notes />
+              <edges>
+                <edge source="layout.FuncPanelStation" target="layout.FuncPanelDefault">
+                  <point x="0.0" y="-87.5" />
+                  <point x="342.5" y="696.0" />
+                  <point x="859.4375" y="696.0" />
+                  <point x="-64.0625" y="63.5" />
+                </edge>
+                <edge source="layout.FuncPanelHistory" target="layout.FuncPanelDefault">
+                  <point x="0.0" y="-51.5" />
+                  <point x="1034.5" y="716.0" />
+                  <point x="936.3125" y="716.0" />
+                  <point x="12.8125" y="63.5" />
+                </edge>
+                <edge source="layout.FuncPanelFeedback" target="layout.FuncPanelDefault">
+                  <point x="0.0" y="-75.5" />
+                  <point x="577.5" y="706.0" />
+                  <point x="885.0625" y="706.0" />
+                  <point x="-38.4375" y="63.5" />
+                </edge>
+                <edge source="database.dao.impl.BikesDaoImpl" target="database.dao.BikesDao">
+                  <point x="0.0" y="-63.0" />
+                  <point x="0.0" y="51.0" />
+                </edge>
+                <edge source="layout.FuncPanelInfo" target="layout.FuncPanelDefault">
+                  <point x="0.0" y="-51.5" />
+                  <point x="1699.0" y="686.0" />
+                  <point x="1013.1875" y="686.0" />
+                  <point x="89.6875" y="63.5" />
+                </edge>
+                <edge source="database.dao.impl.AccountDaoImpl" target="database.dao.AccountDao">
+                  <point x="0.0" y="-99.0" />
+                  <point x="0.0" y="87.0" />
+                </edge>
+                <edge source="database.dao.impl.RecordDaoImpl" target="database.dao.RecordDao">
+                  <point x="0.0" y="-123.0" />
+                  <point x="0.0" y="99.0" />
+                </edge>
+                <edge source="layout.FuncPanelRegister" target="layout.FuncPanelDefault">
+                  <point x="0.0" y="-87.5" />
+                  <point x="812.5" y="716.0" />
+                  <point x="910.6875" y="716.0" />
+                  <point x="-12.8125" y="63.5" />
+                </edge>
+                <edge source="layout.FuncPanelMsgRec" target="layout.FuncPanelDefault">
+                  <point x="0.0" y="-75.5" />
+                  <point x="1491.5" y="696.0" />
+                  <point x="987.5625" y="696.0" />
+                  <point x="64.0625" y="63.5" />
+                </edge>
+                <edge source="layout.FuncPanelAccounts" target="layout.FuncPanelDefault">
+                  <point x="0.0" y="-87.5" />
+                  <point x="107.5" y="686.0" />
+                  <point x="833.8125" y="686.0" />
+                  <point x="-89.6875" y="63.5" />
+                </edge>
+                <edge source="database.dao.impl.MsgDaoImpl" target="database.dao.MsgDao">
+                  <point x="0.0" y="-99.0" />
+                  <point x="0.0" y="87.0" />
+                </edge>
+                <edge source="layout.FuncPanelMsgSend" target="layout.FuncPanelDefault">
+                  <point x="0.0" y="-63.5" />
+                  <point x="1256.5" y="706.0" />
+                  <point x="961.9375" y="706.0" />
+                  <point x="38.4375" y="63.5" />
+                </edge>
+              </edges>
+              <settings layout="Balloon" zoom="0.5477463712757831" x="1095.4797768479775" y="634.5" />
+              <SelectedNodes />
+              <Categories>
+                <Category>Constructors</Category>
+                <Category>Methods</Category>
+                <Category>Properties</Category>
+                <Category>Inner Classes</Category>
+              </Categories>
+              <SCOPE>All</SCOPE>
+              <VISIBILITY>private</VISIBILITY>
             </state>
           </provider>
         </entry>
@@ -82,10 +183,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="271" />
+    <option name="x" value="270" />
     <option name="y" value="130" />
-    <option name="width" value="1123" />
-    <option name="height" value="778" />
+    <option name="width" value="1125" />
+    <option name="height" value="780" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -95,7 +196,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -142,6 +242,13 @@
               <item name="BikeShareSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="BikeShareSystem" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="layout" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BikeShareSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BikeShareSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -164,6 +271,7 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -177,7 +285,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="create.test.in.the.same.root" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/bin/test" />
+    <property name="last_opened_file_path" value="E:/Local/Desktop/AAScooterSystem" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -316,6 +424,9 @@
       <workItem from="1557154186838" duration="2123000" />
       <workItem from="1557156907974" duration="5443000" />
       <workItem from="1557226435827" duration="642000" />
+      <workItem from="1557239958655" duration="18000" />
+      <workItem from="1557240454344" duration="347000" />
+      <workItem from="1557241814011" duration="189000" />
     </task>
     <servers />
   </component>
@@ -352,13 +463,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9144000" />
+    <option name="totallyTimeSpent" value="9698000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" x="19" y="157" width="342" height="623" id="Project" order="0" sideWeight="0.46233767" visible="true" weight="0.17773438" />
+      <window_info id="simpleUML" />
+      <window_info active="true" content_ui="combo" x="19" y="157" width="342" height="623" id="Project" order="0" sideWeight="0.46233767" visible="true" weight="0.17986578" />
       <window_info id="Structure" order="1" sideWeight="0.5376623" side_tool="true" weight="0.18322147" />
       <window_info id="Persistence" order="2" side_tool="true" />
       <window_info id="Designer" order="3" />
@@ -441,24 +552,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bin/database/BaseDao.class" />
-    <entry file="uml://JavaScript-modules-diagram/E:/OneDrive - Queen Mary, University of London/Project/BikeShareSystem/BikeShareSystem/src">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>JavaScript-modules-diagram</ID>
-          <OriginalElement>$PROJECT_DIR$/src</OriginalElement>
-          <nodes />
-          <notes />
-          <edges />
-          <settings layout="Hierarchic Group" zoom="1.0" x="632.0" y="370.0" />
-          <SelectedNodes />
-          <Categories>
-            <Category>All</Category>
-          </Categories>
-          <SCOPE>All</SCOPE>
-          <VISIBILITY>Details</VISIBILITY>
-        </state>
-      </provider>
-    </entry>
     <entry file="uml://JAVA/">
       <provider selected="true" editor-type-id="UmlEditorProvider">
         <state>
@@ -1149,39 +1242,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="uml://JAVA/layout">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>JAVA</ID>
-          <OriginalElement>layout</OriginalElement>
-          <nodes>
-            <node x="" y="">layout.FuncPanelMsgRec</node>
-            <node x="" y="">layout.MainLayout</node>
-            <node x="" y="">layout.FuncPanelDefault</node>
-            <node x="" y="">layout.FuncPanelRegister</node>
-            <node x="" y="">layout.FuncPanelFeedback</node>
-            <node x="" y="">layout.FuncPanelMsgSend</node>
-            <node x="" y="">layout.FuncPanelStation</node>
-            <node x="" y="">layout.FuncPanelBikes</node>
-            <node x="" y="">layout.FuncPanelHistory</node>
-            <node x="" y="">layout.FuncPanelInfo</node>
-            <node x="" y="">layout.FuncPanelAccounts</node>
-          </nodes>
-          <notes />
-          <edges />
-          <settings layout="Hierarchic Group" zoom="0.472166045769026" x="971.0" y="81.0" />
-          <SelectedNodes />
-          <Categories>
-            <Category>Constructors</Category>
-            <Category>Methods</Category>
-            <Category>Properties</Category>
-            <Category>Inner Classes</Category>
-          </Categories>
-          <SCOPE>All</SCOPE>
-          <VISIBILITY>private</VISIBILITY>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/database/dao/impl/BikesDaoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
@@ -1224,14 +1284,255 @@
     <entry file="file://$PROJECT_DIR$/src/main/database/dao/impl/AccountDaoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/database.dao">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>database.dao</OriginalElement>
+          <nodes>
+            <node x="" y="">database.dao.RecordDao</node>
+            <node x="" y="">database.dao.BikesDao</node>
+            <node x="" y="">database.dao.AccountDao</node>
+            <node x="" y="">database.dao.impl</node>
+            <node x="" y="">database.dao.MsgDao</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="527.0" y="139.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Constructors</Category>
+            <Category>Methods</Category>
+            <Category>Properties</Category>
+            <Category>Inner Classes</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/database">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>database</OriginalElement>
+          <nodes>
+            <node x="" y="">database.BaseDaoTest</node>
+            <node x="" y="">database.entity</node>
+            <node x="" y="">database.BaseDao</node>
+            <node x="" y="">database.dao</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="180.0" y="210.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Constructors</Category>
+            <Category>Methods</Category>
+            <Category>Properties</Category>
+            <Category>Inner Classes</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/database.dao.impl.MsgDaoImpl">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>database.dao.impl.MsgDaoImpl</OriginalElement>
+          <nodes>
+            <node x="" y="">database.BaseDao</node>
+            <node x="" y="">database.dao.MsgDao</node>
+            <node x="" y="">database.dao.impl.MsgDaoImpl</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="252.0" y="211.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Constructors</Category>
+            <Category>Methods</Category>
+            <Category>Properties</Category>
+            <Category>Inner Classes</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JavaScript-modules-diagram/E:/OneDrive - Queen Mary, University of London/Project/BikeShareSystem/BikeShareSystem/src">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JavaScript-modules-diagram</ID>
+          <OriginalElement>$PROJECT_DIR$/src</OriginalElement>
+          <nodes />
+          <notes />
+          <edges />
+          <settings layout="Balloon" zoom="1.0" x="632.0" y="370.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>All</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>Details</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/database.dao.impl">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>database.dao.impl</OriginalElement>
+          <nodes>
+            <node x="0.0" y="559.0">database.dao.impl.BikesDaoImpl</node>
+            <node x="0.0" y="0.0">database.dao.impl.RecordDaoImpl</node>
+            <node x="0.0" y="316.0">database.dao.impl.AccountDaoImpl</node>
+            <node x="304.0" y="316.0">database.dao.impl.AccountDaoImplTest</node>
+            <node x="327.0" y="0.0">database.dao.impl.MsgDaoImpl</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Balloon" zoom="1.0" x="-98.0" y="200.0" />
+          <SelectedNodes>
+            <node>database.dao.impl.BikesDaoImpl</node>
+          </SelectedNodes>
+          <Categories>
+            <Category>Fields</Category>
+            <Category>Constructors</Category>
+            <Category>Methods</Category>
+            <Category>Properties</Category>
+            <Category>Inner Classes</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>public</VISIBILITY>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/database/dao/impl/AccountDaoImplTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="14" column="46" lean-forward="true" selection-start-line="14" selection-start-column="46" selection-end-line="14" selection-end-column="46" />
+        <state relative-caret-position="28">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/layout">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>layout</OriginalElement>
+          <nodes>
+            <node x="175.0" y="1279.0">application.MainAdmin</node>
+            <node x="0.0" y="1108.0">database.dao.impl.BikesDaoImpl</node>
+            <node x="322.0" y="224.0">database.dao.impl.AccountDaoImpl</node>
+            <node x="817.0" y="956.0">database.entity.Msg</node>
+            <node x="0.0" y="1279.0">application.MainUser</node>
+            <node x="1636.0" y="956.0">application.MainStation</node>
+            <node x="350.0" y="1279.0">application.Init</node>
+            <node x="1216.0" y="956.0">database.entity.Bikes</node>
+            <node x="623.5" y="0.0">database.dao.MsgDao</node>
+            <node x="13.0" y="0.0">database.dao.RecordDao</node>
+            <node x="821.0" y="539.0">layout.FuncPanelDefault</node>
+            <node x="1048.0" y="956.0">database.entity.Record</node>
+            <node x="235.0" y="736.0">layout.FuncPanelStation</node>
+            <node x="940.0" y="772.0">layout.FuncPanelHistory</node>
+            <node x="0.0" y="736.0">layout.FuncPanelAccounts</node>
+            <node x="1384.0" y="748.0">layout.FuncPanelMsgRec</node>
+            <node x="705.0" y="736.0">layout.FuncPanelRegister</node>
+            <node x="573.0" y="956.0">database.entity.Account</node>
+            <node x="1619.0" y="772.0">layout.FuncPanelInfo</node>
+            <node x="621.0" y="224.0">database.dao.impl.MsgDaoImpl</node>
+            <node x="530.0" y="1279.0">application.Main</node>
+            <node x="278.0" y="956.0">layout.MainLayout</node>
+            <node x="0.0" y="248.0">database.dao.impl.RecordDaoImpl</node>
+            <node x="2.5" y="956.0">database.dao.BikesDao</node>
+            <node x="469.99999999999994" y="748.0">layout.FuncPanelFeedback</node>
+            <node x="1149.0" y="760.0">layout.FuncPanelMsgSend</node>
+            <node x="324.5" y="0.0">database.dao.AccountDao</node>
+            <node x="1391.0" y="956.0">layout.FuncPanelBikes</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="layout.FuncPanelStation" target="layout.FuncPanelDefault">
+              <point x="0.0" y="-87.5" />
+              <point x="342.5" y="696.0" />
+              <point x="859.4375" y="696.0" />
+              <point x="-64.0625" y="63.5" />
+            </edge>
+            <edge source="layout.FuncPanelHistory" target="layout.FuncPanelDefault">
+              <point x="0.0" y="-51.5" />
+              <point x="1034.5" y="716.0" />
+              <point x="936.3125" y="716.0" />
+              <point x="12.8125" y="63.5" />
+            </edge>
+            <edge source="layout.FuncPanelFeedback" target="layout.FuncPanelDefault">
+              <point x="0.0" y="-75.5" />
+              <point x="577.5" y="706.0" />
+              <point x="885.0625" y="706.0" />
+              <point x="-38.4375" y="63.5" />
+            </edge>
+            <edge source="database.dao.impl.BikesDaoImpl" target="database.dao.BikesDao">
+              <point x="0.0" y="-63.0" />
+              <point x="0.0" y="51.0" />
+            </edge>
+            <edge source="layout.FuncPanelInfo" target="layout.FuncPanelDefault">
+              <point x="0.0" y="-51.5" />
+              <point x="1699.0" y="686.0" />
+              <point x="1013.1875" y="686.0" />
+              <point x="89.6875" y="63.5" />
+            </edge>
+            <edge source="database.dao.impl.AccountDaoImpl" target="database.dao.AccountDao">
+              <point x="0.0" y="-99.0" />
+              <point x="0.0" y="87.0" />
+            </edge>
+            <edge source="database.dao.impl.RecordDaoImpl" target="database.dao.RecordDao">
+              <point x="0.0" y="-123.0" />
+              <point x="0.0" y="99.0" />
+            </edge>
+            <edge source="layout.FuncPanelRegister" target="layout.FuncPanelDefault">
+              <point x="0.0" y="-87.5" />
+              <point x="812.5" y="716.0" />
+              <point x="910.6875" y="716.0" />
+              <point x="-12.8125" y="63.5" />
+            </edge>
+            <edge source="layout.FuncPanelMsgRec" target="layout.FuncPanelDefault">
+              <point x="0.0" y="-75.5" />
+              <point x="1491.5" y="696.0" />
+              <point x="987.5625" y="696.0" />
+              <point x="64.0625" y="63.5" />
+            </edge>
+            <edge source="layout.FuncPanelAccounts" target="layout.FuncPanelDefault">
+              <point x="0.0" y="-87.5" />
+              <point x="107.5" y="686.0" />
+              <point x="833.8125" y="686.0" />
+              <point x="-89.6875" y="63.5" />
+            </edge>
+            <edge source="database.dao.impl.MsgDaoImpl" target="database.dao.MsgDao">
+              <point x="0.0" y="-99.0" />
+              <point x="0.0" y="87.0" />
+            </edge>
+            <edge source="layout.FuncPanelMsgSend" target="layout.FuncPanelDefault">
+              <point x="0.0" y="-63.5" />
+              <point x="1256.5" y="706.0" />
+              <point x="961.9375" y="706.0" />
+              <point x="38.4375" y="63.5" />
+            </edge>
+          </edges>
+          <settings layout="Balloon" zoom="0.5477463712757831" x="1095.4797768479775" y="634.5" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Constructors</Category>
+            <Category>Methods</Category>
+            <Category>Properties</Category>
+            <Category>Inner Classes</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
         </state>
       </provider>
     </entry>

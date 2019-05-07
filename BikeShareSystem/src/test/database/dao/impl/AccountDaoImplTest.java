@@ -49,7 +49,7 @@ class AccountDaoImplTest {
     void addNewAccount() {
         AccountDao dao = new AccountDaoImpl();
         try {
-            assert(dao.addNewAccount(new Account("4","qweeee","zzz@zzz.com")));
+            assert (dao.addNewAccount(new Account("4", "qweeee", "zzz@zzz.com")));
         } catch (IOException e) {
             e.printStackTrace();
         }
