@@ -143,6 +143,10 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
                             MainStation.restart = true;
                             break;
                         }
+                    } else if (bikesDao.findBikesNumberByStation(MainStation.station) == 0) {
+                        JOptionPane.showMessageDialog(null, "This station has no bike left : (", "Sorry",
+                                JOptionPane.WARNING_MESSAGE);
+                        break;
                     } else {
                         // borrow bikes
                         bikesDao.changeBikesByStation(new Bikes(MainStation.station,
@@ -253,12 +257,19 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
         BikesDao bikesDao = new BikesDaoImpl();
         RecordDao recordDao = new RecordDaoImpl();
         MsgDao msgDao = new MsgDaoImpl();
-
         try {
+            int bikeNum = bikesDao.findBikesNumberByStation(MainStation.station);
+            if (bikeNum == 0) {
+                text1.setText("This station has no bike left : (");
+                text2.setText("You can go to another station in order to use the bikes."); // TODO
+            } else {
+                text1.setText("Station ");
+                text2.setText("Please use your ID card to unlock the shared bikes");
+            }
+
             // refresh the bikes' num
             if (text1.getText().charAt(0) == 'S')
-                text1.setText("Station " + MainStation.station + " - "
-                        + bikesDao.findBikesNumberByStation(MainStation.station) + " Bikes Left");
+                text1.setText("Station " + MainStation.station + " - " + bikeNum + " Bikes Left");
 
             // update overdue status
             List<Record> overdueRecords = new ArrayList<Record>();
