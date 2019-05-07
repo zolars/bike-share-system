@@ -34,11 +34,17 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
         setLayout(null);
 
         if (MainStation.station == null) {
-            Object[] obj = Main.bikeStationList;
+            Bikes[] bikes = Main.bikeStationList;
+            Object[] obj = new Object[bikes.length];
+            for (int i = 0; i < bikes.length; i++) {
+                obj[i] = bikes[i].getStation();
+            }
+
             while (true) {
-                Bikes bike = (Bikes) JOptionPane.showInputDialog(null, "Please choose the station name of this PC:\n",
-                        "Pay", JOptionPane.PLAIN_MESSAGE, new ImageIcon(), obj, "");
-                MainStation.station = bike.getStation();
+                String station = (String) JOptionPane.showInputDialog(null,
+                        "Please choose the station name of this PC:\n", "Bike Share System - Station",
+                        JOptionPane.PLAIN_MESSAGE, new ImageIcon(), obj, "");
+                MainStation.station = station;
                 if (MainStation.station == null)
                     continue;
                 else
@@ -114,7 +120,6 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
                 e1.printStackTrace();
             }
         }
-
     }
 
     private void returnBikes(String userID) {
@@ -140,13 +145,14 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
                 SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
                 Record record = recordDao.findRecordOverdue(userID).get(0);
-                int bill = record.getBill();
+
                 String startDateStr = sf.format(record.getStartDate());
                 String endDateStr = sf.format(new Date());
 
                 msgDao.deleteMsg(String.valueOf(msgDao.findMsgOverdue(userID).get(0).getMsgID()));
-                msgDao.addOtherMsg(userID, "Your ride from " + startDateStr + " to " + endDateStr + " costs " + bill
-                        + " dollars. * The rides whose time lower than 2 hours are free.");
+                msgDao.addOtherMsg(userID, "Your ride from " + startDateStr + " to " + endDateStr
+                        + " costs 100BCD. * Attention : The scooter must be returned within 30 minutes"
+                        + " and the total usage must not exceed 2 hours a day, otherwise a fine should be issued.");
             }
 
             // change bikes num
@@ -224,7 +230,6 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public static void main(String[] args) {

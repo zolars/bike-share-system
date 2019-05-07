@@ -49,13 +49,36 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
             }
             long duration = (endDate.getTime() - startDate.getTime()) / (1000 * 60);
             record.setDuration(duration);
-            if (duration <= Main.overdueTime)
-                record.setBill(0);
-            else
-                record.setBill((int) (Math.ceil(duration / 60) - 2) * 1);
-
             result.add(record);
         }
+
+        for (int i = result.size() - 1; i >= 0; i--) {
+            long duration = result.get(i).getDuration();
+            if (duration > Main.overdueTime_Once) {
+                result.get(i).setFine(true);
+            } else {
+                for (int j = i - 1; j >= 0; j--) {
+                    duration += result.get(j).getDuration();
+                    long durationnn = (result.get(i).getEndDate().getTime() - result.get(j).getStartDate().getTime())
+                            / 1000 / 60 / 60;
+                    if (duration > Main.overdueTime_All
+                            && (result.get(i).getEndDate().getTime() - result.get(j).getStartDate().getTime()) / 1000
+                                    / 60 / 60 < 24) {
+                        result.get(i).setFine(true);
+                        break;
+                    } else {
+                        result.get(i).setFine(false);
+                    }
+                }
+            }
+            if (result.get(i).isFine()) {
+                AccountDao accountDao = new AccountDaoImpl();
+                Account account = accountDao.findAccountByUserID(result.get(i).getUserID());
+                account.setFine(true);
+                accountDao.modifyAccount(account);
+            }
+        }
+
         return result;
     }
 
@@ -65,7 +88,12 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
 
     public List<Record> findRecordNotend(String userID) throws IOException {
         List<Record> result = new ArrayList<Record>();
-        for (Record record : generatRecords(BaseDao.search("record.txt", userID, 1))) {
+        List<Record> allResult = new ArrayList<Record>();
+
+        RecordDao dao = new RecordDaoImpl();
+        allResult = dao.findRecordAll(userID);
+
+        for (Record record : allResult) {
             if (record.getStartDate().equals(record.getEndDate()))
                 result.add(record);
         }
@@ -74,11 +102,14 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
 
     public List<Record> findRecordOverdue(String userID) throws IOException {
         List<Record> result = new ArrayList<Record>();
-        for (Record record : generatRecords(BaseDao.search("record.txt", userID, 1))) {
-            if (record.getStartDate().equals(record.getEndDate())
-                    && ((new Date()).getTime() - record.getStartDate().getTime()) / (1000 * 60) > Main.overdueTime) {
+        List<Record> allResult = new ArrayList<Record>();
+
+        RecordDao dao = new RecordDaoImpl();
+        allResult = dao.findRecordNotend(userID);
+
+        for (Record record : allResult) {
+            if (record.isFine())
                 result.add(record);
-            }
         }
         return result;
     }
@@ -104,10 +135,10 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
     public static void main(String[] args) {
         RecordDao dao = new RecordDaoImpl();
         try {
-            for (int i = 0; i < dao.findRecordOverdue("").size(); i++)
-                System.out.println(dao.findRecordOverdue("").get(i).getBill());
-            dao.addNewBorrow("123", new Date());
-
+            for (Record record : dao.findRecordOverdue("123")) {
+                System.out.println(record);
+                System.out.println(record.isFine());
+            }
         } catch (IOException e) {
             e.printStackTrace();
 

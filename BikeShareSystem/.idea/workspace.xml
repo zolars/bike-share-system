@@ -2,17 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa61ba63-cdfc-4af7-8e33-4c0d4fb47a50" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/database/dao/impl/AccountDaoImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.vscode/launch.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/launch.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/application/MainAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/application/MainAdmin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/application/MainStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/application/MainStation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TODO.md" beforeDir="false" afterPath="$PROJECT_DIR$/TODO.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/application/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/application/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/application/MainUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/application/MainUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/database/dao/AccountDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/database/dao/AccountDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/database/dao/impl/AccountDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/database/dao/impl/AccountDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/layout/FuncPanelAccounts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/layout/FuncPanelAccounts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/layout/FuncPanelTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/database/BaseDaoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/database/BaseDaoTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/database/dao/impl/MsgDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/database/dao/impl/MsgDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/database/dao/impl/RecordDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/database/dao/impl/RecordDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/database/entity/Record.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/database/entity/Record.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/layout/FuncPanelStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/layout/FuncPanelStation.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,11 +39,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/database/dao/impl/BikesDaoImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="280">
               <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/application/MainAdmin.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="169">
+              <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+              <folding>
+                <element signature="e#232#240#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -70,6 +79,7 @@
         <option value="$PROJECT_DIR$/src/test/database/BaseDaoTest.java" />
         <option value="$PROJECT_DIR$/src/main/database/dao/impl/AccountDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/test/database/dao/impl/AccountDaoImplTest.java" />
+        <option value="$PROJECT_DIR$/src/main/application/MainAdmin.java" />
       </list>
     </option>
   </component>
@@ -111,6 +121,13 @@
               <item name="BikeShareSystem" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BikeShareSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BikeShareSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -171,7 +188,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.AccountDaoImplTest">
+  <component name="RunManager" selected="Application.MainAdmin">
     <configuration name="BaseDao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="database.BaseDao" />
       <module name="BikeShareSystem" />
@@ -241,9 +258,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MainAdmin" />
         <item itemvalue="JUnit.AccountDaoImplTest" />
         <item itemvalue="Application.FuncPanelDefault" />
-        <item itemvalue="Application.MainAdmin" />
         <item itemvalue="Application.BaseDao" />
         <item itemvalue="Application.MainStation" />
       </list>
@@ -263,7 +280,7 @@
       <workItem from="1557152140196" duration="887000" />
       <workItem from="1557153855612" duration="37000" />
       <workItem from="1557154186838" duration="2123000" />
-      <workItem from="1557156907974" duration="2626000" />
+      <workItem from="1557156907974" duration="4566000" />
     </task>
     <servers />
   </component>
@@ -297,12 +314,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5685000" />
+    <option name="totallyTimeSpent" value="7625000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1536" height="864" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" x="19" y="157" width="342" height="623" id="Project" order="0" sideWeight="0.46233767" visible="true" weight="0.17773438" />
+      <window_info content_ui="combo" x="19" y="157" width="342" height="623" id="Project" order="0" sideWeight="0.46233767" visible="true" weight="0.17773438" />
       <window_info id="Structure" order="1" sideWeight="0.5376623" side_tool="true" weight="0.18322147" />
       <window_info id="Persistence" order="2" side_tool="true" />
       <window_info id="Designer" order="3" />
@@ -313,7 +331,7 @@
       <window_info id="Web" order="8" sideWeight="0.5669173" side_tool="true" weight="0.1751302" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3283582" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49804688" weight="0.31071427" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49804688" visible="true" weight="0.31071427" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.010854817" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1065,13 +1083,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/application/MainAdmin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/layout/FuncPanelInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="321">
@@ -1168,6 +1179,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
           <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/application/MainAdmin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+          <folding>
+            <element signature="e#232#240#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

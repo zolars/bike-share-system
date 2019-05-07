@@ -15,7 +15,7 @@ public class Record {
     private Date startDate;
     private Date endDate;
     private long duration;
-    private int bill;
+    private Boolean fine;
 
     /**
      * @param recordID the recordID to set
@@ -88,17 +88,17 @@ public class Record {
     }
 
     /**
-     * @param bill the bill to set
+     * @param fine the fine to set
      */
-    public void setBill(int bill) {
-        this.bill = bill;
+    public void setFine(Boolean fine) {
+        this.fine = fine;
     }
 
     /**
-     * @return the bill
+     * @return the fine
      */
-    public int getBill() {
-        return bill;
+    public Boolean isFine() {
+        return fine;
     }
 
     @Override

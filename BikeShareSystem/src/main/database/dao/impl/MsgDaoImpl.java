@@ -67,12 +67,12 @@ public class MsgDaoImpl extends BaseDao implements MsgDao {
             }
         if (!overdueMarkexists) {
             Date overdueDate = overdueRecord.getStartDate();
-            overdueDate.setTime(overdueDate.getTime() + Main.overdueTime * 60 * 1000);
+            overdueDate.setTime(overdueDate.getTime() + Main.overdueTime_Once * 60 * 1000);
             Msg msg = new Msg(BaseDao.dataAmount("msg.txt", "", 0) + 1, overdueRecord.getUserID(), overdueDate,
                     "overdue");
             BaseDao.addLine("msg.txt", msg.toString());
         } else {
-
+            // TODO
         }
     }
 

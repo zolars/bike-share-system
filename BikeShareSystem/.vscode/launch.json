@@ -2,6 +2,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - MainUser",
+            "request": "launch",
+            "mainClass": "application.MainUser",
+            "projectName": "BikeShareSystem_826b9af"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - RecordDaoImpl",
+            "request": "launch",
+            "mainClass": "database.dao.impl.RecordDaoImpl",
+            "projectName": "BikeShareSystem_826b9af"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - FuncPanelStation",
+            "request": "launch",
+            "mainClass": "layout.FuncPanelStation",
+            "projectName": "BikeShareSystem_826b9af"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - AccountDaoImpl",
             "request": "launch",
             "mainClass": "database.dao.impl.AccountDaoImpl",
