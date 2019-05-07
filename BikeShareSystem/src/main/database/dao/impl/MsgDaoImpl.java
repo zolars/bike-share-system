@@ -71,8 +71,6 @@ public class MsgDaoImpl extends BaseDao implements MsgDao {
             Msg msg = new Msg(BaseDao.dataAmount("msg.txt", "", 0) + 1, overdueRecord.getUserID(), overdueDate,
                     "overdue");
             BaseDao.addLine("msg.txt", msg.toString());
-        } else {
-            // TODO
         }
     }
 

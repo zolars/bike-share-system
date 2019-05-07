@@ -282,7 +282,6 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
         frameLight.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                // TODO Efficiency management
                 frameLight.dispose();
                 MainStation.restart = true;
             }
@@ -323,7 +322,7 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
             int bikeNum = bikesDao.findBikesNumberByStation(MainStation.station);
             if (bikeNum == 0) {
                 text1.setText("This station has no bike left : (");
-                text2.setText("You can go to another station in order to use the bikes."); // TODO
+                text2.setText("You can go to another station in order to use the bikes.");
             }
 
             // refresh the bikes' num
