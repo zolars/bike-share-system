@@ -1,7 +1,6 @@
 package layout;
 
 import javax.swing.*;
-import javax.swing.table.JTableHeader;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -29,7 +28,6 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
 
     private JLabel text1;
     private JLabel text2;
-    private JTable table;
     private JButton btn;
 
     public FuncPanelStation() {
@@ -95,13 +93,18 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
 
         if (e.getSource() == btn) {
             try {
+                String userID;
                 while (true) {
-                    String userID = JOptionPane.showInputDialog(null, "Input your ID number (not null) : \n",
-                            "Check ID", JOptionPane.PLAIN_MESSAGE);
+                    userID = JOptionPane.showInputDialog(null, "Input your ID number (not null) : \n", "Check ID",
+                            JOptionPane.PLAIN_MESSAGE);
                     Date date = recordDao.isUserForbidden(userID);
                     Account account = accountDao.findAccountByUserID(userID);
 
-                    if (userID.equals("")) {
+                    if (bikesDao.findBikesNumberByStation(MainStation.station) == 0) {
+                        JOptionPane.showMessageDialog(null, "This station has no bike left : (", "Sorry",
+                                JOptionPane.WARNING_MESSAGE);
+                        break;
+                    } else if (userID.equals("")) {
                         continue;
                     } else if (accountDao.findAccountByUserID(userID) == null) {
                         JOptionPane.showMessageDialog(null, "Invalid ID card. Please contact the administer.", "Sorry",
@@ -134,6 +137,7 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
                             text1.setText("Your bike is unlocked : )");
                             text2.setText("Remember giving the bike back at one of parking areas!");
                             btn.setEnabled(false);
+                            btn.setText("lightbling");
                             MainStation.restart = true;
                             break;
                         } else {
@@ -143,10 +147,6 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
                             MainStation.restart = true;
                             break;
                         }
-                    } else if (bikesDao.findBikesNumberByStation(MainStation.station) == 0) {
-                        JOptionPane.showMessageDialog(null, "This station has no bike left : (", "Sorry",
-                                JOptionPane.WARNING_MESSAGE);
-                        break;
                     } else {
                         // borrow bikes
                         bikesDao.changeBikesByStation(new Bikes(MainStation.station,
@@ -155,10 +155,12 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
                         text1.setText("Your bike is unlocked : )");
                         text2.setText("Remember giving the bike back at one of parking areas!");
                         btn.setEnabled(false);
+                        btn.setText("lightbling");
                         MainStation.restart = true;
                         break;
                     }
                 }
+
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
@@ -176,6 +178,7 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
             text1.setText("Your bike is returned : )");
             text2.setText("If your bike needs to repair, please tell us!");
             btn.setEnabled(false);
+            btn.setText("lightbling");
 
             Msg overdueMsg = null;
             try {
