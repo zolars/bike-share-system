@@ -60,7 +60,7 @@ public class MsgDaoImpl extends BaseDao implements MsgDao {
     }
 
     public void addOverdueMsg(Record overdueRecord) throws IOException {
-        Boolean overdueMarkexists = false;
+        boolean overdueMarkexists = false;
         for (String[] result : BaseDao.search("msg.txt", overdueRecord.getUserID(), 1))
             if (result[3].equals("overdue")) {
                 overdueMarkexists = true;

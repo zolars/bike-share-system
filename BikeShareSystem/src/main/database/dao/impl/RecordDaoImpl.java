@@ -59,8 +59,6 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
             } else {
                 for (int j = i - 1; j >= 0; j--) {
                     duration += result.get(j).getDuration();
-                    long durationnn = (result.get(i).getEndDate().getTime() - result.get(j).getStartDate().getTime())
-                            / 1000 / 60 / 60;
                     if (duration > Main.overdueTime_All
                             && (result.get(i).getEndDate().getTime() - result.get(j).getStartDate().getTime()) / 1000
                                     / 60 / 60 < 24) {
@@ -78,7 +76,6 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
                 accountDao.modifyAccount(account);
             }
         }
-
         return result;
     }
 
@@ -132,6 +129,23 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
         }
     }
 
+    public Date isUserForbidden(String userID) throws IOException {
+        List<Record> allResult = new ArrayList<Record>();
+        long duration = 0;
+
+        RecordDao dao = new RecordDaoImpl();
+        allResult = dao.findRecordAll(userID);
+
+        for (int i = allResult.size() - 1; i >= 0; i--) {
+            if ((new Date().getTime() - allResult.get(i).getStartDate().getTime()) / 1000 / 60 / 60 < 24) {
+                duration += allResult.get(i).getDuration();
+            }
+            if (duration > Main.overdueTime_All)
+                return new Date(allResult.get(i).getStartDate().getTime() + 24 * 60 * 60 * 1000);
+        }
+        return new Date(0);
+    }
+
     public static void main(String[] args) {
         RecordDao dao = new RecordDaoImpl();
         try {
@@ -139,9 +153,9 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
                 System.out.println(record);
                 System.out.println(record.isFine());
             }
+            System.out.println(dao.isUserForbidden("123"));
         } catch (IOException e) {
             e.printStackTrace();
-
         }
     }
 

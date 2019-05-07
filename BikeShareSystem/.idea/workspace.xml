@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aa61ba63-cdfc-4af7-8e33-4c0d4fb47a50" name="Default Changelist" comment="" />
+    <list default="true" id="aa61ba63-cdfc-4af7-8e33-4c0d4fb47a50" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/application/MainAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/application/MainAdmin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/application/MainStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/application/MainStation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/application/MainUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/application/MainUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/database/dao/RecordDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/database/dao/RecordDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/database/dao/impl/MsgDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/database/dao/impl/MsgDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/database/dao/impl/RecordDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/database/dao/impl/RecordDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/database/entity/Record.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/database/entity/Record.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/layout/FuncPanelStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/layout/FuncPanelStation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/database/BaseDaoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/database/BaseDaoTest.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,23 +40,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/database/dao/impl/BikesDaoImpl.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/database/dao/impl/AccountDaoImplTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+            <state relative-caret-position="224">
+              <caret line="14" column="46" lean-forward="true" selection-start-line="14" selection-start-column="46" selection-end-line="14" selection-end-column="46" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/application/MainAdmin.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/database/dao/impl/AccountDaoImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="21" column="43" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
-              <folding>
-                <element signature="e#232#240#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="308">
+              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
             </state>
           </provider>
         </entry>
@@ -67,18 +74,18 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/main/database/BaseDao.java" />
-        <option value="$PROJECT_DIR$/src/test/database/BaseDaoTest.java" />
         <option value="$PROJECT_DIR$/src/main/database/dao/impl/AccountDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/test/database/dao/impl/AccountDaoImplTest.java" />
         <option value="$PROJECT_DIR$/src/main/application/MainAdmin.java" />
+        <option value="$PROJECT_DIR$/src/test/database/BaseDaoTest.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
-    <option name="x" value="280" />
-    <option name="y" value="-10" />
-    <option name="width" value="1225" />
-    <option name="height" value="780" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="271" />
+    <option name="y" value="130" />
+    <option name="width" value="1123" />
+    <option name="height" value="778" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -88,7 +95,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -113,12 +119,51 @@
               <item name="BikeShareSystem" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BikeShareSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BikeShareSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BikeShareSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BikeShareSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BikeShareSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BikeShareSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BikeShareSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BikeShareSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BikeShareSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BikeShareSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -174,7 +219,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.MainAdmin">
+  <component name="RunManager" selected="JUnit.AccountDaoImplTest">
     <configuration name="BaseDao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="database.BaseDao" />
       <module name="BikeShareSystem" />
@@ -214,19 +259,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MainStation" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="application.MainStation" />
-      <module name="BikeShareSystem" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="application.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="AccountDaoImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="BikeShareSystem" />
       <extension name="coverage">
@@ -242,13 +274,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="AccountDaoImplTest.findAccountAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BikeShareSystem" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="database.dao.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="database.dao.impl" />
+      <option name="MAIN_CLASS_NAME" value="database.dao.impl.AccountDaoImplTest" />
+      <option name="METHOD_NAME" value="findAccountAll" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MainAdmin" />
         <item itemvalue="JUnit.AccountDaoImplTest" />
+        <item itemvalue="JUnit.AccountDaoImplTest.findAccountAll" />
+        <item itemvalue="Application.MainAdmin" />
         <item itemvalue="Application.FuncPanelDefault" />
         <item itemvalue="Application.BaseDao" />
-        <item itemvalue="Application.MainStation" />
       </list>
     </recent_temporary>
   </component>
@@ -267,16 +315,11 @@
       <workItem from="1557153855612" duration="37000" />
       <workItem from="1557154186838" duration="2123000" />
       <workItem from="1557156907974" duration="5443000" />
+      <workItem from="1557226435827" duration="642000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="AccountDaoImplTest - 2019.05.06 at 23h 46m 05s.xml">
-      <configuration name="AccountDaoImplTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AccountDaoImplTest - 2019.05.06 at 23h 47m 36s.xml">
-      <configuration name="AccountDaoImplTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="AccountDaoImplTest - 2019.05.06 at 23h 47m 48s.xml">
       <configuration name="AccountDaoImplTest" configurationId="JUnit" />
     </history-entry>
@@ -298,14 +341,24 @@
     <history-entry file="AccountDaoImplTest - 2019.05.06 at 23h 52m 30s.xml">
       <configuration name="AccountDaoImplTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="AccountDaoImplTest_findAccountAll - 2019.05.07 at 18h 56m 56s.xml">
+      <configuration name="AccountDaoImplTest.findAccountAll" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AccountDaoImplTest - 2019.05.07 at 18h 57m 12s.xml">
+      <configuration name="AccountDaoImplTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AccountDaoImplTest - 2019.05.07 at 19h 01m 37s.xml">
+      <configuration name="AccountDaoImplTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8502000" />
+    <option name="totallyTimeSpent" value="9144000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1536" height="864" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" x="19" y="157" width="342" height="623" id="Project" order="0" sideWeight="0.46233767" visible="true" weight="0.17773438" />
+      <window_info content_ui="combo" x="19" y="157" width="342" height="623" id="Project" order="0" sideWeight="0.46233767" visible="true" weight="0.17773438" />
       <window_info id="Structure" order="1" sideWeight="0.5376623" side_tool="true" weight="0.18322147" />
       <window_info id="Persistence" order="2" side_tool="true" />
       <window_info id="Designer" order="3" />
@@ -316,7 +369,7 @@
       <window_info id="Web" order="8" sideWeight="0.5669173" side_tool="true" weight="0.1751302" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3283582" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49804688" weight="0.31071427" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49804688" weight="0.4854981" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.010854817" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -920,13 +973,6 @@
     <entry file="file://$PROJECT_DIR$/bin/application/MainStation.class" />
     <entry file="file://$PROJECT_DIR$/src/application/MainStation.java" />
     <entry file="file://$PROJECT_DIR$/src/database/entity/Account.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/database/BaseDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="131" column="43" selection-start-line="131" selection-start-column="12" selection-end-line="131" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/application/MainUser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -1103,30 +1149,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/database/dao/impl/AccountDaoImplTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1120">
-          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/database/dao/impl/AccountDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/database/BaseDaoTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="uml://JAVA/layout">
       <provider selected="true" editor-type-id="UmlEditorProvider">
         <state>
@@ -1147,7 +1169,7 @@
           </nodes>
           <notes />
           <edges />
-          <settings layout="Hierarchic Group" zoom="0.472166045769026" x="971.0237536092274" y="80.7611313568716" />
+          <settings layout="Hierarchic Group" zoom="0.472166045769026" x="971.0" y="81.0" />
           <SelectedNodes />
           <Categories>
             <Category>Constructors</Category>
@@ -1169,11 +1191,47 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/application/MainAdmin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
+        <state relative-caret-position="398">
           <caret line="21" column="43" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/database/BaseDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="77" column="47" selection-start-line="77" selection-start-column="47" selection-end-line="77" selection-end-column="47" />
           <folding>
-            <element signature="e#232#240#0" expanded="true" />
+            <element signature="method#getConnection#0;class#BaseDao#0" />
+            <element signature="method#search#0;class#BaseDao#0" />
+            <element signature="method#addLine#0;class#BaseDao#0" />
+            <element signature="method#replace#0;class#BaseDao#0" />
+            <element signature="method#dataAmount#0;class#BaseDao#0" />
+            <element signature="method#main#0;class#BaseDao#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/database/BaseDaoTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="588">
+          <caret line="21" column="23" lean-forward="true" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/database/dao/impl/AccountDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/database/dao/impl/AccountDaoImplTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="14" column="46" lean-forward="true" selection-start-line="14" selection-start-column="46" selection-end-line="14" selection-end-column="46" />
         </state>
       </provider>
     </entry>
@@ -1233,6 +1291,7 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

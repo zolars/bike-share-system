@@ -22,4 +22,6 @@ public interface RecordDao {
 
     public boolean addNewReturn(String userID) throws IOException;
 
+    public Date isUserForbidden(String userID) throws IOException;
+
 }

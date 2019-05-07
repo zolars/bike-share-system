@@ -21,8 +21,4 @@ class BaseDaoTest {
     @Test
     void dataAmount() {
     }
-
-    @Test
-    void main() {
-    }
 }

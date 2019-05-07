@@ -15,7 +15,7 @@ public class Record {
     private Date startDate;
     private Date endDate;
     private long duration;
-    private Boolean fine;
+    private boolean fine;
 
     /**
      * @param recordID the recordID to set
@@ -90,14 +90,14 @@ public class Record {
     /**
      * @param fine the fine to set
      */
-    public void setFine(Boolean fine) {
+    public void setFine(boolean fine) {
         this.fine = fine;
     }
 
     /**
      * @return the fine
      */
-    public Boolean isFine() {
+    public boolean isFine() {
         return fine;
     }
 

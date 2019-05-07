@@ -1,6 +1,7 @@
 package layout;
 
 import javax.swing.*;
+import javax.swing.table.JTableHeader;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -24,8 +25,11 @@ import database.entity.*;
 public class FuncPanelStation extends FuncPanelDefault implements ActionListener {
     private static final long serialVersionUID = 1L;
 
+    private SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
     private JLabel text1;
     private JLabel text2;
+    private JTable table;
     private JButton btn;
 
     public FuncPanelStation() {
@@ -94,6 +98,8 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
                 while (true) {
                     String userID = JOptionPane.showInputDialog(null, "Input your ID number (not null) : \n",
                             "Check ID", JOptionPane.PLAIN_MESSAGE);
+                    Date date = recordDao.isUserForbidden(userID);
+
                     if (userID.equals("")) {
                         continue;
                     } else if (accountDao.findAccountByUserID(userID) == null) {
@@ -102,6 +108,12 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
                         break;
                     } else if (recordDao.findRecordNotend(userID).size() >= 1) {
                         returnBikes(userID);
+                        break;
+                    } else if (date.getTime() != 0) {
+                        text1.setText("You overrun using time in 24h : (");
+                        text2.setText("You can use the bikes until " + sf.format(date));
+                        btn.setEnabled(false);
+                        MainStation.restart = true;
                         break;
                     } else {
                         // borrow bikes
