@@ -12,6 +12,8 @@ import database.entity.*;
  * @version 0.9
  */
 public interface RecordDao {
+    public List<Record> findRecordAll() throws IOException;
+
     public List<Record> findRecordAll(String userID) throws IOException;
 
     public List<Record> findRecordNotend(String userID) throws IOException;

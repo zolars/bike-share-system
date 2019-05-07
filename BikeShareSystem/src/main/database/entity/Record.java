@@ -109,4 +109,12 @@ public class Record {
         else
             return recordID + " " + userID + " " + sf.format(startDate) + " " + sf.format(endDate);
     }
+
+    public String toDetail() {
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        if (startDate.equals(endDate))
+            return sf.format(startDate) + ";" + "Not end" + ";" + userID + ";" + duration + ";" + fine;
+        else
+            return sf.format(startDate) + ";" + sf.format(endDate) + ";" + userID + ";" + duration + ";" + fine;
+    }
 }

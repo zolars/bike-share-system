@@ -24,7 +24,6 @@ import database.entity.*;
 public class FuncPanelAccounts extends FuncPanelDefault implements ActionListener {
     private static final long serialVersionUID = 1L;
 
-    private AccountDao dao = new AccountDaoImpl();
     private String[][] datas = new String[100][3];
 
     private JScrollPane sPane = new JScrollPane();
@@ -32,6 +31,9 @@ public class FuncPanelAccounts extends FuncPanelDefault implements ActionListene
 
     public FuncPanelAccounts() {
         super();
+
+        AccountDao dao = new AccountDaoImpl();
+
         setName("Accounts");
         grabData();
         setLayout(null);
@@ -140,6 +142,7 @@ public class FuncPanelAccounts extends FuncPanelDefault implements ActionListene
     }
 
     public void grabData() {
+        AccountDao dao = new AccountDaoImpl();
         List<Account> accounts = new ArrayList<Account>();
         try {
             accounts = dao.findAccountAll();

@@ -79,18 +79,35 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
         return result;
     }
 
+    public List<Record> findRecordAll() throws IOException {
+        List<Record> result = new ArrayList<Record>();
+        AccountDao accountDao = new AccountDaoImpl();
+
+        for (Account account : accountDao.findAccountAll()) {
+            List<Record> tempResult = new ArrayList<Record>();
+
+            tempResult = generatRecords(BaseDao.search("record.txt", account.getUserID(), 1));
+
+            for (Record record : tempResult) {
+                result.add(record);
+            }
+        }
+        return result;
+
+    }
+
     public List<Record> findRecordAll(String userID) throws IOException {
         return generatRecords(BaseDao.search("record.txt", userID, 1));
     }
 
     public List<Record> findRecordNotend(String userID) throws IOException {
         List<Record> result = new ArrayList<Record>();
-        List<Record> allResult = new ArrayList<Record>();
+        List<Record> tempResult = new ArrayList<Record>();
 
         RecordDao dao = new RecordDaoImpl();
-        allResult = dao.findRecordAll(userID);
+        tempResult = dao.findRecordAll(userID);
 
-        for (Record record : allResult) {
+        for (Record record : tempResult) {
             if (record.getStartDate().equals(record.getEndDate()))
                 result.add(record);
         }
@@ -102,12 +119,12 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
         AccountDao accountDao = new AccountDaoImpl();
 
         for (Account account : accountDao.findAccountAll()) {
-            List<Record> allResult = new ArrayList<Record>();
+            List<Record> tempResult = new ArrayList<Record>();
 
             RecordDao dao = new RecordDaoImpl();
-            allResult = dao.findRecordNotend(account.getUserID());
+            tempResult = dao.findRecordNotend(account.getUserID());
 
-            for (Record record : allResult) {
+            for (Record record : tempResult) {
                 if (record.isFine())
                     result.add(record);
             }
@@ -117,12 +134,12 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
 
     public List<Record> findRecordOverdue(String userID) throws IOException {
         List<Record> result = new ArrayList<Record>();
-        List<Record> allResult = new ArrayList<Record>();
+        List<Record> tempResult = new ArrayList<Record>();
 
         RecordDao dao = new RecordDaoImpl();
-        allResult = dao.findRecordNotend(userID);
+        tempResult = dao.findRecordNotend(userID);
 
-        for (Record record : allResult) {
+        for (Record record : tempResult) {
             if (record.isFine())
                 result.add(record);
         }
@@ -148,18 +165,18 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
     }
 
     public Date isUserForbidden(String userID) throws IOException {
-        List<Record> allResult = new ArrayList<Record>();
+        List<Record> tempResult = new ArrayList<Record>();
         long duration = 0;
 
         RecordDao dao = new RecordDaoImpl();
-        allResult = dao.findRecordAll(userID);
+        tempResult = dao.findRecordAll(userID);
 
-        for (int i = allResult.size() - 1; i >= 0; i--) {
-            if ((new Date().getTime() - allResult.get(i).getStartDate().getTime()) / 1000 / 60 / 60 < 24) {
-                duration += allResult.get(i).getDuration();
+        for (int i = tempResult.size() - 1; i >= 0; i--) {
+            if ((new Date().getTime() - tempResult.get(i).getStartDate().getTime()) / 1000 / 60 / 60 < 24) {
+                duration += tempResult.get(i).getDuration();
             }
             if (duration > Main.overdueTime_All)
-                return new Date(allResult.get(i).getStartDate().getTime() + 24 * 60 * 60 * 1000);
+                return new Date(tempResult.get(i).getStartDate().getTime() + 24 * 60 * 60 * 1000);
         }
         return new Date(0);
     }
@@ -167,11 +184,10 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
     public static void main(String[] args) {
         RecordDao dao = new RecordDaoImpl();
         try {
-            for (Record record : dao.findRecordOverdue("1234")) {
+            for (Record record : dao.findRecordAll()) {
                 System.out.println(record);
                 System.out.println(record.isFine());
             }
-            System.out.println(dao.isUserForbidden("1234"));
         } catch (IOException e) {
             e.printStackTrace();
         }
