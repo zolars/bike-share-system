@@ -93,7 +93,6 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
             }
         }
         return result;
-
     }
 
     public List<Record> findRecordAll(String userID) throws IOException {

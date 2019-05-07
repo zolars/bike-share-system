@@ -25,7 +25,7 @@ import database.entity.*;
 public class FuncPanelInfo extends FuncPanelDefault implements ActionListener {
     private static final long serialVersionUID = 1L;
 
-    private String[][] datas = new String[100][5];
+    private String[][] datas = new String[200][5];
 
     private JScrollPane sPane = new JScrollPane();
     private JTable table;
@@ -96,7 +96,7 @@ public class FuncPanelInfo extends FuncPanelDefault implements ActionListener {
                 datas[i] = new String[5];
             }
 
-            for (int i = 0; i < records.size() - 1; i++) {
+            for (int i = 0; i < records.size(); i++) {
                 datas[i] = records.get(i).toDetail().split(";");
             }
         } catch (IOException e1) {
@@ -121,7 +121,7 @@ public class FuncPanelInfo extends FuncPanelDefault implements ActionListener {
     }
 
     public static void main(String[] args) {
-        MainUser.setup();
+        MainAdmin.setup();
     }
 
 }
