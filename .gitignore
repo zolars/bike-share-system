@@ -23,6 +23,8 @@
 hs_err_pid*
 
 # Setting files
+*.iml
+*.xml
 *.json
 
 BikeShareSystem/bin/*

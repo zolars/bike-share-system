@@ -27,40 +27,40 @@ A Java software used to manage the shared bikes on campus. An assignment from QM
   - [ ] User pages
     - [x] Login page
     - [x] Bike’s amount observe page
-    - [ ] Message page
-      - [ ] Receive message function
-      - [ ] Feedback function
-    - [ ] History search page
+    - [x] Message page
+      - [x] Receive message function
+      - [x] Feedback function
+    - [x] History search page
     - [x] Setting page
-  - [ ] Admin pages
+  - [x] Admin pages
     - [x] Register page
-    - [ ] Message send page
-    - [ ] All information search page
-  - [ ] Station pages
+    - [x] Message send page
+    - [x] All information search page
+  - [x] Station pages
     - [x] Borrow bikes
     - [x] Return bikes
-    - [ ] Feedback
+    - [x] Feedback
 
 
 * Replaceable Data Access Objects (Dao) with high Robustness
 
   - [x] BaseDao
 
-    - [ ] Entity
+    - [x] Entity
       - [x] Account
       - [x] Bikes
       - [x] Record
-      - [ ] Msg
-    - [ ] Dao
+      - [x] Msg
+    - [x] Dao
       - [x] AccountDao
       - [x] BikesDao
       - [x] RecordDao
-      - [ ] MsgDao
-    - [ ] DaoImpl
+      - [x] MsgDao
+    - [x] DaoImpl
       - [x] AccountDaoImpl
       - [x] BikesDaoImpl
       - [x] RecordDaoImpl
-      - [ ] MsgDaoImpl
+      - [x] MsgDaoImpl
 
 ## Get Help
 

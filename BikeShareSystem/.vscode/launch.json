@@ -2,80 +2,10 @@
     "configurations": [
         {
             "type": "java",
-            "name": "CodeLens (Launch) - FuncPanelInfo",
+            "name": "CodeLens (Launch) - FuncPanelFeedback",
             "request": "launch",
-            "mainClass": "layout.FuncPanelInfo",
-            "projectName": "BikeShareSystem_826b9af"
-        },
-        {
-            "type": "java",
-            "name": "CodeLens (Launch) - MainUser",
-            "request": "launch",
-            "mainClass": "application.MainUser",
-            "projectName": "BikeShareSystem_826b9af"
-        },
-        {
-            "type": "java",
-            "name": "CodeLens (Launch) - RecordDaoImpl",
-            "request": "launch",
-            "mainClass": "database.dao.impl.RecordDaoImpl",
-            "projectName": "BikeShareSystem_826b9af"
-        },
-        {
-            "type": "java",
-            "name": "CodeLens (Launch) - FuncPanelStation",
-            "request": "launch",
-            "mainClass": "layout.FuncPanelStation",
-            "projectName": "BikeShareSystem_826b9af"
-        },
-        {
-            "type": "java",
-            "name": "CodeLens (Launch) - AccountDaoImpl",
-            "request": "launch",
-            "mainClass": "database.dao.impl.AccountDaoImpl",
-            "projectName": "BikeShareSystem_826b9af"
-        },
-        {
-            "type": "java",
-            "name": "CodeLens (Launch) - FuncPanelRegister",
-            "request": "launch",
-            "mainClass": "layout.FuncPanelRegister",
-            "projectName": "BikeShareSystem_826b9af"
-        },
-        {
-            "type": "java",
-            "name": "CodeLens (Launch) - FuncPanelMsgRec",
-            "request": "launch",
-            "mainClass": "layout.FuncPanelMsgRec",
-            "projectName": "BikeShareSystem_826b9af"
-        },
-        {
-            "type": "java",
-            "name": "CodeLens (Launch) - MainStation",
-            "request": "launch",
-            "mainClass": "application.MainStation",
-            "projectName": "BikeShareSystem_826b9af"
-        },
-        {
-            "type": "java",
-            "name": "CodeLens (Launch) - FuncPanelAccounts",
-            "request": "launch",
-            "mainClass": "layout.FuncPanelAccounts",
-            "projectName": "BikeShareSystem_826b9af"
-        },
-        {
-            "type": "java",
-            "name": "CodeLens (Launch) - MainAdmin",
-            "request": "launch",
-            "mainClass": "application.MainAdmin",
-            "projectName": "BikeShareSystem_826b9af"
-        },
-        {
-            "type": "java",
-            "name": "CodeLens (Launch) - MainLayout",
-            "request": "launch",
-            "mainClass": "layout.MainLayout",
-            "projectName": "BikesUser_5dff27f"
+            "mainClass": "layout.FuncPanelFeedback",
+            "projectName": "BikeShareSystem_711c7f91"
         }
     ]
 }
