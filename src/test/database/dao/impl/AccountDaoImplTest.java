@@ -29,7 +29,7 @@ class AccountDaoImplTest {
     void findAccountByUserID() {
         AccountDao dao = new AccountDaoImpl();
         try {
-            assertEquals("123 qwe asd@qwe.com false", dao.findAccountByUserID("123").toString());
+            assertEquals("admin admin admin@admin.admin false", dao.findAccountByUserID("admin").toString());
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -114,7 +114,7 @@ public class FuncPanelRegister extends FuncPanelDefault implements ActionListene
     public static boolean isNotID(String string) {
         if (string == null)
             return false;
-        String regEx1 = "[0-9]+";
+        String regEx1 = "[0-9]{9}";
         Pattern p;
         Matcher m;
         p = Pattern.compile(regEx1);
@@ -128,7 +128,7 @@ public class FuncPanelRegister extends FuncPanelDefault implements ActionListene
     public static boolean isNotName(String string) {
         if (string == null)
             return false;
-        String regEx1 = "[A-Za-z]+ [A-Za-z]+";
+        String regEx1 = "[A-Za-z ]+";
         Pattern p;
         Matcher m;
         p = Pattern.compile(regEx1);
