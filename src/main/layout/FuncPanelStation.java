@@ -63,8 +63,10 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
                         "Please choose the station name of this " + "PC:\n", "Bike Share System - Station",
                         JOptionPane.PLAIN_MESSAGE, new ImageIcon(), obj, "");
                 MainStation.station = station;
-                if (MainStation.station == null) continue;
-                else break;
+                if (MainStation.station == null)
+                    continue;
+                else
+                    break;
             }
         }
 
@@ -126,8 +128,8 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
                     } else if (userID.equals("")) {
                         continue;
                     } else if (accountDao.findAccountByUserID(userID) == null) {
-                        JOptionPane.showMessageDialog(null, "Invalid ID card. Please contact the administer.", "Sorry"
-                                , JOptionPane.WARNING_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Invalid ID card. Please contact the administer.", "Sorry",
+                                JOptionPane.WARNING_MESSAGE);
                         break;
                     } else if (recordDao.findRecordNotend(userID).size() >= 1) {
                         returnBikes(userID);
@@ -139,7 +141,7 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
                         MainStation.restart = true;
                         break;
                     } else if (account.isFine()) {
-                        Object[] choices = {"Pay", "Cancel"};
+                        Object[] choices = { "Pay", "Cancel" };
                         int choiceNum = (int) JOptionPane.showOptionDialog(null,
                                 "Until you can use the bikes, you " + "still have 100BCD as fine to pay.", "Payment",
                                 JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, choices,
@@ -195,22 +197,22 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
 
                         msgDao.deleteMsg(String.valueOf(msgDao.findMsgOverdue(userID).get(0).getMsgID()));
                         msgDao.addOtherMsg(userID,
-                                "Your ride from " + startDateStr + " to " + endDateStr + " costs " + "100BCD. * " +
-                                        "Attention : The scooter must be returned within 30 minutes" + " and the " +
-                                        "total usage must not exceed 2 hours a day, otherwise a fine should be " +
-                                        "issued" + ".");
+                                "Your ride from " + startDateStr + " to " + endDateStr + " costs " + "100BCD. * "
+                                        + "Attention : The scooter must be returned within 30 minutes" + " and the "
+                                        + "total usage must not exceed 2 hours a day, otherwise a fine should be "
+                                        + "issued" + ".");
                     }
 
                     // return bikes
                     text1.setText("Thank you for returning : )");
-                    bikesDao.changeBikesByStation(new Bikes(MainStation.station,
-                            bikesDao.findBikesNumberByStation(MainStation.station) + 1));
+                    bikesDao.changeBikesByStation(
+                            new Bikes(MainStation.station, bikesDao.findBikesNumberByStation(MainStation.station) + 1));
                     recordDao.addNewReturn(userID);
                 } else {
                     // borrow bikes
                     text1.setText("Thank you for borrowing : )");
-                    bikesDao.changeBikesByStation(new Bikes(MainStation.station,
-                            bikesDao.findBikesNumberByStation(MainStation.station) - 1));
+                    bikesDao.changeBikesByStation(
+                            new Bikes(MainStation.station, bikesDao.findBikesNumberByStation(MainStation.station) - 1));
                     recordDao.addNewBorrow(userID, new Date());
                 }
 
@@ -253,23 +255,23 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
             } else {
                 notice = "Is there any malfunction on this bicycle?";
             }
-            Object[] choices = {"No, thanks", "Yes"};
+            Object[] choices = { "No, thanks", "Yes" };
             int choiceNum = (int) JOptionPane.showOptionDialog(null, notice, "Feedback",
                     JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, choices, choices[0]);
 
             if (choiceNum == 0) {
                 break;
             } else {
-                Object[] obj = {"1  Lock", "2  Brake", "3  Footlice", "4  Chain", "5  Handlebar", "6  Wheels"};
-                String choiceStr = (String) JOptionPane.showInputDialog(null, "Please choose the place of " +
-                        "malfunction" + " :\n", "Feedback", JOptionPane.QUESTION_MESSAGE, new ImageIcon(), obj, "");
+                Object[] obj = { "1  Lock", "2  Brake", "3  Footlice", "4  Chain", "5  Handlebar", "6  Wheels" };
+                String choiceStr = (String) JOptionPane.showInputDialog(null,
+                        "Please choose the place of " + "malfunction" + " :\n", "Feedback",
+                        JOptionPane.QUESTION_MESSAGE, new ImageIcon(), obj, "");
 
                 try {
                     msgDao.addOtherMsg("admin",
                             "Malfunction : " + choiceStr.split("  ")[1] + " from station " + MainStation.station);
-                    msgDao.addOtherMsg(userID,
-                            "Dear user, your feedback about \"" + choiceStr.split("  ")[1] + "\" " + "has been " +
-                                    "received." + " If you have any other questions, connect the administer.");
+                    msgDao.addOtherMsg(userID, "Dear user, your feedback about \"" + choiceStr.split("  ")[1] + "\" "
+                            + "has been " + "received." + " If you have any other questions, connect the administer.");
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -352,7 +354,8 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
             date.setTime(Calendar.getInstance().getTime().getTime() - 1000);
             Calendar pastCalendar = Calendar.getInstance();
             pastCalendar.setTime(date);
-            if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY && pastCalendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+            if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY
+                    && pastCalendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
                 String weekMsg = new String();
                 List<Account> accounts = accountDao.findAccountAll();
                 for (Account account : accounts) {
@@ -364,7 +367,8 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
                         date.setTime(Calendar.getInstance().getTime().getTime() - 7 * 24 * 3600 * 1000);
                         pastCalendar.setTime(date);
                         if (record.getStartDate().after(pastCalendar.getTime())) {
-                            if (record.getDuration() > 0) allDuration += record.getDuration() / 1000;
+                            if (record.getDuration() > 0)
+                                allDuration += record.getDuration() / 1000;
                             if (record.isFine()) {
                                 weekMsg = "There is still fine to pay for you in last week. ";
                             }
@@ -377,7 +381,8 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
                 }
             }
 
-            if (lightTime.getTime() != 0 && ((new Date()).getTime() - lightTime.getTime()) / 1000 > Main.lightInterval) {
+            if (lightTime.getTime() != 0
+                    && ((new Date()).getTime() - lightTime.getTime()) / 1000 > Main.lightInterval) {
                 lightTime.setTime(0);
                 frameLight.dispose();
                 text1.setText("Your operation is overdue : (");
