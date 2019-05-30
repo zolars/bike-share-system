@@ -15,7 +15,7 @@ import database.entity.*;
 /**
  * FuncPanelRegister
  * 
- * @author Xin Yifei
+ * @author Zhang Yue
  * @version 0.9
  */
 public class FuncPanelRegister extends FuncPanelDefault implements ActionListener {

@@ -19,7 +19,7 @@ import database.entity.*;
 /**
  * FuncPanelFeedback
  * 
- * @author Xin Yifei
+ * @author Wang Nanxin
  * @version 0.9
  */
 public class FuncPanelFeedback extends FuncPanelDefault implements ActionListener {

@@ -7,7 +7,7 @@ import application.*;
 /**
  * FuncPanelHistory
  * 
- * @author Xin Yifei
+ * @author Sun Qinghao & Lu Siyuan
  * @version 0.9
  */
 public class FuncPanelHistory extends FuncPanelDefault {

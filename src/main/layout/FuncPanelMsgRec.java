@@ -19,7 +19,7 @@ import database.entity.*;
 /**
  * FuncPanelMsgRec
  * 
- * @author Xin Yifei
+ * @author An Hongda
  * @version 0.9
  */
 public class FuncPanelMsgRec extends FuncPanelDefault implements ActionListener {

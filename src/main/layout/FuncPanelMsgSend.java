@@ -14,7 +14,7 @@ import database.dao.impl.MsgDaoImpl;
 /**
  * FuncPanelMsgSend
  * 
- * @author Xin Yifei
+ * @author An Hongda
  * @version 0.9
  */
 public class FuncPanelMsgSend extends FuncPanelDefault implements ActionListener {
