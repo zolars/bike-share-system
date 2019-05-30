@@ -20,6 +20,12 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
 
     private SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd;HH:mm:ss");
 
+    /**
+    * <p>Description: Generate records of all users' usages and judge if the users will get a fine. If a user will get a fine, a specific attribute of its account will be changed.
+    * @param resultStr Users' information
+    * @return Generated records
+    * @throws IOException Input and output exception
+    */
     public List<Record> generatRecords(List<String[]> resultStr) throws IOException {
         List<Record> result = new ArrayList<Record>();
 
@@ -79,6 +85,12 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
         return result;
     }
 
+    /**
+    * <p>Description: Get all records according to the existing accounts stored in database.</p>
+    * @return Records of all accounts
+    * @throws IOException Input and output exception
+    */
+    @Override
     public List<Record> findRecordAll() throws IOException {
         List<Record> result = new ArrayList<Record>();
         AccountDao accountDao = new AccountDaoImpl();
@@ -95,10 +107,24 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
         return result;
     }
 
+    /**
+    * <p>Description: Get certain records in accordance with a user ID.</p>
+    * @param userID A user's ID number
+    * @return Records of a certain account
+    * @throws IOException Input and output exception
+    */
+    @Override
     public List<Record> findRecordAll(String userID) throws IOException {
         return generatRecords(BaseDao.search("record.txt", userID, 1));
     }
 
+    /**
+    * <p>Description: Find uncompleted records according to a certain user ID</p>
+    * @param userID A user's ID number
+    * @return Uncompleted records of a certain account
+    * @throws IOException Input and output exception
+    */
+    @Override
     public List<Record> findRecordNotend(String userID) throws IOException {
         List<Record> result = new ArrayList<Record>();
         List<Record> tempResult = new ArrayList<Record>();
@@ -113,6 +139,12 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
         return result;
     }
 
+    /**
+    * <p>Description: Find all overdue records</p>
+    * @return Overdue records of all account
+    * @throws IOException Input and output exception
+    */
+    @Override
     public List<Record> findRecordOverdue() throws IOException {
         List<Record> result = new ArrayList<Record>();
         AccountDao accountDao = new AccountDaoImpl();
@@ -131,6 +163,13 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
         return result;
     }
 
+    /**
+    * <p>Description: Find overdue records according to a certain user ID</p>
+    * @param userID A user's ID number
+    * @return Overdue records of a certain account
+    * @throws IOException Input and output exception
+    */
+    @Override
     public List<Record> findRecordOverdue(String userID) throws IOException {
         List<Record> result = new ArrayList<Record>();
         List<Record> tempResult = new ArrayList<Record>();
@@ -145,12 +184,26 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
         return result;
     }
 
+    /**
+    * <p>Description: Add a new borrowing record using a user ID and the start time</p>
+    * @param userID A user's ID number
+    * @param startDate The start time
+    * @throws IOException Input and output exception
+    */
+    @Override
     public void addNewBorrow(String userID, Date startDate) throws IOException {
         int recordID = BaseDao.dataAmount("record.txt", "", 0) + 1;
         String str = recordID + " " + userID + " " + sf.format(startDate) + " null";
         BaseDao.addLine("record.txt", str);
     }
 
+    /**
+    * <p>Description: Add a new returning record using a user ID</p>
+    * @param userID A user's ID number
+    * @return If add a record successfully, return true. If not, return false.
+    * @throws IOException Input and output exception
+    */
+    @Override
     public boolean addNewReturn(String userID) throws IOException {
         List<Record> result = findRecordNotend(userID);
         if (result.size() > 1 || result.size() == 0) {
@@ -163,6 +216,13 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
         }
     }
 
+    /**
+    * <p>Description: If a user with a certain ID number has ridden for two hours in a single day. Calculate the time when a user can utilize a bike again</p>
+    * @param userID A user's ID number
+    * @return If the user is run out off the time, return the time when it can ride again.
+    * @throws IOException Input and output exception
+    */
+    @Override
     public Date isUserForbidden(String userID) throws IOException {
         List<Record> tempResult = new ArrayList<Record>();
         long duration = 0;
@@ -180,6 +240,10 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
         return new Date(0);
     }
 
+    /**
+    * <p>Description: A main method.</p>
+    * @param args Default
+    */
     public static void main(String[] args) {
         RecordDao dao = new RecordDaoImpl();
         try {

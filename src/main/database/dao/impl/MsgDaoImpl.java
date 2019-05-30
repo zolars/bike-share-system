@@ -20,10 +20,22 @@ public class MsgDaoImpl extends BaseDao implements MsgDao {
 
     private SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd;HH:mm:ss");
 
+    /**
+     * <p>Description: Get messages according to a certain user ID.</p>
+     * @param userID A user's ID number
+     * @return Messages of a certain account
+     * @throws IOException Input and output exception
+     */
     public List<Msg> findMsgAll(String userID) throws IOException {
         return new ArrayList<Msg>();
     }
 
+    /**
+     * <p>Description: Find messages reminding an overdue event according to a certain user ID</p>
+     * @param userID A user's ID number
+     * @return Overdue messages of a certain account
+     * @throws IOException Input and output exception
+     */
     public List<Msg> findMsgOverdue(String userID) throws IOException {
         List<Msg> result = new ArrayList<Msg>();
         List<String[]> resultStr = BaseDao.search("msg.txt", userID, 1);
@@ -38,6 +50,12 @@ public class MsgDaoImpl extends BaseDao implements MsgDao {
         return result;
     }
 
+    /**
+     * <p>Description: Find messages with other types according to a certain user ID</p>
+     * @param userID A user's ID number
+     * @return Messages with other types
+     * @throws IOException Input and output exception
+     */
     public List<Msg> findMsgOther(String userID) throws IOException {
         List<Msg> result = new ArrayList<Msg>();
         List<String[]> resultStr = BaseDao.search("msg.txt", userID, 1);
@@ -59,6 +77,11 @@ public class MsgDaoImpl extends BaseDao implements MsgDao {
         return result;
     }
 
+    /**
+     * <p>Description: Add an message reminding an overdue event</p>
+     * @param overdueRecord An object of Record that is overdue
+     * @throws IOException Input and output exception
+     */
     public void addOverdueMsg(Record overdueRecord) throws IOException {
         boolean overdueMarkexists = false;
         for (String[] result : BaseDao.search("msg.txt", overdueRecord.getUserID(), 1))
@@ -74,6 +97,13 @@ public class MsgDaoImpl extends BaseDao implements MsgDao {
         }
     }
 
+    /**
+     * <p>Description: Add an message with other types</p>
+     * @param userID A user's ID number
+     * @param text The content of the message
+     * @return If succeed, return true. If not, return false.
+     * @throws IOException Input and output exception
+     */
     public boolean addOtherMsg(String userID, String text) throws IOException {
         if (BaseDao.search("account.txt", userID, 0).size() > 0) {
             Msg msg = new Msg(BaseDao.dataAmount("msg.txt", "", 0) + 1, userID, new Date(), text);
@@ -84,10 +114,19 @@ public class MsgDaoImpl extends BaseDao implements MsgDao {
         }
     }
 
+    /**
+     * <p>Description: Delete a message according to a message ID</p>
+     * @param msgID An ID number of a message
+     * @throws IOException Input and output exception
+     */
     public void deleteMsg(String msgID) throws IOException {
         BaseDao.replace("msg.txt", msgID, 0, "");
     }
 
+    /**
+     * <p>Description: A main method.</p>
+     * @param args Default
+     */
     public static void main(String[] args) {
         MsgDao dao = new MsgDaoImpl();
         try {
