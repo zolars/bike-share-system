@@ -10,11 +10,11 @@ A Java software used to manage the shared bikes on campus. An assignment from QM
 
   - [x] Three Main class correspond to three types of software
     - [x] Easily test and add function pages
-    - [ ] Simplify global variables
-  - [ ] Setup.bat` and `Setup.sh` with version choice
+    - [x] Simplify global variables
+  - [x] Setup.bat` and `Setup.sh` with version choice
     - [x] Windows version
-    - [ ] Mac version
-    - [ ] Linux version
+    - [x] Mac version
+    - [x] Linux version
 
 * Appropriate swing GUI layout
 
@@ -24,14 +24,6 @@ A Java software used to manage the shared bikes on campus. An assignment from QM
 
   - [x] Default Layer page 
 
-  - [ ] User pages
-    - [x] Login page
-    - [x] Bike’s amount observe page
-    - [x] Message page
-      - [x] Receive message function
-      - [x] Feedback function
-    - [x] History search page
-    - [x] Setting page
   - [x] Admin pages
     - [x] Register page
     - [x] Message send page
@@ -40,6 +32,16 @@ A Java software used to manage the shared bikes on campus. An assignment from QM
     - [x] Borrow bikes
     - [x] Return bikes
     - [x] Feedback
+
+  (Optional)
+  - [x] User pages
+    - [x] Login page
+    - [x] Bike’s amount observe page
+    - [x] Message page
+      - [x] Receive message function
+      - [x] Feedback function
+    - [x] History search page
+    - [x] Setting page
 
 
 * Replaceable Data Access Objects (Dao) with high Robustness
@@ -75,10 +77,6 @@ You can also use the command-line interface to run this program.
 3. And then input the following commands:
 
    ```powershell
-   java -jar BikeShareSystem-User.jar
-   ```
-   or
-   ```powershell
    java -jar BikeShareSystem-Admin.jar
    ```
    or
@@ -108,20 +106,21 @@ We can also use the command-line interface to install this program everywhere yo
    java -jar BikeShareSystem-Admin.jar
    ```
    
-   or for User-type:
-
-   ```powershell
-   javac -d bin -classpath bin .\src\application\*.java .\src\layout\*.java
-   jar cfm BikeShareSystem-User.jar .\MANIFEST\MANIFEST-USER.MF -C bin .
-   java -jar BikeShareSystem-User.jar
-   ```
-   
    or for Station-type:
 
    ```powershell
    javac -d bin -classpath bin .\src\application\*.java .\src\layout\*.java
    jar cfm BikeShareSystem-Station.jar .\MANIFEST\MANIFEST-STATION.MF -C bin .
    java -jar BikeShareSystem-Station.jar
+   ```
+      
+   (Optional)
+   or for User-type:
+
+   ```powershell
+   javac -d bin -classpath bin .\src\application\*.java .\src\layout\*.java
+   jar cfm BikeShareSystem-User.jar .\MANIFEST\MANIFEST-USER.MF -C bin .
+   java -jar BikeShareSystem-User.jar
    ```
 
 4. You can find the `BikeShareSystem-*.jar` in your installation path.
