@@ -2,18 +2,9 @@ package layout;
 
 import application.Main;
 import application.MainStation;
-import database.dao.AccountDao;
-import database.dao.BikesDao;
-import database.dao.MsgDao;
-import database.dao.RecordDao;
-import database.dao.impl.AccountDaoImpl;
-import database.dao.impl.BikesDaoImpl;
-import database.dao.impl.MsgDaoImpl;
-import database.dao.impl.RecordDaoImpl;
-import database.entity.Account;
-import database.entity.Bikes;
-import database.entity.Msg;
-import database.entity.Record;
+import database.dao.*;
+import database.dao.impl.*;
+import database.entity.*;
 
 import javax.swing.*;
 import java.awt.*;
