@@ -12,7 +12,7 @@ import database.entity.*;
 /**
  * FuncPanelBikes
  * 
- * @author Xin Yifei
+ * @author Lu Siyuan
  * @version 0.9
  */
 public class FuncPanelBikes extends JPanel {

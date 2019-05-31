@@ -45,9 +45,9 @@ class AccountDaoImplTest {
     void addNewAccount() {
         AccountDao dao = new AccountDaoImpl();
         try {
-            Account newAccount = new Account("111111111", "qwe", "qwe@qwe.com");
-            dao.addNewAccount(newAccount);
-            assertEquals("111111111 qwe qwe@qwe.com false", dao.findAccountByUserID("111111111").toString());
+            Account newAccount = new Account("111111111", "newname", "qwe@qwe.com");
+
+            assertEquals(true, dao.addNewAccount(newAccount));
         } catch (IOException e) {
             e.printStackTrace();
         }
