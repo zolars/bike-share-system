@@ -15,11 +15,7 @@ class AccountDaoImplTest {
         AccountDao dao = new AccountDaoImpl();
         try {
             System.out.println(dao.findAccountAll());
-            assertEquals("admin xin qwe@qwe.qwe false", dao.findAccountAll().get(0).toString());
-            assertEquals("123 qwe asd@qwe.com false", dao.findAccountAll().get(1).toString());
-            assertEquals("234 wer 118169671@qq.com false", dao.findAccountAll().get(2).toString());
-            assertEquals("345 ert WTF@wtf.wtf false", dao.findAccountAll().get(3).toString());
-            assertEquals("qwer qwer zolars@outlook.com false", dao.findAccountAll().get(4).toString());
+            assertEquals("admin admin admin false", dao.findAccountAll().get(0).toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -29,7 +25,7 @@ class AccountDaoImplTest {
     void findAccountByUserID() {
         AccountDao dao = new AccountDaoImpl();
         try {
-            assertEquals("admin admin admin@admin.admin false", dao.findAccountByUserID("admin").toString());
+            assertEquals("admin admin admin false", dao.findAccountByUserID("admin").toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -39,7 +35,7 @@ class AccountDaoImplTest {
     void findAccountByUsername() {
         AccountDao dao = new AccountDaoImpl();
         try {
-            assertEquals("123 qwe asd@qwe.com false", dao.findAccountByUsername("qwe").toString());
+            assertEquals("admin admin admin false", dao.findAccountByUsername("admin").toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -49,7 +45,9 @@ class AccountDaoImplTest {
     void addNewAccount() {
         AccountDao dao = new AccountDaoImpl();
         try {
-            assert (dao.addNewAccount(new Account("4", "qweeee", "zzz@zzz.com")));
+            Account newAccount = new Account("111111111", "qwe", "qwe@qwe.com");
+            dao.addNewAccount(newAccount);
+            assertEquals("111111111 qwe qwe@qwe.com false", dao.findAccountByUserID("111111111").toString());
         } catch (IOException e) {
             e.printStackTrace();
         }

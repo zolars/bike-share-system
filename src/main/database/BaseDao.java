@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class BaseDao {
 
-    private static final String filePath = Main.filePath;
+    private static final String filePath = Main.getFilepath();
 
     private static synchronized boolean getConnection(String fileName) {
         File file = new File(filePath + fileName);

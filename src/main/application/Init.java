@@ -12,12 +12,7 @@ import database.entity.*;
  */
 public class Init {
     public static void main(String[] args) {
-        String env = System.getProperty("os.name");
-        if (env.split(" ")[0].equals("Windows"))
-            Main.filePath = ".\\database\\";
-        else if (env.equals("Linux"))
-            Main.filePath = "./database/";
-        String filePath = Main.filePath;
+        String filePath = Main.getFilepath();
         String[] fileNames = Main.fileNames;
 
         for (String fileName : fileNames) {
