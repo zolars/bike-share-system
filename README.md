@@ -101,26 +101,26 @@ We can also use the command-line interface to install this program everywhere yo
    For Admin-type:
 
    ```powershell
-   javac -d bin -classpath bin .\src\application\*.java .\src\layout\*.java
-   jar cfm BikeShareSystem-Admin.jar .\MANIFEST\MANIFEST-ADMIN.MF -C bin .
-   java -jar BikeShareSystem-Admin.jar
+   javac -d bin\main -classpath bin\main .\src\main\application\*.java .\src\main\layout\*.java .\src\main\database\*.java .\src\main\database\entity\*.java .\src\main\database\dao\*.java .\src\main\database\dao\impl\*.java
+   java -classpath bin\main application.Init
+   jar cfm BikeShareSystem-Admin.jar .\MANIFEST\MANIFEST-ADMIN.MF -C bin\main .
    ```
    
    or for Station-type:
 
    ```powershell
-   javac -d bin -classpath bin .\src\application\*.java .\src\layout\*.java
-   jar cfm BikeShareSystem-Station.jar .\MANIFEST\MANIFEST-STATION.MF -C bin .
-   java -jar BikeShareSystem-Station.jar
+   javac -d bin\main -classpath bin\main .\src\main\application\*.java .\src\main\layout\*.java .\src\main\database\*.java .\src\main\database\entity\*.java .\src\main\database\dao\*.java .\src\main\database\dao\impl\*.java
+   java -classpath bin\main application.Init
+   jar cfm BikeShareSystem-User.jar .\MANIFEST\MANIFEST-USER.MF -C bin\main .
    ```
-      
+   
    (Optional)
    or for User-type:
 
    ```powershell
-   javac -d bin -classpath bin .\src\application\*.java .\src\layout\*.java
-   jar cfm BikeShareSystem-User.jar .\MANIFEST\MANIFEST-USER.MF -C bin .
-   java -jar BikeShareSystem-User.jar
+   javac -d bin\main -classpath bin\main .\src\main\application\*.java .\src\main\layout\*.java .\src\main\database\*.java .\src\main\database\entity\*.java .\src\main\database\dao\*.java .\src\main\database\dao\impl\*.java
+   java -classpath bin\main application.Init
+   jar cfm BikeShareSystem-Station.jar .\MANIFEST\MANIFEST-STATION.MF -C bin\main .
    ```
 
 4. You can find the `BikeShareSystem-*.jar` in your installation path.
@@ -129,7 +129,7 @@ We can also use the command-line interface to install this program everywhere yo
 
 Thank you for using this application. If you have any problems, don't hesitate and contact me with following e-mail:
 
-- Github: https://github.com/zolars/BikeShareSystem
+- Github: https://github.com/zolars/BikeShareSystem/tree/course-request
 - E-mail: xinyf_bupt@outlook.com
 
 Besides, I hope you can give valuable advice back to me. It's really helpful for me to improve this application.
