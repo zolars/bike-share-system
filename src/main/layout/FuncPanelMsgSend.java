@@ -15,7 +15,7 @@ import database.dao.impl.MsgDaoImpl;
  * FuncPanelMsgSend
  * 
  * @author An Hongda
- * @version 0.9
+ * @version 1.0
  */
 public class FuncPanelMsgSend extends FuncPanelDefault implements ActionListener {
     private static final long serialVersionUID = 1L;

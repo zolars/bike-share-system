@@ -11,7 +11,7 @@ import application.*;
  * MainLayout
  * 
  * @author Xin Yifei
- * @version 0.9
+ * @version 1.0
  */
 public class MainLayout extends JFrame {
 

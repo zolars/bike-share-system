@@ -14,7 +14,7 @@ import database.entity.*;
  * Impl
  * 
  * @author Xin Yifei
- * @version 0.9
+ * @version 1.0
  */
 public class RecordDaoImpl extends BaseDao implements RecordDao {
 

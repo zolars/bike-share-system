@@ -16,7 +16,7 @@ import database.entity.*;
  * FuncPanelRegister
  * 
  * @author Zhang Yue
- * @version 0.9
+ * @version 1.0
  */
 public class FuncPanelRegister extends FuncPanelDefault implements ActionListener {
     private static final long serialVersionUID = 1L;

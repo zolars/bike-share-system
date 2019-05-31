@@ -9,7 +9,7 @@ import database.entity.*;
  * BikesDao
  * 
  * @author Xin Yifei
- * @version 0.9
+ * @version 1.0
  */
 public interface BikesDao {
 	

@@ -19,7 +19,7 @@ import database.entity.*;
  * FuncPanelAccounts
  * 
  * @author Xin Yifei
- * @version 0.9
+ * @version 1.0
  */
 public class FuncPanelAccounts extends FuncPanelDefault implements ActionListener {
     private static final long serialVersionUID = 1L;

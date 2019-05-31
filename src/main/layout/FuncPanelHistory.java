@@ -8,7 +8,7 @@ import application.*;
  * FuncPanelHistory
  * 
  * @author Sun Qinghao & Lu Siyuan
- * @version 0.9
+ * @version 1.0
  */
 public class FuncPanelHistory extends FuncPanelDefault {
     private static final long serialVersionUID = 1L;

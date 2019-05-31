@@ -9,7 +9,7 @@ import database.entity.*;
  * RecordDao
  * 
  * @author Xin Yifei
- * @version 0.9
+ * @version 1.0
  */
 public interface RecordDao {
 	

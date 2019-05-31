@@ -10,7 +10,7 @@ import java.util.List;
  * BaseDAO
  *
  * @author Xin Yifei
- * @version 0.9
+ * @version 1.0
  */
 public class BaseDao {
 
@@ -26,7 +26,7 @@ public class BaseDao {
      * all data.
      *
      * @author Xin Yifei
-     * @version 0.9
+     * @version 1.0
      */
     public static List<String[]> search(String fileName, String keyword, int index) throws IOException {
         List<String[]> dataSet = new ArrayList<String[]>();

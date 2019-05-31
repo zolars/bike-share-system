@@ -4,7 +4,7 @@ package database.entity;
  * Account
  * 
  * @author Xin Yifei
- * @version 0.9
+ * @version 1.0
  */
 public class Account {
     private String userID;

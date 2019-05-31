@@ -8,7 +8,7 @@ import database.entity.*;
  * Init
  * 
  * @author Xin Yifei
- * @version 0.9
+ * @version 1.0
  */
 public class Init {
     public static void main(String[] args) {

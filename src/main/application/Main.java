@@ -5,11 +5,11 @@ import database.entity.*;
 /**
  * Main * @author Xin Yifei
  * 
- * @version 0.9
+ * @version 1.0
  */
 public class Main {
 
-    public static final double version = 0.9;
+    public static final double version = 1.0;
     public static final String[] fileNames = { "bikes.txt", "account.txt", "record.txt", "msg.txt" };
 
     public static final int freshInterval = 1000; // in ms

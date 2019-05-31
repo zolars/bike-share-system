@@ -18,7 +18,7 @@ import database.entity.*;
  * FuncPanelInfo
  * 
  * @author Sun Qinghao & Lu Siyuan
- * @version 0.9
+ * @version 1.0
  */
 public class FuncPanelInfo extends FuncPanelDefault implements ActionListener {
     private static final long serialVersionUID = 1L;
