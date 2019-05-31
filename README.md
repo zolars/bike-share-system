@@ -67,7 +67,7 @@ A Java software used to manage the shared bikes on campus. An assignment from QM
 
 ## Launch Instruction
 
-You can just double-click the file `BikeShareSystem-User.jar` or `BikeShareSystem-Admin.jar` or `BikeShareSystem-Station.jar` to run this program (With JVM).
+You can just double-click the file `BikeShareSystem-Admin.jar` or `BikeShareSystem-Station.jar` to run this program (With JVM).
 
 You can also use the command-line interface to run this program.
 
@@ -102,24 +102,19 @@ We can also use the command-line interface to install this program everywhere yo
    For Admin-type:
 
    ```powershell
-   c
+    copy src\main\images\* bin\main\images\
+    javac -d bin\main -classpath bin\main .\src\main\application\*.java .\src\main\layout\*.java .\src\main\database\*.java .\src\main\database\entity\*.java .\src\main\database\dao\*.java .\src\main\database\dao\impl\*.java
+    java -classpath bin\main application.Init
+    jar cfm BikeShareSystem-Admin.jar .\MANIFEST\MANIFEST-ADMIN.MF -C bin\main .
    ```
    
    or for Station-type:
 
    ```powershell
-   javac -d bin\main -classpath bin\main .\src\main\application\*.java .\src\main\layout\*.java .\src\main\database\*.java .\src\main\database\entity\*.java .\src\main\database\dao\*.java .\src\main\database\dao\impl\*.java
-   java -classpath bin\main application.Init
-   jar cfm BikeShareSystem-User.jar .\MANIFEST\MANIFEST-USER.MF -C bin\main .
-   ```
-   
-   (Optional)
-   or for User-type:
-
-   ```powershell
-   javac -d bin\main -classpath bin\main .\src\main\application\*.java .\src\main\layout\*.java .\src\main\database\*.java .\src\main\database\entity\*.java .\src\main\database\dao\*.java .\src\main\database\dao\impl\*.java
-   java -classpath bin\main application.Init
-   jar cfm BikeShareSystem-Station.jar .\MANIFEST\MANIFEST-STATION.MF -C bin\main .
+    copy src\main\images\* bin\main\images\
+    javac -d bin\main -classpath bin\main .\src\main\application\*.java .\src\main\layout\*.java .\src\main\database\*.java .\src\main\database\entity\*.java .\src\main\database\dao\*.java .\src\main\database\dao\impl\*.java
+    java -classpath bin\main application.Init
+    jar cfm BikeShareSystem-Station.jar .\MANIFEST\MANIFEST-STATION.MF -C bin\main .
    ```
 
 4. You can find the `BikeShareSystem-*.jar` in your installation path.
