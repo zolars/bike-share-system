@@ -31,6 +31,5 @@ public class Main {
         } else {
             return ".\\database\\";
         }
-
     }
 }

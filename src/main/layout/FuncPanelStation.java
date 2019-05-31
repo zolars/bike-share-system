@@ -112,7 +112,8 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
                     Date date = recordDao.isUserForbidden(userID);
                     Account account = accountDao.findAccountByUserID(userID);
 
-                    if (bikesDao.findBikesNumberByStation(MainStation.station) == 0) {
+                    if (bikesDao.findBikesNumberByStation(MainStation.station) == 0
+                            && recordDao.findRecordNotend(userID).size() == 0) {
                         JOptionPane.showMessageDialog(null, "This station has no bike left : (", "Sorry",
                                 JOptionPane.WARNING_MESSAGE);
                         break;

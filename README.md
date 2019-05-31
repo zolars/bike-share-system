@@ -3,6 +3,7 @@
 ## Description
 
 A Java software used to manage the shared bikes on campus. An assignment from QMUL-EBU5304 to practice Scrum.
+**Notice : If you need to switch the stations on the `BikeShareSystem-Station.jar`, please close the application window and open it again. You can choose the station's name when you open a new window.**
 
 ## Features
 
@@ -101,9 +102,7 @@ We can also use the command-line interface to install this program everywhere yo
    For Admin-type:
 
    ```powershell
-   javac -d bin\main -classpath bin\main .\src\main\application\*.java .\src\main\layout\*.java .\src\main\database\*.java .\src\main\database\entity\*.java .\src\main\database\dao\*.java .\src\main\database\dao\impl\*.java
-   java -classpath bin\main application.Init
-   jar cfm BikeShareSystem-Admin.jar .\MANIFEST\MANIFEST-ADMIN.MF -C bin\main .
+   c
    ```
    
    or for Station-type:
