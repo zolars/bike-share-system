@@ -1,24 +1,30 @@
 package layout;
 
-import java.awt.*;
-import java.awt.event.*;
+import application.MainAdmin;
+import database.dao.AccountDao;
+import database.dao.impl.AccountDaoImpl;
+import database.entity.Account;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.regex.*;
-
-import javax.swing.*;
-
-import application.*;
-import database.dao.*;
-import database.dao.impl.*;
-import database.entity.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  * FuncPanelRegister
- * 
+ *
  * @author Zhang Yue
  * @version 1.0
  */
 public class FuncPanelRegister extends FuncPanelDefault implements ActionListener {
+
     private static final long serialVersionUID = 1L;
 
     private JTextField jtUserID;
@@ -81,13 +87,16 @@ public class FuncPanelRegister extends FuncPanelDefault implements ActionListene
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == jbRegister) {
             if (isNotID(jtUserID.getText())) {
-                JOptionPane.showMessageDialog(null, "Null Input! You must input something. Please try again.", "Sorry",
+                JOptionPane.showMessageDialog(null,
+                        "Null Input! You must input something. Please try again.", "Sorry",
                         JOptionPane.WARNING_MESSAGE);
             } else if (isNotName(jtUsername.getText())) {
-                JOptionPane.showMessageDialog(null, "Your name input is wrong. Please try again.", "Sorry",
+                JOptionPane.showMessageDialog(null, "Your name input is wrong. Please try again.",
+                        "Sorry",
                         JOptionPane.WARNING_MESSAGE);
             } else if (isNotEmail(jtEmail.getText())) {
-                JOptionPane.showMessageDialog(null, "Your Email format is wrong. Please try again.", "Sorry",
+                JOptionPane.showMessageDialog(null, "Your Email format is wrong. Please try again.",
+                        "Sorry",
                         JOptionPane.WARNING_MESSAGE);
             } else {
                 AccountDao dao = new AccountDaoImpl();
@@ -99,10 +108,14 @@ public class FuncPanelRegister extends FuncPanelDefault implements ActionListene
 
                 try {
                     if (dao.addNewAccount(account)) {
-                        JOptionPane.showMessageDialog(null, "Congratulations! Register Successfully!",
-                                "Congratulations!", JOptionPane.WARNING_MESSAGE);
+                        JOptionPane
+                                .showMessageDialog(null, "Congratulations! Register Successfully!",
+                                        "Congratulations!",
+                                        JOptionPane.WARNING_MESSAGE);
                     } else {
-                        JOptionPane.showMessageDialog(null, "The user ID or user name has been used. Please try again.",
+                        JOptionPane.showMessageDialog(null,
+                                "The user ID or user name has been used. Please try "
+                                        + "again.",
                                 "Sorry", JOptionPane.WARNING_MESSAGE);
                     }
 
@@ -118,45 +131,51 @@ public class FuncPanelRegister extends FuncPanelDefault implements ActionListene
     }
 
     public static boolean isNotID(String string) {
-        if (string == null)
+        if (string == null) {
             return false;
+        }
         String regEx1 = "[0-9]{9}";
         Pattern p;
         Matcher m;
         p = Pattern.compile(regEx1);
         m = p.matcher(string);
-        if (m.matches())
+        if (m.matches()) {
             return false;
-        else
+        } else {
             return true;
+        }
     }
 
     public static boolean isNotName(String string) {
-        if (string == null)
+        if (string == null) {
             return false;
+        }
         String regEx1 = "[A-Za-z ]+";
         Pattern p;
         Matcher m;
         p = Pattern.compile(regEx1);
         m = p.matcher(string);
-        if (m.matches())
+        if (m.matches()) {
             return false;
-        else
+        } else {
             return true;
+        }
     }
 
     public static boolean isNotEmail(String string) {
-        if (string == null)
+        if (string == null) {
             return false;
+        }
         String regEx1 = "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
         Pattern p;
         Matcher m;
         p = Pattern.compile(regEx1);
         m = p.matcher(string);
-        if (m.matches())
+        if (m.matches()) {
             return false;
-        else
+        } else {
             return true;
+        }
     }
 
     public static void main(String[] args) {

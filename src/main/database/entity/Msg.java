@@ -1,15 +1,16 @@
 package database.entity;
 
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
 
 /**
  * Msg
- * 
+ *
  * @author Xin Yifei
  * @version 1.0
  */
 public class Msg {
+
     private int msgID;
     private String userID;
     private Date date;
@@ -89,6 +90,6 @@ public class Msg {
 
     public String[] toStringList() {
         SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        return new String[] { sf.format(date), text };
+        return new String[]{sf.format(date), text};
     }
 }

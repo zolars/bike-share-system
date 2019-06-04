@@ -1,26 +1,37 @@
 package layout;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
-import java.util.List;
+import application.MainAdmin;
+import database.dao.RecordDao;
+import database.dao.impl.RecordDaoImpl;
+import database.entity.Record;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.util.ArrayList;
-
-import javax.swing.*;
-import javax.swing.table.*;
-
-import application.*;
-import database.dao.*;
-import database.dao.impl.*;
-import database.entity.*;
+import java.util.List;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
 
 /**
  * FuncPanelInfo
- * 
+ *
  * @author Sun Qinghao & Lu Siyuan
  * @version 1.0
  */
 public class FuncPanelInfo extends FuncPanelDefault implements ActionListener {
+
     private static final long serialVersionUID = 1L;
 
     private String[][] datas = new String[200][5];
@@ -34,7 +45,8 @@ public class FuncPanelInfo extends FuncPanelDefault implements ActionListener {
         grabData();
         setLayout(null);
 
-        table = new JTable(datas, new String[] { "Start Date", "End Date", "User ID", "Duration", "Overdue" });
+        table = new JTable(datas,
+                new String[]{"Start Date", "End Date", "User ID", "Duration", "Overdue"});
 
         JTableHeader head = table.getTableHeader();
         head.setPreferredSize(new Dimension(head.getWidth(), 50));
@@ -61,7 +73,8 @@ public class FuncPanelInfo extends FuncPanelDefault implements ActionListener {
                 String overdue = table.getValueAt(table.getSelectedRow(), 4).toString();
 
                 JOptionPane.showMessageDialog(null,
-                        "Start Date : " + startDate + "\nEnd Date : " + endDate + "\nUser ID : " + userID
+                        "Start Date : " + startDate + "\nEnd Date : " + endDate + "\nUser ID : "
+                                + userID
                                 + "\nDuration : " + duration + "\nis Overdue : " + overdue,
                         "Details", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -74,7 +87,8 @@ public class FuncPanelInfo extends FuncPanelDefault implements ActionListener {
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
-                sPane.setBounds(getBounds().width / 18, getBounds().height / 46 * 10, getBounds().width * 8 / 9,
+                sPane.setBounds(getBounds().width / 18, getBounds().height / 46 * 10,
+                        getBounds().width * 8 / 9,
                         getBounds().height * 205 / 300);
             }
         });

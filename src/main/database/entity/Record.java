@@ -1,15 +1,16 @@
 package database.entity;
 
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
 
 /**
  * Record
- * 
+ *
  * @author Xin Yifei
  * @version 1.0
  */
 public class Record {
+
     private int recordID;
     private String userID;
     private Date startDate;
@@ -104,17 +105,21 @@ public class Record {
     @Override
     public String toString() {
         SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd;HH:mm:ss");
-        if (startDate.equals(endDate))
+        if (startDate.equals(endDate)) {
             return recordID + " " + userID + " " + sf.format(startDate) + " null";
-        else
+        } else {
             return recordID + " " + userID + " " + sf.format(startDate) + " " + sf.format(endDate);
+        }
     }
 
     public String toDetail() {
         SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        if (startDate.equals(endDate))
-            return sf.format(startDate) + ";" + "Not end" + ";" + userID + ";" + duration + ";" + fine;
-        else
-            return sf.format(startDate) + ";" + sf.format(endDate) + ";" + userID + ";" + duration + ";" + fine;
+        if (startDate.equals(endDate)) {
+            return sf.format(startDate) + ";" + "Not end" + ";" + userID + ";" + duration + ";"
+                    + fine;
+        } else {
+            return sf.format(startDate) + ";" + sf.format(endDate) + ";" + userID + ";" + duration
+                    + ";" + fine;
+        }
     }
 }

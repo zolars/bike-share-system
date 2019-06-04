@@ -1,8 +1,12 @@
 package database;
 
 import application.Main;
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,13 +26,13 @@ public class BaseDao {
     }
 
     /**
-     * Find data from fileName with the keyword in index. When keyword="", return
-     * all data.
+     * Find data from fileName with the keyword in index. When keyword="", return all data.
      *
      * @author Xin Yifei
      * @version 1.0
      */
-    public static List<String[]> search(String fileName, String keyword, int index) throws IOException {
+    public static List<String[]> search(String fileName, String keyword, int index)
+            throws IOException {
         List<String[]> dataSet = new ArrayList<String[]>();
 
         if (getConnection(fileName)) {
@@ -75,7 +79,8 @@ public class BaseDao {
         }
     }
 
-    public static void replace(String fileName, String keyword, int index, String newString) throws IOException {
+    public static void replace(String fileName, String keyword, int index, String newString)
+            throws IOException {
         StringBuffer buf = new StringBuffer();
         if (getConnection(fileName)) {
             File file = new File(filePath + fileName);

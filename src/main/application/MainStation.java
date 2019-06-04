@@ -1,13 +1,13 @@
 package application;
 
-import java.util.*;
-import javax.swing.*;
-
-import layout.*;
+import java.util.LinkedList;
+import javax.swing.JPanel;
+import layout.FuncPanelStation;
+import layout.MainLayout;
 
 /**
  * MainStation
- * 
+ *
  * @author Xin Yifei
  * @version 1.0
  */

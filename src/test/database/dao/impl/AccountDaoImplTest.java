@@ -1,12 +1,11 @@
 package database.dao.impl;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import database.dao.AccountDao;
 import database.entity.Account;
-import org.junit.jupiter.api.Test;
-
 import java.io.IOException;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 class AccountDaoImplTest {
 

@@ -1,27 +1,28 @@
 package database.dao;
 
-import java.io.*;
-import java.util.*;
-
-import database.entity.*;
+import database.entity.Account;
+import java.io.IOException;
+import java.util.List;
 
 /**
  * AccountDao
- * 
+ *
  * @author Xin Yifei
  * @version 1.0
  */
 public interface AccountDao {
-	
-	/**
-	* <p>Description: Get all accounts stored in database.</p>
-	* @return All accounts
-	* @throws IOException Input and output exception
-	*/
+
+    /**
+     * <p>Description: Get all accounts stored in database.</p>
+     *
+     * @return All accounts
+     * @throws IOException Input and output exception
+     */
     public List<Account> findAccountAll() throws IOException;
 
     /**
      * <p>Description: Get certain account in accordance with a user ID.</p>
+     *
      * @param userID A user's ID number
      * @return An account with a certain ID number
      * @throws IOException Input and output exception
@@ -30,6 +31,7 @@ public interface AccountDao {
 
     /**
      * <p>Description: Get certain account in accordance with a user's name.</p>
+     *
      * @param username A user's name
      * @return An account with a certain name
      * @throws IOException Input and output exception
@@ -38,6 +40,7 @@ public interface AccountDao {
 
     /**
      * <p>Description: Add a new account</p>
+     *
      * @param account An object of Account
      * @return If succeed, return true. If not, return false.
      * @throws IOException Input and output exception
@@ -46,6 +49,7 @@ public interface AccountDao {
 
     /**
      * <p>Description: Update the information about an account stored in database</p>
+     *
      * @param accountModified An object of Account that will be modified
      * @return If succeed, return true. If not, return false.
      * @throws IOException Input and output exception
@@ -54,6 +58,7 @@ public interface AccountDao {
 
     /**
      * <p>Description: Delete an account stored in database</p>
+     *
      * @param account An object of Account that will be deleted
      * @throws IOException Input and output exception
      */

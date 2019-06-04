@@ -1,13 +1,15 @@
 package application;
 
-import java.util.*;
-import javax.swing.*;
-
-import layout.*;
+import java.util.LinkedList;
+import javax.swing.JPanel;
+import layout.FuncPanelBikes;
+import layout.FuncPanelHistory;
+import layout.FuncPanelMsgRec;
+import layout.MainLayout;
 
 /**
  * MainUser
- * 
+ *
  * @author Xin Yifei
  * @version 1.0
  */

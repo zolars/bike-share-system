@@ -1,21 +1,28 @@
 package layout;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-
-import application.*;
-import database.dao.*;
-import database.dao.impl.*;
-import database.entity.*;
+import application.Main;
+import application.MainUser;
+import database.dao.BikesDao;
+import database.dao.impl.BikesDaoImpl;
+import database.entity.Bikes;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  * FuncPanelBikes
- * 
+ *
  * @author Lu Siyuan
  * @version 1.0
  */
 public class FuncPanelBikes extends JPanel {
+
     private static final long serialVersionUID = 1L;
 
     private Image img = new ImageIcon(getClass().getResource("/images/map.jpg")).getImage();
@@ -40,7 +47,8 @@ public class FuncPanelBikes extends JPanel {
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
-                text.setBounds(20, getBounds().height * 2 / 3 - 70, 200, getBounds().height * 4 / 21 + 70);
+                text.setBounds(20, getBounds().height * 2 / 3 - 70, 200,
+                        getBounds().height * 4 / 21 + 70);
             }
         });
     }

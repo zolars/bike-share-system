@@ -2,11 +2,12 @@ package database.entity;
 
 /**
  * Account
- * 
+ *
  * @author Xin Yifei
  * @version 1.0
  */
 public class Account {
+
     private String userID;
     private String username;
     private String email;

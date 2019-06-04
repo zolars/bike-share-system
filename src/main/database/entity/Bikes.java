@@ -2,11 +2,12 @@ package database.entity;
 
 /**
  * Bikes
- * 
+ *
  * @author Xin Yifei
  * @version 1.0
  */
 public class Bikes {
+
     private String station = new String();
     private int number;
 

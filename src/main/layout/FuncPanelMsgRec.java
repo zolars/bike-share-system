@@ -1,28 +1,41 @@
 package layout;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
+import application.MainUser;
+import database.dao.MsgDao;
+import database.dao.impl.MsgDaoImpl;
+import database.entity.Msg;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Calendar;
-
-import javax.swing.*;
-import javax.swing.table.*;
-
-import application.*;
-import database.dao.*;
-import database.dao.impl.*;
-import database.entity.*;
+import java.util.List;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
 
 /**
  * FuncPanelMsgRec
- * 
+ *
  * @author An Hongda
  * @version 1.0
  */
 public class FuncPanelMsgRec extends FuncPanelDefault implements ActionListener {
+
     private static final long serialVersionUID = 1L;
 
     private MsgDao dao = new MsgDaoImpl();
@@ -62,7 +75,7 @@ public class FuncPanelMsgRec extends FuncPanelDefault implements ActionListener 
         overduePanel.setOpaque(false);
         add(overduePanel);
 
-        table = new JTable(datas, new String[] { "Date", "Message" });
+        table = new JTable(datas, new String[]{"Date", "Message"});
 
         JTableHeader head = table.getTableHeader();
         head.setPreferredSize(new Dimension(head.getWidth(), 50));
@@ -81,31 +94,34 @@ public class FuncPanelMsgRec extends FuncPanelDefault implements ActionListener 
             public void mouseClicked(MouseEvent e) {
                 String date = table.getValueAt(table.getSelectedRow(), 0).toString();
                 String text = table.getValueAt(table.getSelectedRow(), 1).toString();
-                Object[] choices = { "OK", "Delete", "Cancel" };
-                int choiceNum = (int) JOptionPane.showOptionDialog(null, "Date : " + date + "\nMessage : " + text,
-                        "Details", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, choices,
-                        choices[0]);
+                Object[] choices = {"OK", "Delete", "Cancel"};
+                int choiceNum = (int) JOptionPane
+                        .showOptionDialog(null, "Date : " + date + "\nMessage : " + text,
+                                "Details", JOptionPane.YES_NO_CANCEL_OPTION,
+                                JOptionPane.INFORMATION_MESSAGE, null, choices,
+                                choices[0]);
 
                 switch (choiceNum) {
-                case 0: // OK
-                    break;
-                case 1: // Delete
-                    try {
-                        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-                        for (Msg selectedMsg : otherMsg) {
-                            if (text.equals(selectedMsg.getText()) && date.equals(sf.format(selectedMsg.getDate()))) {
-                                dao.deleteMsg(String.valueOf(selectedMsg.getMsgID()));
-                                updateUI();
+                    case 0: // OK
+                        break;
+                    case 1: // Delete
+                        try {
+                            SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                            for (Msg selectedMsg : otherMsg) {
+                                if (text.equals(selectedMsg.getText()) && date
+                                        .equals(sf.format(selectedMsg.getDate()))) {
+                                    dao.deleteMsg(String.valueOf(selectedMsg.getMsgID()));
+                                    updateUI();
+                                }
                             }
+                        } catch (IOException e1) {
+                            e1.printStackTrace();
                         }
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
-                    }
-                    break;
-                case 2: // Cancel
-                    break;
-                default:
-                    break;
+                        break;
+                    case 2: // Cancel
+                        break;
+                    default:
+                        break;
                 }
             }
         });
@@ -118,7 +134,8 @@ public class FuncPanelMsgRec extends FuncPanelDefault implements ActionListener 
             @Override
             public void componentResized(ComponentEvent e) {
                 overduePanel.setBounds(0, getBounds().height / 60, getBounds().width, 60);
-                sPane.setBounds(getBounds().width / 18, getBounds().height / 46 * 10, getBounds().width * 8 / 9,
+                sPane.setBounds(getBounds().width / 18, getBounds().height / 46 * 10,
+                        getBounds().width * 8 / 9,
                         getBounds().height * 205 / 300);
             }
         });

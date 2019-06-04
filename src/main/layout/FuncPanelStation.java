@@ -2,19 +2,38 @@ package layout;
 
 import application.Main;
 import application.MainStation;
-import database.dao.*;
-import database.dao.impl.*;
-import database.entity.*;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import database.dao.AccountDao;
+import database.dao.BikesDao;
+import database.dao.MsgDao;
+import database.dao.RecordDao;
+import database.dao.impl.AccountDaoImpl;
+import database.dao.impl.BikesDaoImpl;
+import database.dao.impl.MsgDaoImpl;
+import database.dao.impl.RecordDaoImpl;
+import database.entity.Account;
+import database.entity.Bikes;
+import database.entity.Msg;
+import database.entity.Record;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  * FuncPanelStation
@@ -23,6 +42,7 @@ import java.util.List;
  * @version 1.0
  */
 public class FuncPanelStation extends FuncPanelDefault implements ActionListener {
+
     private static final long serialVersionUID = 1L;
 
     private SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -51,13 +71,15 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
 
             while (true) {
                 String station = (String) JOptionPane.showInputDialog(null,
-                        "Please choose the station name of this " + "PC:\n", "Bike Share System - Station",
-                        JOptionPane.PLAIN_MESSAGE, new ImageIcon(), obj, "");
+                        "Please choose the station name of this " + "PC:\n",
+                        "Bike Share System - Station", JOptionPane.PLAIN_MESSAGE, new ImageIcon(),
+                        obj, "");
                 MainStation.station = station;
-                if (MainStation.station == null)
+                if (MainStation.station == null) {
                     continue;
-                else
+                } else {
                     break;
+                }
             }
         }
 
@@ -92,7 +114,8 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
                         getBounds().height / 3 - 60 / 3, text1.getText().length() * 35, 60);
                 text2.setBounds(getBounds().width / 2 - text2.getText().length() * 21 / 4,
                         getBounds().height / 3 - 30 / 3 + 130, text2.getText().length() * 11, 30);
-                btn.setBounds(getBounds().width / 2 - 30, getBounds().height * 3 / 4 - 30 * 3 / 4, 60, 30);
+                btn.setBounds(getBounds().width / 2 - 30, getBounds().height * 3 / 4 - 30 * 3 / 4,
+                        60, 30);
             }
         });
     }
@@ -107,20 +130,23 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
         if (e.getSource() == btn) {
             try {
                 while (true) {
-                    userID = JOptionPane.showInputDialog(null, "Input your ID number (not null) : \n", "Check ID",
-                            JOptionPane.PLAIN_MESSAGE);
+                    userID = JOptionPane
+                            .showInputDialog(null, "Input your ID number (not null) : \n",
+                                    "Check ID",
+                                    JOptionPane.PLAIN_MESSAGE);
                     Date date = recordDao.isUserForbidden(userID);
                     Account account = accountDao.findAccountByUserID(userID);
 
                     if (bikesDao.findBikesNumberByStation(MainStation.station) == 0
                             && recordDao.findRecordNotend(userID).size() == 0) {
-                        JOptionPane.showMessageDialog(null, "This station has no bike left : (", "Sorry",
-                                JOptionPane.WARNING_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "This station has no bike left : (",
+                                "Sorry", JOptionPane.WARNING_MESSAGE);
                         break;
                     } else if (userID.equals("")) {
                         continue;
                     } else if (accountDao.findAccountByUserID(userID) == null) {
-                        JOptionPane.showMessageDialog(null, "Invalid ID card. Please contact the administer.", "Sorry",
+                        JOptionPane.showMessageDialog(null,
+                                "Invalid ID card. Please contact the administer.", "Sorry",
                                 JOptionPane.WARNING_MESSAGE);
                         break;
                     } else if (recordDao.findRecordNotend(userID).size() >= 1) {
@@ -133,11 +159,12 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
                         MainStation.restart = true;
                         break;
                     } else if (account.isFine()) {
-                        Object[] choices = { "Pay", "Cancel" };
+                        Object[] choices = {"Pay", "Cancel"};
                         int choiceNum = (int) JOptionPane.showOptionDialog(null,
-                                "Until you can use the bikes, you " + "still have 100BCD as fine to pay.", "Payment",
-                                JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, choices,
-                                choices[0]);
+                                "Until you can use the bikes, you "
+                                        + "still have 100BCD as fine to pay.", "Payment",
+                                JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE,
+                                null, choices, choices[0]);
                         if (choiceNum == 0) {
                             // Pay for the fine
                             account.setFine(false);
@@ -146,7 +173,8 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
                             text1.setText("Your slot is unlocked : )");
                             text2.setText("Remember giving the bike back at one of parking areas!");
                             btn.setEnabled(false);
-                            adjustFrameLight(bikesDao.findBikesNumberByStation(MainStation.station) - 1);
+                            adjustFrameLight(
+                                    bikesDao.findBikesNumberByStation(MainStation.station) - 1);
                             break;
                         } else {
                             text1.setText("Please pay for the fine first : (");
@@ -159,7 +187,8 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
                         text1.setText("Your slot is unlocked : )");
                         text2.setText("Remember giving the bike back at one of parking areas!");
                         btn.setEnabled(false);
-                        adjustFrameLight(bikesDao.findBikesNumberByStation(MainStation.station) - 1);
+                        adjustFrameLight(
+                                bikesDao.findBikesNumberByStation(MainStation.station) - 1);
                         break;
                     }
                 }
@@ -187,24 +216,28 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
                         String startDateStr = sf.format(record.getStartDate());
                         String endDateStr = sf.format(new Date());
 
-                        msgDao.deleteMsg(String.valueOf(msgDao.findMsgOverdue(userID).get(0).getMsgID()));
+                        msgDao.deleteMsg(
+                                String.valueOf(msgDao.findMsgOverdue(userID).get(0).getMsgID()));
                         msgDao.addOtherMsg(userID,
-                                "Your ride from " + startDateStr + " to " + endDateStr + " costs " + "100BCD. * "
-                                        + "Attention : The scooter must be returned within 30 minutes" + " and the "
-                                        + "total usage must not exceed 2 hours a day, otherwise a fine should be "
-                                        + "issued" + ".");
+                                "Your ride from " + startDateStr + " to " + endDateStr + " costs "
+                                        + "100BCD. * "
+                                        + "Attention : The scooter must be returned within 30 "
+                                        + "minutes"
+                                        + " and the "
+                                        + "total usage must not exceed 2 hours a day, otherwise a fine "
+                                        + "should be " + "issued" + ".");
                     }
 
                     // return bikes
                     text1.setText("Thank you for returning : )");
-                    bikesDao.changeBikesByStation(
-                            new Bikes(MainStation.station, bikesDao.findBikesNumberByStation(MainStation.station) + 1));
+                    bikesDao.changeBikesByStation(new Bikes(MainStation.station,
+                            bikesDao.findBikesNumberByStation(MainStation.station) + 1));
                     recordDao.addNewReturn(userID);
                 } else {
                     // borrow bikes
                     text1.setText("Thank you for borrowing : )");
-                    bikesDao.changeBikesByStation(
-                            new Bikes(MainStation.station, bikesDao.findBikesNumberByStation(MainStation.station) - 1));
+                    bikesDao.changeBikesByStation(new Bikes(MainStation.station,
+                            bikesDao.findBikesNumberByStation(MainStation.station) - 1));
                     recordDao.addNewBorrow(userID, new Date());
                 }
 
@@ -216,7 +249,6 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
             text2.setText("If you meet any questions, connect with the administer.");
             MainStation.restart = true;
         }
-
     }
 
     private void returnBikes(String userID) {
@@ -243,27 +275,33 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
         while (true) {
             String notice;
             if (mark) {
-                notice = "Thank you for your feedback.\nIs there any other malfunction on this bicycle?";
+                notice = "Thank you for your feedback.\nIs there any other malfunction on this "
+                        + "bicycle?";
             } else {
                 notice = "Is there any malfunction on this bicycle?";
             }
-            Object[] choices = { "No, thanks", "Yes" };
+            Object[] choices = {"No, thanks", "Yes"};
             int choiceNum = (int) JOptionPane.showOptionDialog(null, notice, "Feedback",
-                    JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, choices, choices[0]);
+                    JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, choices,
+                    choices[0]);
 
             if (choiceNum == 0) {
                 break;
             } else {
-                Object[] obj = { "1  Lock", "2  Brake", "3  Footlice", "4  Chain", "5  Handlebar", "6  Wheels" };
+                Object[] obj = {"1  Lock", "2  Brake", "3  Footlice", "4  Chain", "5  Handlebar",
+                        "6  Wheels"};
                 String choiceStr = (String) JOptionPane.showInputDialog(null,
                         "Please choose the place of " + "malfunction" + " :\n", "Feedback",
                         JOptionPane.QUESTION_MESSAGE, new ImageIcon(), obj, "");
 
                 try {
                     msgDao.addOtherMsg("admin",
-                            "Malfunction : " + choiceStr.split("  ")[1] + " from station " + MainStation.station);
-                    msgDao.addOtherMsg(userID, "Dear user, your feedback about \"" + choiceStr.split("  ")[1] + "\" "
-                            + "has been " + "received." + " If you have any other questions, connect the administer.");
+                            "Malfunction : " + choiceStr.split("  ")[1] + " from station "
+                                    + MainStation.station);
+                    msgDao.addOtherMsg(userID,
+                            "Dear user, your feedback about \"" + choiceStr.split("  ")[1] + "\" "
+                                    + "has been " + "received."
+                                    + " If you have any other questions, connect the administer.");
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -329,14 +367,16 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
             }
 
             // refresh the bikes' num
-            if (text1.getText().charAt(0) == 'S')
+            if (text1.getText().charAt(0) == 'S') {
                 text1.setText("Station " + MainStation.station + " - " + bikeNum + " Bikes Left");
+            }
 
             // update overdue status
             List<Record> overdueRecords = recordDao.findRecordOverdue();
             if (overdueRecords != null) {
-                for (Record overdueRecord : overdueRecords)
+                for (Record overdueRecord : overdueRecords) {
                     msgDao.addOverdueMsg(overdueRecord);
+                }
             }
 
             // add weekMsg
@@ -356,11 +396,13 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
                     weekMsg = "";
                     for (Record record : records) {
                         pastCalendar = Calendar.getInstance();
-                        date.setTime(Calendar.getInstance().getTime().getTime() - 7 * 24 * 3600 * 1000);
+                        date.setTime(
+                                Calendar.getInstance().getTime().getTime() - 7 * 24 * 3600 * 1000);
                         pastCalendar.setTime(date);
                         if (record.getStartDate().after(pastCalendar.getTime())) {
-                            if (record.getDuration() > 0)
+                            if (record.getDuration() > 0) {
                                 allDuration += record.getDuration() / 1000;
+                            }
                             if (record.isFine()) {
                                 weekMsg = "There is still fine to pay for you in last week. ";
                             }
@@ -396,6 +438,8 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
 
         } catch (Exception e) {
             e.printStackTrace();
+
+
         }
     }
 

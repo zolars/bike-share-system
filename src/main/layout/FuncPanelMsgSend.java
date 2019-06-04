@@ -1,23 +1,29 @@
 package layout;
 
-import java.awt.*;
+import application.MainAdmin;
+import database.dao.MsgDao;
+import database.dao.impl.MsgDaoImpl;
+import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-
-import javax.swing.*;
-
-import application.*;
-import database.dao.MsgDao;
-import database.dao.impl.MsgDaoImpl;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  * FuncPanelMsgSend
- * 
+ *
  * @author An Hongda
  * @version 1.0
  */
 public class FuncPanelMsgSend extends FuncPanelDefault implements ActionListener {
+
     private static final long serialVersionUID = 1L;
 
     private JTextField jtUserID;
@@ -83,10 +89,12 @@ public class FuncPanelMsgSend extends FuncPanelDefault implements ActionListener
                 try {
                     MsgDao dao = new MsgDaoImpl();
                     if (dao.addOtherMsg(jtUserID.getText(), jtMsgText.getText())) {
-                        JOptionPane.showMessageDialog(null, "Congratulations! Send Successfully!", "Congratulations!",
+                        JOptionPane.showMessageDialog(null, "Congratulations! Send Successfully!",
+                                "Congratulations!",
                                 JOptionPane.WARNING_MESSAGE);
                     } else {
-                        JOptionPane.showMessageDialog(null, "This account doesn't exist. Please try again.", "Sorry",
+                        JOptionPane.showMessageDialog(null,
+                                "This account doesn't exist. Please try again.", "Sorry",
                                 JOptionPane.WARNING_MESSAGE);
                     }
                 } catch (IOException e1) {
