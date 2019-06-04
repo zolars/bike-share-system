@@ -90,6 +90,6 @@ public class Msg {
 
     public String[] toStringList() {
         SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        return new String[]{sf.format(date), text};
+        return new String[] {sf.format(date), text};
     }
 }

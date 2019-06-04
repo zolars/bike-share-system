@@ -46,7 +46,7 @@ public class FuncPanelInfo extends FuncPanelDefault implements ActionListener {
         setLayout(null);
 
         table = new JTable(datas,
-                new String[]{"Start Date", "End Date", "User ID", "Duration", "Overdue"});
+                new String[] {"Start Date", "End Date", "User ID", "Duration", "Overdue"});
 
         JTableHeader head = table.getTableHeader();
         head.setPreferredSize(new Dimension(head.getWidth(), 50));
@@ -74,8 +74,7 @@ public class FuncPanelInfo extends FuncPanelDefault implements ActionListener {
 
                 JOptionPane.showMessageDialog(null,
                         "Start Date : " + startDate + "\nEnd Date : " + endDate + "\nUser ID : "
-                                + userID
-                                + "\nDuration : " + duration + "\nis Overdue : " + overdue,
+                                + userID + "\nDuration : " + duration + "\nis Overdue : " + overdue,
                         "Details", JOptionPane.INFORMATION_MESSAGE);
             }
         });
@@ -88,8 +87,7 @@ public class FuncPanelInfo extends FuncPanelDefault implements ActionListener {
             @Override
             public void componentResized(ComponentEvent e) {
                 sPane.setBounds(getBounds().width / 18, getBounds().height / 46 * 10,
-                        getBounds().width * 8 / 9,
-                        getBounds().height * 205 / 300);
+                        getBounds().width * 8 / 9, getBounds().height * 205 / 300);
             }
         });
     }

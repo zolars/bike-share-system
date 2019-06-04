@@ -13,7 +13,9 @@ import java.util.List;
 public interface BikesDao {
 
     /**
-     * <p>Description: Get all bikes stored in database.</p>
+     * <p>
+     * Description: Get all bikes stored in database.
+     * </p>
      *
      * @return All bikes
      * @throws IOException Input and output exception
@@ -21,7 +23,9 @@ public interface BikesDao {
     public List<Bikes> findAllBikes() throws IOException;
 
     /**
-     * <p>Description: Get the numbers of bikes docked in a certain station.</p>
+     * <p>
+     * Description: Get the numbers of bikes docked in a certain station.
+     * </p>
      *
      * @param station A certain station
      * @return The number of bikes
@@ -30,7 +34,9 @@ public interface BikesDao {
     public int findBikesNumberByStation(String station) throws IOException;
 
     /**
-     * <p>Description: Change the number of bikes docked in a certain station </p>
+     * <p>
+     * Description: Change the number of bikes docked in a certain station
+     * </p>
      *
      * @param bikes An object of Bikes whose station will be changed
      * @throws IOException Input and output exception

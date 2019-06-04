@@ -130,10 +130,9 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
         if (e.getSource() == btn) {
             try {
                 while (true) {
-                    userID = JOptionPane
-                            .showInputDialog(null, "Input your ID number (not null) : \n",
-                                    "Check ID",
-                                    JOptionPane.PLAIN_MESSAGE);
+                    userID = JOptionPane.showInputDialog(null,
+                            "Input your ID number (not null) : \n", "Check ID",
+                            JOptionPane.PLAIN_MESSAGE);
                     Date date = recordDao.isUserForbidden(userID);
                     Account account = accountDao.findAccountByUserID(userID);
 
@@ -162,9 +161,9 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
                         Object[] choices = {"Pay", "Cancel"};
                         int choiceNum = (int) JOptionPane.showOptionDialog(null,
                                 "Until you can use the bikes, you "
-                                        + "still have 100BCD as fine to pay.", "Payment",
-                                JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE,
-                                null, choices, choices[0]);
+                                        + "still have 100BCD as fine to pay.",
+                                "Payment", JOptionPane.YES_NO_CANCEL_OPTION,
+                                JOptionPane.INFORMATION_MESSAGE, null, choices, choices[0]);
                         if (choiceNum == 0) {
                             // Pay for the fine
                             account.setFine(false);
@@ -218,14 +217,12 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
 
                         msgDao.deleteMsg(
                                 String.valueOf(msgDao.findMsgOverdue(userID).get(0).getMsgID()));
-                        msgDao.addOtherMsg(userID,
-                                "Your ride from " + startDateStr + " to " + endDateStr + " costs "
-                                        + "100BCD. * "
-                                        + "Attention : The scooter must be returned within 30 "
-                                        + "minutes"
-                                        + " and the "
-                                        + "total usage must not exceed 2 hours a day, otherwise a fine "
-                                        + "should be " + "issued" + ".");
+                        msgDao.addOtherMsg(userID, "Your ride from " + startDateStr + " to "
+                                + endDateStr + " costs " + "100BCD. * "
+                                + "Attention : The scooter must be returned within 30 " + "minutes"
+                                + " and the "
+                                + "total usage must not exceed 2 hours a day, otherwise a fine "
+                                + "should be " + "issued" + ".");
                     }
 
                     // return bikes
@@ -295,9 +292,8 @@ public class FuncPanelStation extends FuncPanelDefault implements ActionListener
                         JOptionPane.QUESTION_MESSAGE, new ImageIcon(), obj, "");
 
                 try {
-                    msgDao.addOtherMsg("admin",
-                            "Malfunction : " + choiceStr.split("  ")[1] + " from station "
-                                    + MainStation.station);
+                    msgDao.addOtherMsg("admin", "Malfunction : " + choiceStr.split("  ")[1]
+                            + " from station " + MainStation.station);
                     msgDao.addOtherMsg(userID,
                             "Dear user, your feedback about \"" + choiceStr.split("  ")[1] + "\" "
                                     + "has been " + "received."

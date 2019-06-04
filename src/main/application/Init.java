@@ -28,8 +28,8 @@ public class Init {
                 if (!f.exists()) {
                     f.createNewFile();
                     if (fileName.equals("bikes.txt")) {
-                        BufferedWriter writter = new BufferedWriter(
-                                new FileWriter(filePath + fileName));
+                        BufferedWriter writter =
+                                new BufferedWriter(new FileWriter(filePath + fileName));
                         String str = new String();
                         for (Bikes bikes : Main.bikeStationList) {
                             str += bikes.toString() + "\n";
@@ -38,8 +38,8 @@ public class Init {
                         writter.close();
                     }
                     if (fileName.equals("account.txt")) {
-                        BufferedWriter writter = new BufferedWriter(
-                                new FileWriter(filePath + fileName));
+                        BufferedWriter writter =
+                                new BufferedWriter(new FileWriter(filePath + fileName));
                         String str = "admin admin admin 0";
                         writter.write(str.toString());
                         writter.close();

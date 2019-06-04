@@ -23,7 +23,9 @@ public class MsgDaoImpl extends BaseDao implements MsgDao {
     private SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd;HH:mm:ss");
 
     /**
-     * <p>Description: Get messages according to a certain user ID.</p>
+     * <p>
+     * Description: Get messages according to a certain user ID.
+     * </p>
      *
      * @param userID A user's ID number
      * @return Messages of a certain account
@@ -34,7 +36,9 @@ public class MsgDaoImpl extends BaseDao implements MsgDao {
     }
 
     /**
-     * <p>Description: Find messages reminding an overdue event according to a certain user ID</p>
+     * <p>
+     * Description: Find messages reminding an overdue event according to a certain user ID
+     * </p>
      *
      * @param userID A user's ID number
      * @return Overdue messages of a certain account
@@ -57,7 +61,9 @@ public class MsgDaoImpl extends BaseDao implements MsgDao {
     }
 
     /**
-     * <p>Description: Find messages with other types according to a certain user ID</p>
+     * <p>
+     * Description: Find messages with other types according to a certain user ID
+     * </p>
      *
      * @param userID A user's ID number
      * @return Messages with other types
@@ -87,7 +93,9 @@ public class MsgDaoImpl extends BaseDao implements MsgDao {
     }
 
     /**
-     * <p>Description: Add an message reminding an overdue event</p>
+     * <p>
+     * Description: Add an message reminding an overdue event
+     * </p>
      *
      * @param overdueRecord An object of Record that is overdue
      * @throws IOException Input and output exception
@@ -103,17 +111,18 @@ public class MsgDaoImpl extends BaseDao implements MsgDao {
             Date overdueDate = overdueRecord.getStartDate();
             overdueDate.setTime(overdueDate.getTime() + Main.overdueTime_Once * 60 * 1000);
             Msg msg = new Msg(BaseDao.dataAmount("msg.txt", "", 0) + 1, overdueRecord.getUserID(),
-                    overdueDate,
-                    "overdue");
+                    overdueDate, "overdue");
             BaseDao.addLine("msg.txt", msg.toString());
         }
     }
 
     /**
-     * <p>Description: Add an message with other types</p>
+     * <p>
+     * Description: Add an message with other types
+     * </p>
      *
      * @param userID A user's ID number
-     * @param text The content of the message
+     * @param text   The content of the message
      * @return If succeed, return true. If not, return false.
      * @throws IOException Input and output exception
      */
@@ -128,7 +137,9 @@ public class MsgDaoImpl extends BaseDao implements MsgDao {
     }
 
     /**
-     * <p>Description: Delete a message according to a message ID</p>
+     * <p>
+     * Description: Delete a message according to a message ID
+     * </p>
      *
      * @param msgID An ID number of a message
      * @throws IOException Input and output exception
@@ -138,7 +149,9 @@ public class MsgDaoImpl extends BaseDao implements MsgDao {
     }
 
     /**
-     * <p>Description: A main method.</p>
+     * <p>
+     * Description: A main method.
+     * </p>
      *
      * @param args Default
      */

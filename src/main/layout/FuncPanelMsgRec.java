@@ -75,7 +75,7 @@ public class FuncPanelMsgRec extends FuncPanelDefault implements ActionListener 
         overduePanel.setOpaque(false);
         add(overduePanel);
 
-        table = new JTable(datas, new String[]{"Date", "Message"});
+        table = new JTable(datas, new String[] {"Date", "Message"});
 
         JTableHeader head = table.getTableHeader();
         head.setPreferredSize(new Dimension(head.getWidth(), 50));
@@ -95,11 +95,10 @@ public class FuncPanelMsgRec extends FuncPanelDefault implements ActionListener 
                 String date = table.getValueAt(table.getSelectedRow(), 0).toString();
                 String text = table.getValueAt(table.getSelectedRow(), 1).toString();
                 Object[] choices = {"OK", "Delete", "Cancel"};
-                int choiceNum = (int) JOptionPane
-                        .showOptionDialog(null, "Date : " + date + "\nMessage : " + text,
-                                "Details", JOptionPane.YES_NO_CANCEL_OPTION,
-                                JOptionPane.INFORMATION_MESSAGE, null, choices,
-                                choices[0]);
+                int choiceNum = (int) JOptionPane.showOptionDialog(null,
+                        "Date : " + date + "\nMessage : " + text, "Details",
+                        JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null,
+                        choices, choices[0]);
 
                 switch (choiceNum) {
                     case 0: // OK
@@ -108,8 +107,8 @@ public class FuncPanelMsgRec extends FuncPanelDefault implements ActionListener 
                         try {
                             SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
                             for (Msg selectedMsg : otherMsg) {
-                                if (text.equals(selectedMsg.getText()) && date
-                                        .equals(sf.format(selectedMsg.getDate()))) {
+                                if (text.equals(selectedMsg.getText())
+                                        && date.equals(sf.format(selectedMsg.getDate()))) {
                                     dao.deleteMsg(String.valueOf(selectedMsg.getMsgID()));
                                     updateUI();
                                 }
@@ -135,8 +134,7 @@ public class FuncPanelMsgRec extends FuncPanelDefault implements ActionListener 
             public void componentResized(ComponentEvent e) {
                 overduePanel.setBounds(0, getBounds().height / 60, getBounds().width, 60);
                 sPane.setBounds(getBounds().width / 18, getBounds().height / 46 * 10,
-                        getBounds().width * 8 / 9,
-                        getBounds().height * 205 / 300);
+                        getBounds().width * 8 / 9, getBounds().height * 205 / 300);
             }
         });
     }

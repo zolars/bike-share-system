@@ -24,8 +24,10 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
     private SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd;HH:mm:ss");
 
     /**
-     * <p>Description: Generate records of all users' usages and judge if the users will get a fine.
-     * If a user will get a fine, a specific attribute of its account will be changed.
+     * <p>
+     * Description: Generate records of all users' usages and judge if the users will get a fine. If
+     * a user will get a fine, a specific attribute of its account will be changed.
+     * </p>
      *
      * @param resultStr Users' information
      * @return Generated records
@@ -70,10 +72,8 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
             } else {
                 for (int j = i - 1; j >= 0; j--) {
                     duration += result.get(j).getDuration();
-                    if (duration > Main.overdueTime_All
-                            && (result.get(i).getEndDate().getTime() - result.get(j).getStartDate()
-                            .getTime()) / 1000
-                            / 60 / 60 < 24) {
+                    if (duration > Main.overdueTime_All && (result.get(i).getEndDate().getTime()
+                            - result.get(j).getStartDate().getTime()) / 1000 / 60 / 60 < 24) {
                         result.get(i).setFine(true);
                         break;
                     } else {
@@ -81,8 +81,8 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
                     }
                 }
             }
-            if (result.get(i).isFine() && result.get(i).getStartDate()
-                    .equals(result.get(i).getEndDate())) {
+            if (result.get(i).isFine()
+                    && result.get(i).getStartDate().equals(result.get(i).getEndDate())) {
                 AccountDao accountDao = new AccountDaoImpl();
                 Account account = accountDao.findAccountByUserID(result.get(i).getUserID());
                 account.setFine(true);
@@ -93,7 +93,9 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
     }
 
     /**
-     * <p>Description: Get all records according to the existing accounts stored in database.</p>
+     * <p>
+     * Description: Get all records according to the existing accounts stored in database.
+     * </p>
      *
      * @return Records of all accounts
      * @throws IOException Input and output exception
@@ -116,7 +118,9 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
     }
 
     /**
-     * <p>Description: Get certain records in accordance with a user ID.</p>
+     * <p>
+     * Description: Get certain records in accordance with a user ID.
+     * </p>
      *
      * @param userID A user's ID number
      * @return Records of a certain account
@@ -128,7 +132,9 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
     }
 
     /**
-     * <p>Description: Find uncompleted records according to a certain user ID</p>
+     * <p>
+     * Description: Find uncompleted records according to a certain user ID
+     * </p>
      *
      * @param userID A user's ID number
      * @return Uncompleted records of a certain account
@@ -151,7 +157,9 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
     }
 
     /**
-     * <p>Description: Find all overdue records</p>
+     * <p>
+     * Description: Find all overdue records
+     * </p>
      *
      * @return Overdue records of all account
      * @throws IOException Input and output exception
@@ -177,7 +185,9 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
     }
 
     /**
-     * <p>Description: Find overdue records according to a certain user ID</p>
+     * <p>
+     * Description: Find overdue records according to a certain user ID
+     * </p>
      *
      * @param userID A user's ID number
      * @return Overdue records of a certain account
@@ -200,9 +210,11 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
     }
 
     /**
-     * <p>Description: Add a new borrowing record using a user ID and the start time</p>
+     * <p>
+     * Description: Add a new borrowing record using a user ID and the start time
+     * </p>
      *
-     * @param userID A user's ID number
+     * @param userID    A user's ID number
      * @param startDate The start time
      * @throws IOException Input and output exception
      */
@@ -214,7 +226,9 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
     }
 
     /**
-     * <p>Description: Add a new returning record using a user ID</p>
+     * <p>
+     * Description: Add a new returning record using a user ID
+     * </p>
      *
      * @param userID A user's ID number
      * @return If add a record successfully, return true. If not, return false.
@@ -235,8 +249,10 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
     }
 
     /**
-     * <p>Description: If a user with a certain ID number has ridden for two hours in a single day.
-     * Calculate the time when a user can utilize a bike again</p>
+     * <p>
+     * Description: If a user with a certain ID number has ridden for two hours in a single day.
+     * Calculate the time when a user can utilize a bike again
+     * </p>
      *
      * @param userID A user's ID number
      * @return If the user is run out off the time, return the time when it can ride again.
@@ -251,8 +267,8 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
         tempResult = dao.findRecordAll(userID);
 
         for (int i = tempResult.size() - 1; i >= 0; i--) {
-            if ((new Date().getTime() - tempResult.get(i).getStartDate().getTime()) / 1000 / 60 / 60
-                    < 24) {
+            if ((new Date().getTime() - tempResult.get(i).getStartDate().getTime()) / 1000 / 60
+                    / 60 < 24) {
                 duration += tempResult.get(i).getDuration();
             }
             if (duration > Main.overdueTime_All) {
@@ -263,7 +279,9 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
     }
 
     /**
-     * <p>Description: A main method.</p>
+     * <p>
+     * Description: A main method.
+     * </p>
      *
      * @param args Default
      */

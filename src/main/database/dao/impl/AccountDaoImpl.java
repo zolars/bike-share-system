@@ -16,7 +16,9 @@ import java.util.List;
 public class AccountDaoImpl implements AccountDao {
 
     /**
-     * <p>Description: Get all accounts stored in database.</p>
+     * <p>
+     * Description: Get all accounts stored in database.
+     * </p>
      *
      * @return All accounts
      * @throws IOException Input and output exception
@@ -31,7 +33,9 @@ public class AccountDaoImpl implements AccountDao {
     }
 
     /**
-     * <p>Description: Get certain account in accordance with a user ID.</p>
+     * <p>
+     * Description: Get certain account in accordance with a user ID.
+     * </p>
      *
      * @param userID A user's ID number
      * @return An account with a certain ID number
@@ -53,7 +57,9 @@ public class AccountDaoImpl implements AccountDao {
     }
 
     /**
-     * <p>Description: Get certain account in accordance with a user's name.</p>
+     * <p>
+     * Description: Get certain account in accordance with a user's name.
+     * </p>
      *
      * @param username A user's name
      * @return An account with a certain name
@@ -76,7 +82,9 @@ public class AccountDaoImpl implements AccountDao {
     }
 
     /**
-     * <p>Description: Add a new account</p>
+     * <p>
+     * Description: Add a new account
+     * </p>
      *
      * @param account An object of Account
      * @return If succeed, return true. If not, return false.
@@ -94,7 +102,9 @@ public class AccountDaoImpl implements AccountDao {
     }
 
     /**
-     * <p>Description: Update the information about an account stored in database</p>
+     * <p>
+     * Description: Update the information about an account stored in database
+     * </p>
      *
      * @param accountModified An object of Account that will be modified
      * @return If succeed, return true. If not, return false.
@@ -112,7 +122,9 @@ public class AccountDaoImpl implements AccountDao {
     }
 
     /**
-     * <p>Description: Delete an account stored in database</p>
+     * <p>
+     * Description: Delete an account stored in database
+     * </p>
      *
      * @param account An object of Account that will be deleted
      * @throws IOException Input and output exception
@@ -122,7 +134,9 @@ public class AccountDaoImpl implements AccountDao {
     }
 
     /**
-     * <p>Description: A main method.</p>
+     * <p>
+     * Description: A main method.
+     * </p>
      *
      * @param args Default
      */

@@ -50,7 +50,7 @@ public class FuncPanelAccounts extends FuncPanelDefault implements ActionListene
         grabData();
         setLayout(null);
 
-        table = new JTable(datas, new String[]{"ID", "Name", "Email"});
+        table = new JTable(datas, new String[] {"ID", "Name", "Email"});
         JTableHeader head = table.getTableHeader();
         head.setPreferredSize(new Dimension(head.getWidth(), 50));
         head.setFont(new Font("Dialog", 1, 25));

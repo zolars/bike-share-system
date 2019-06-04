@@ -92,12 +92,10 @@ public class FuncPanelRegister extends FuncPanelDefault implements ActionListene
                         JOptionPane.WARNING_MESSAGE);
             } else if (isNotName(jtUsername.getText())) {
                 JOptionPane.showMessageDialog(null, "Your name input is wrong. Please try again.",
-                        "Sorry",
-                        JOptionPane.WARNING_MESSAGE);
+                        "Sorry", JOptionPane.WARNING_MESSAGE);
             } else if (isNotEmail(jtEmail.getText())) {
                 JOptionPane.showMessageDialog(null, "Your Email format is wrong. Please try again.",
-                        "Sorry",
-                        JOptionPane.WARNING_MESSAGE);
+                        "Sorry", JOptionPane.WARNING_MESSAGE);
             } else {
                 AccountDao dao = new AccountDaoImpl();
                 Account account = new Account();
@@ -108,14 +106,12 @@ public class FuncPanelRegister extends FuncPanelDefault implements ActionListene
 
                 try {
                     if (dao.addNewAccount(account)) {
-                        JOptionPane
-                                .showMessageDialog(null, "Congratulations! Register Successfully!",
-                                        "Congratulations!",
-                                        JOptionPane.WARNING_MESSAGE);
+                        JOptionPane.showMessageDialog(null,
+                                "Congratulations! Register Successfully!", "Congratulations!",
+                                JOptionPane.WARNING_MESSAGE);
                     } else {
                         JOptionPane.showMessageDialog(null,
-                                "The user ID or user name has been used. Please try "
-                                        + "again.",
+                                "The user ID or user name has been used. Please try " + "again.",
                                 "Sorry", JOptionPane.WARNING_MESSAGE);
                     }
 
@@ -166,7 +162,8 @@ public class FuncPanelRegister extends FuncPanelDefault implements ActionListene
         if (string == null) {
             return false;
         }
-        String regEx1 = "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
+        String regEx1 =
+                "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
         Pattern p;
         Matcher m;
         p = Pattern.compile(regEx1);

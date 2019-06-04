@@ -90,8 +90,7 @@ public class FuncPanelMsgSend extends FuncPanelDefault implements ActionListener
                     MsgDao dao = new MsgDaoImpl();
                     if (dao.addOtherMsg(jtUserID.getText(), jtMsgText.getText())) {
                         JOptionPane.showMessageDialog(null, "Congratulations! Send Successfully!",
-                                "Congratulations!",
-                                JOptionPane.WARNING_MESSAGE);
+                                "Congratulations!", JOptionPane.WARNING_MESSAGE);
                     } else {
                         JOptionPane.showMessageDialog(null,
                                 "This account doesn't exist. Please try again.", "Sorry",
