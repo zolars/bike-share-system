@@ -87,9 +87,8 @@ public class FuncPanelRegister extends FuncPanelDefault implements ActionListene
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == jbRegister) {
             if (isNotID(jtUserID.getText())) {
-                JOptionPane.showMessageDialog(null,
-                        "Null Input! You must input something. Please try again.", "Sorry",
-                        JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Your ID input is wrong. Please try again.",
+                        "Sorry", JOptionPane.WARNING_MESSAGE);
             } else if (isNotName(jtUsername.getText())) {
                 JOptionPane.showMessageDialog(null, "Your name input is wrong. Please try again.",
                         "Sorry", JOptionPane.WARNING_MESSAGE);

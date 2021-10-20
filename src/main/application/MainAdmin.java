@@ -20,7 +20,7 @@ public class MainAdmin {
     public static boolean restart = false;
 
     public static void setup() {
-        funcSet.add(new FuncPanelBikes());
+        // funcSet.add(new FuncPanelBikes());
         funcSet.add(new FuncPanelInfo());
         // funcSet.add(new FuncPanelFeedback());
         funcSet.add(new FuncPanelAccounts());

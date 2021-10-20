@@ -27,5 +27,8 @@ hs_err_pid*
 *.xml
 *.json
 
+# MacOS files
+.DS_Store
+
 BikeShareSystem/bin/*
 *.txt
